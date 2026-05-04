@@ -27,6 +27,9 @@ Thumbs.db
 .env
 .env.*
 
+# OpenSpec generated vendor directories (run openspec init locally)
+.opencode/
+
 # Coverage
 .coverage
 htmlcov/

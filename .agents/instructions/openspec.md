@@ -1,29 +1,60 @@
 # OpenSpec Workflow
 
-All features in ase-cli are spec-driven. Every change starts with an OpenSpec proposal.
+All features in ase-cli are spec-driven. Every change goes through OpenSpec: propose → apply → archive.
+
+## Setup
+
+OpenSpec requires Node.js 20.19+. Install globally once per machine:
+
+```
+npm install -g @fission-ai/openspec@latest
+```
+
+Then initialize in the project (already done — committed as `.opencode/`):
+
+```
+openspec init --tools opencode
+openspec update            # Refresh after upgrades
+```
+
+The generated `.opencode/` directory contains slash commands and skills. These are committed to the repo so every developer gets them — like `.github/copilot-instructions.md` or `CLAUDE.md`, they're generated pointers, not authored duplicates.
+
+## Quick Reference
+
+| Command | What it does |
+|---|---|
+| `/opsx:propose <idea>` | Create a change folder with proposal, specs, design, tasks |
+| `/opsx:apply` | Implement tasks, checking them off as you go |
+| `/opsx:archive` | Merge delta specs into `openspec/specs/`, move change to archive |
 
 ## Directory Layout
 
 ```
 openspec/
-├── changes/            # Active and proposed changes
-│   ├── NNN-change-id/  # One directory per change
-│   │   ├── proposal.md
-│   │   ├── design.md
-│   │   ├── tasks.md
-│   │   └── specs/      # Spec deltas for this change
-│   └── archive/        # Completed changes (historical record)
-└── specs/              # Canonical specs (current system behavior)
+├── changes/                          # Active and proposed changes
+│   ├── add-dark-mode/                # One directory per change
+│   │   ├── proposal.md               # Why and what
+│   │   ├── design.md                 # Technical approach
+│   │   ├── tasks.md                  # Implementation checklist
+│   │   └── specs/                    # Delta specs (ADDED/MODIFIED/REMOVED)
+│   └── archive/                      # Completed changes
+│       └── YYYY-MM-DD-add-dark-mode/ # Dated, preserved for history
+└── specs/                            # Canonical specs (source of truth)
 ```
 
-## Creating a Change
+## How a Change Works
 
-1. Choose the next NNN number (check `openspec/changes/` for the highest)
-2. Create `openspec/changes/NNN-short-id/` with:
-   - `proposal.md` — What, why, scope, non-goals
-   - `design.md` — Technical decisions, trade-offs
-   - `tasks.md` — Implementation tasks, breaking work into checkable units
-   - `specs/` — Spec deltas showing requirement changes
+### 1. Propose
+
+Run `/opsx:propose <what-you-want-to-build>`. This creates the change folder with all planning artifacts. Artifacts build on each other: proposal (why) → specs (what) → design (how) → tasks (steps).
+
+### 2. Apply
+
+Run `/opsx:apply`. Work through tasks.md, checking them off. Update any artifact if you discover better approaches — no rigid phase gates. OpenSpec operates on actions, not locked phases.
+
+### 3. Archive
+
+Run `/opsx:archive`. Delta specs merge into `openspec/specs/` (ADDED → appended, MODIFIED → replaced, REMOVED → deleted). The change folder moves to `changes/archive/YYYY-MM-DD-name/` to preserve history.
 
 ## Acceptance Criteria (AC IDs)
 

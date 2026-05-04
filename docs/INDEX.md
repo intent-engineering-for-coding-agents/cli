@@ -7,6 +7,7 @@ Every file in `docs/` listed with its purpose. Load this first for context econo
 | File | Purpose |
 |---|---|
 | [README.md](README.md) | Architecture overview — CLI design, two-layer checks, technology stack, command reference |
+| [testing-convention.md](testing-convention.md) | Generic ASE testing conventions — test layers, AC IDs, traceability markers, proof requirements |
 | INDEX.md | This file — agent-facing map, loaded first |
 
 ## decisions/ — Architectural Decision Records (MADR)

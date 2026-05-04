@@ -58,40 +58,50 @@ Run `/opsx:archive`. Delta specs merge into `openspec/specs/` (ADDED → appende
 
 ## Acceptance Criteria (AC IDs)
 
-Every spec scenario MUST have an AC ID in `[AC-NNN]` format:
+Every spec scenario MUST have an AC ID in `[PREFIX-NNN]` format, embedded in the scenario heading:
 
 ```markdown
-### Requirement: Something
+#### Scenario: Points earned on delivery [LP-001]
 
-#### Scenario: Name
-[AC-001] Description of expected behavior
-**Given** precondition
-**When** action
-**Then** expected outcome
+**Test:** Unit
 
-**Test:** Unit | Integration | Manual
+- **GIVEN** an order has been marked as delivered
+- **WHEN** the order total is at least $5.00
+- **THEN** 1 point per dollar is awarded to the customer
 ```
 
 Rules:
-- AC IDs are unique within the spec, sequential from 001
-- Every AC must have a `**Test:**` field (Unit, Integration, or Manual)
-- `Manual` tests are the exception — only when automation is impossible
-- Every non-Manual AC must have positive AND negative proof in tests/
+- The prefix maps to the spec or capability name (e.g., `LP` for Loyalty Points, `DRAM` for DRAM module)
+- IDs are unique within the project, zero-padded, sequential per prefix
+- Once assigned, an ID SHALL NOT be reused or renumbered
+- Removed scenarios keep their IDs in archive history — do not renumber remaining scenarios
+- Every scenario MUST have a `**Test:**` field declaring the required test layer
+- Every non-Manual AC MUST have positive and negative proof via its significant equivalence classes and boundaries
+- See `docs/testing-convention.md` for the full test layer taxonomy and traceability contract
 
 ## Test Traceability
 
 Tests reference AC IDs to enable traceability:
 
 ```python
-# Python test with pytest marker
-@pytest.mark.ac("SPEC-001")
-def test_session_expiration():
+# pytest marker
+@pytest.mark.ac("LP-001")
+def test_points_earned_on_delivery():
     ...
 
-# Or inline comment (fallback)
-# AC: SPEC-001
-def test_session_expiration():
+# Fallback comment (any language)
+# AC: LP-001
+def test_points_earned_on_delivery():
     ...
 ```
+
+Tests that do NOT prove acceptance criteria SHALL carry a category marker:
+
+```python
+@pytest.mark.baseline  # Coverage-threshold regression protection
+@pytest.mark.sanity     # Toolchain/environment readiness
+```
+
+Framework-specific marker formats and the full traceability contract are defined in `docs/testing-convention.md`.
 
 ase-cli's `test-traceability` check cross-references AC IDs in specs against test markers.

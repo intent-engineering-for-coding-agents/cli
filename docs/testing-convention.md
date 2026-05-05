@@ -110,7 +110,7 @@ A product-behavior test with no AC marker is a policy violation. If it proves ex
 
 ## Task-Level Proof
 
-In `tasks.md`, every production-code task SHALL be followed by explicit proof tasks when the behavior is testable. Proof tasks SHALL declare which AC IDs they cover via `Covers:` annotations.
+In `tasks.md`, explicit proof tasks SHALL follow every production-code task when the behavior is testable. Proof tasks SHALL declare which AC IDs they cover via `Covers:` annotations.
 
 A task group is self-contained: implement → prove → move on. The reader checks off a section knowing the code is both written and verified.
 
@@ -122,7 +122,7 @@ Weak (batch all tests at the end):
 Strong (each production task paired with its proof):
 ```markdown
 - [ ] 3.1 Implement username validation in UserValidator
-- [ ] 3.2 Add positive unit test: alphanumeric username passes validation
+- [ ] 3.2 Add a positive unit test: alphanumeric username passes validation
   - Covers: USER-005
 - [ ] 3.3 Add negative unit test: username with special characters is rejected
   - Covers: USER-005

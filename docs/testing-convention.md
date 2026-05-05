@@ -80,7 +80,7 @@ Every non-Manual acceptance criterion SHALL be proven by tests that cover its si
 - **Positive proof**: The intended behavior works, including edge cases within valid boundaries.
 - **Negative proof**: Invalid, forbidden, or boundary conditions fail as intended.
 
-Proof coverage is guided by classical test design techniques (Equivalence Partitioning, Boundary Value Analysis). A scenario requiring only one positive and one negative test should be re-examined — it likely under-specifies the behavior or over-simplifies the proof.
+Proof coverage is guided by classical test design techniques (Equivalence Partitioning, Boundary Value Analysis). A scenario requiring only one positive and one negative test should be re-examined — it likely under-specifies the behavior or oversimplifies the proof.
 
 ---
 
@@ -110,22 +110,27 @@ A product-behavior test with no AC marker is a policy violation. If it proves ex
 
 ## Task-Level Proof
 
-In `tasks.md`, every production-code task SHALL be followed by explicit proof tasks when the behavior is testable.
+In `tasks.md`, every production-code task SHALL be followed by explicit proof tasks when the behavior is testable. Proof tasks SHALL declare which AC IDs they cover via `Covers:` annotations.
 
-Weak:
+A task group is self-contained: implement → prove → move on. The reader checks off a section knowing the code is both written and verified.
+
+Weak (batch all tests at the end):
 ```markdown
-- [ ] Add tests
+- [ ] 4.1 Add tests for all validation rules
 ```
 
-Strong:
+Strong (each production task paired with its proof):
 ```markdown
-- [ ] Add positive integration test for registered CISIC routing
-  - Covers: DRAM-003
-- [ ] Add negative integration test for unregistered CISIC rejection
-  - Covers: DRAM-003
+- [ ] 3.1 Implement username validation in UserValidator
+- [ ] 3.2 Add positive unit test: alphanumeric username passes validation
+  - Covers: USER-005
+- [ ] 3.3 Add negative unit test: username with special characters is rejected
+  - Covers: USER-005
+- [ ] 3.4 Add boundary unit test: username at minimum length (3 chars) is accepted
+  - Covers: USER-005
 ```
 
-Proof tasks SHALL declare which AC IDs they cover via `Covers:` annotations.
+The negative proof tests the same behavior through a complementary equivalence class or boundary — not a different behavior. A test for a different AC belongs in its own task pair.
 
 ---
 

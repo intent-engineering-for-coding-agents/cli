@@ -51,7 +51,7 @@ class Registry:
     def __init__(self) -> None:
         self._checkers: dict[str, Checker] = {}
 
-    def register(self, checker: Checker) -> None:
+    def register(self, checker: Checker) -> Checker:
         checker_id = getattr(checker, "id", None)
         if not isinstance(checker_id, str):
             raise TypeError(
@@ -62,6 +62,7 @@ class Registry:
             raise TypeError("Checker must have a callable 'check' method")
         if checker.id not in self._checkers:
             self._checkers[checker.id] = checker
+        return checker
 
     def list_all(self) -> list[tuple[str, str]]:
         return [(c.id, c.description) for c in self._checkers.values()]
@@ -69,12 +70,13 @@ class Registry:
     def run_all(self, path: Path) -> list[CheckResult]:
         results: list[CheckResult] = []
         for checker in self._checkers.values():
+            instance = checker() if isinstance(checker, type) else checker
             try:
-                results.append(checker.check(path))
+                results.append(instance.check(path))
             except Exception as e:
                 results.append(
                     CheckResult(
-                        check_id=checker.id,
+                        check_id=instance.id,
                         status=Status.FAIL,
                         message=f"Checker raised exception: {e}",
                         severity=Severity.HIGH,
@@ -85,13 +87,15 @@ class Registry:
     def run_one(self, check_id: str, path: Path) -> CheckResult:
         if check_id not in self._checkers:
             raise KeyError(f"Unknown checker ID: {check_id}")
-        return self._checkers[check_id].check(path)
+        checker = self._checkers[check_id]
+        instance = checker() if isinstance(checker, type) else checker
+        return instance.check(path)
 
 
 registry = Registry()
 
 
-@check_app.command()
+@check_app.callback(invoke_without_command=True)
 def check(
     path: str = typer.Option(".", "--path", help="Target directory or file to check"),
 ) -> None:
@@ -126,4 +130,8 @@ def check(
 
 
 def _load_checkers() -> None:
-    """Import checker modules to trigger registration. Placeholder for Change 003+."""
+    """Import checker modules to trigger registration."""
+    import ase_cli.checkers  # noqa: F401
+
+
+_load_checkers()

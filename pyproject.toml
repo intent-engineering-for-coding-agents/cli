@@ -1,6 +1,6 @@
 [project]
 name = "ase-cli"
-version = "0.0.1"
+version = "0.3.0"
 description = "ASE practice validation CLI — deterministic + AI-assisted checks for agentic software engineering repos"
 readme = "README.md"
 requires-python = ">=3.12"

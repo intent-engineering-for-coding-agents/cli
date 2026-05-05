@@ -45,3 +45,8 @@ quote-style = "double"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "ac: marks a test as proving a specific acceptance criterion",
+    "baseline: marks coverage threshold or structural regression tests",
+    "sanity: marks environment or toolchain readiness tests",
+]

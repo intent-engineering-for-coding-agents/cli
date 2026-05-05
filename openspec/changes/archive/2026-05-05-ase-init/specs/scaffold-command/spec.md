@@ -126,3 +126,33 @@ The `ase init` command SHALL create `docs/testing-convention.md` with the full g
 - **WHEN** `ase init` creates `docs/testing-strategy.md`
 - **THEN** the stub references `testing-convention.md`
 - **AND** includes placeholder sections for test tools, CI wiring, and directory layout
+
+### Requirement: Empty directories contain .gitkeep files
+The `ase init` command SHALL place `.gitkeep` files in directories that would otherwise be empty after scaffolding, so they are tracked by Git.
+
+#### Scenario: .gitkeep placed in empty directories [SCAFFOLD-014]
+
+**Test:** Integration
+
+- **WHEN** `ase init` is run in an empty directory
+- **THEN** `.gitkeep` files are created in: `docs/architecture/`, `openspec/changes/archive/`, `openspec/specs/`, `.agents/instructions/`, `.agents/commands/`, `.agents/skills/`, `.agents/hooks/`
+- **AND** directories that contain stub files (e.g., `docs/decisions/` with README.md) do NOT get a `.gitkeep`
+
+### Requirement: CLI provides --help and --version
+The `ase` CLI SHALL display usage via `--help` and version via `--version`.
+
+#### Scenario: --help shows command reference [SCAFFOLD-015]
+
+**Test:** Integration
+
+- **WHEN** `ase --help` is run
+- **THEN** the output lists available commands including `init`
+- **AND** describes each command's purpose
+
+#### Scenario: --version shows version number [SCAFFOLD-016]
+
+**Test:** Integration
+
+- **WHEN** `ase --version` is run
+- **THEN** the output matches the version in `pyproject.toml`
+- **AND** the command exits with code 0

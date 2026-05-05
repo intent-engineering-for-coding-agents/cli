@@ -37,16 +37,21 @@ The deterministic layer works on any machine — no AI required. The AI layer st
 ## Commands
 
 ```
-ase init                  # Scaffold canonical directory structure
-ase init --with-copilot   # Also emit .github/copilot-instructions.md -> "See AGENTS.md"
-ase init --with-claude    # Also emit CLAUDE.md -> "See AGENTS.md"
+ase --help                # Show usage
+ase --version             # Show version
 
-ase check                 # Run deterministic checks only
-ase check --all           # Run deterministic + AI-assisted (via MCP)
-ase check --path src/     # Scope to a directory or file
+ase init                  # Scaffold canonical ASE directory structure
+ase init --path <dir>     # Target a specific directory
+ase init --dry-run        # Preview what would be created
+ase init --force           # Overwrite existing files
+ase init --with-claude    # Also emit CLAUDE.md with @AGENTS.md import
+ase init --with-gemini    # Also emit .gemini/settings.json context config
 
-ase generate copilot      # Emit Copilot-facing files
-ase generate claude        # Emit CLAUDE.md pointer
+ase check                 # Run deterministic checks only (future)
+ase check --all           # Run deterministic + AI-assisted (future)
+ase check --path src/     # Scope to a directory or file (future)
+
+ase generate              # Emit vendor AI instruction files (future)
 ```
 
 ## Technology Stack

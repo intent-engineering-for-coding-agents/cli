@@ -50,7 +50,9 @@ Run `/opsx:propose <what-you-want-to-build>`. This creates the change folder wit
 
 ### 2. Apply
 
-Run `/opsx:apply`. Work through tasks.md, checking them off. Update any artifact if you discover better approaches — no rigid phase gates. OpenSpec operates on actions, not locked phases.
+Run `/opsx:apply`. Work through tasks.md one task at a time. After each task or subtask is completed, IMMEDIATELY update tasks.md — change `- [ ]` to `- [x]` in the checkbox. The user tracks progress by watching the checkmarks accumulate. Do NOT batch completions at the end.
+
+If a new task is needed during implementation, add it and **renumber the section** — never use suffixes like `2.2b` or `2.2.1`. Tasks stay clean, sequential, and reviewable. Update any artifact if you discover better approaches — no rigid phase gates.
 
 ### 3. Archive
 

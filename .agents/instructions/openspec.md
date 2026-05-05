@@ -54,6 +54,8 @@ Run `/opsx:apply`. Work through tasks.md one task at a time. After each task or 
 
 If a new task is needed during implementation, add it and **renumber the section** — never use suffixes like `2.2b` or `2.2.1`. Tasks stay clean, sequential, and reviewable. Update any artifact if you discover better approaches — no rigid phase gates.
 
+**Tasks SHALL be self-contained.** When a task group produces code, the NEXT task MUST verify it with positive and negative proof. Never group all tests at the end. Each section of tasks.md is a self-contained vertical slice: implement → prove → move on. See `docs/testing-convention.md` for positive/negative proof requirements (equivalence classes and boundaries).
+
 ### 3. Archive
 
 Run `/opsx:archive`. Delta specs merge into `openspec/specs/` (ADDED → appended, MODIFIED → replaced, REMOVED → deleted). The change folder moves to `changes/archive/YYYY-MM-DD-name/` to preserve history.

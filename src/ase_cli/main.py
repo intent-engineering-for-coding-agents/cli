@@ -4,15 +4,17 @@ from importlib.metadata import version
 
 import typer
 
+from ase_cli.check import check_app
 from ase_cli.init import init
 
 app = typer.Typer(no_args_is_help=True)
 app.command(name="init")(init)
+app.add_typer(check_app, name="check")
 
 
 def _version_callback(value: bool) -> None:
     if value:
-        typer.echo(f"ase-cli {version("ase-cli")}")
+        typer.echo(f"ase-cli {version('ase-cli')}")
         raise typer.Exit()
 
 

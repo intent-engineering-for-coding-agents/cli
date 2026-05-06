@@ -24,6 +24,7 @@ Permanent. Immutable once closed. Each records a real architectural decision mad
 | [0005-madr-format.md](decisions/0005-madr-format.md) | Why MADR format for all ADRs |
 | [0006-openspec.md](decisions/0006-openspec.md) | Why OpenSpec for spec-driven development |
 | [README.md](decisions/README.md) | Auto-rendered listing of all ADRs with status |
+| [INDEX.md](decisions/INDEX.md) | Agent-facing index for decisions/ |
 
 ## design/ — Feature Design Docs
 
@@ -32,3 +33,4 @@ Temporary. Per-feature. Disposable after implementation.
 | File | Purpose |
 |---|---|
 | [README.md](design/README.md) | Auto-rendered listing of all design docs |
+| [INDEX.md](design/INDEX.md) | Agent-facing index for design/ |

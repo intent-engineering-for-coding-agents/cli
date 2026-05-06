@@ -11,6 +11,7 @@ from ase_cli.checkers import agents_exists, agents_links, agents_size
 # agents-exists
 # ---------------------------------------------------------------------------
 
+
 def test_agents_exists_found(tmp_path: Path) -> None:
     """Covers: AGEX-001"""
     (tmp_path / "AGENTS.md").write_text("# Project")
@@ -36,6 +37,7 @@ def test_agents_exists_registered() -> None:
 # ---------------------------------------------------------------------------
 # agents-size
 # ---------------------------------------------------------------------------
+
 
 def test_agents_size_under_limit(tmp_path: Path) -> None:
     """Covers: AGSZ-001"""
@@ -91,11 +93,11 @@ def test_agents_size_registered() -> None:
 # agents-links
 # ---------------------------------------------------------------------------
 
+
 def test_agents_links_all_described(tmp_path: Path) -> None:
     """Covers: AGLN-001"""
     (tmp_path / "AGENTS.md").write_text(
-        "- [Build](build.md) -- ci instructions\n"
-        "- [Test](test.md) -- test docs\n"
+        "- [Build](build.md) -- ci instructions\n- [Test](test.md) -- test docs\n"
     )
     result = agents_links.AgentsLinks().check(tmp_path)
     assert result.status == Status.PASS
@@ -103,9 +105,7 @@ def test_agents_links_all_described(tmp_path: Path) -> None:
 
 def test_agents_links_bare_link(tmp_path: Path) -> None:
     """Covers: AGLN-002"""
-    (tmp_path / "AGENTS.md").write_text(
-        "- [Build](build.md)\n"
-    )
+    (tmp_path / "AGENTS.md").write_text("- [Build](build.md)\n")
     result = agents_links.AgentsLinks().check(tmp_path)
     assert result.status == Status.WARN
     assert "build.md" in result.message
@@ -113,10 +113,7 @@ def test_agents_links_bare_link(tmp_path: Path) -> None:
 
 def test_agents_links_multiple_bare(tmp_path: Path) -> None:
     """Covers: AGLN-003"""
-    (tmp_path / "AGENTS.md").write_text(
-        "- [Build](build.md)\n"
-        "- [Test](test.md)\n"
-    )
+    (tmp_path / "AGENTS.md").write_text("- [Build](build.md)\n- [Test](test.md)\n")
     result = agents_links.AgentsLinks().check(tmp_path)
     assert result.status == Status.WARN
     assert "build.md" in result.message

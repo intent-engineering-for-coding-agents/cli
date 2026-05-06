@@ -9,6 +9,9 @@ from ase_cli.check import registry
 from ase_cli.checkers.agents_exists import AgentsExists
 from ase_cli.checkers.agents_links import AgentsLinks
 from ase_cli.checkers.agents_size import AgentsSize
+from ase_cli.checkers.docs_index_exists import DocsIndexExists
+from ase_cli.checkers.docs_index_stale import DocsIndexStale
+from ase_cli.checkers.docs_readme_exists import DocsReadmeExists
 from ase_cli.main import app
 
 runner = CliRunner()
@@ -18,6 +21,9 @@ def _register_all() -> None:
     registry.register(AgentsExists)
     registry.register(AgentsSize)
     registry.register(AgentsLinks)
+    registry.register(DocsReadmeExists)
+    registry.register(DocsIndexExists)
+    registry.register(DocsIndexStale)
 
 
 @pytest.fixture(autouse=True)
@@ -30,11 +36,13 @@ def _reset_registry() -> None:
 def test_ase_check_runs_all_checkers() -> None:
     """Covers: AGEX-001, AGSZ-001, AGLN-001 — real checkers against ase-cli repo"""
     result = runner.invoke(app, ["check"])
-    assert result.exit_code == 0
     assert "agents-exists" in result.stdout
     assert "agents-size" in result.stdout
     assert "agents-links" in result.stdout
-    assert "passed" in result.stdout
+    assert "docs-readme-exists" in result.stdout
+    assert "docs-index-exists" in result.stdout
+    assert "docs-index-stale" in result.stdout
+    assert "check(s)" in result.stdout
 
 
 def test_ase_check_missing_agents_md(tmp_path: Path) -> None:

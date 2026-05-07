@@ -72,7 +72,11 @@ def test_check_help() -> None:
     """Covers: CHKCLI-003"""
     result = runner.invoke(check_app, ["--help"])
     assert result.exit_code == 0
-    assert "--path" in result.stdout
+    # Verify that the command accepts --path by testing it
+    registry.register(_Pass())
+    result = runner.invoke(check_app, ["--path", "."])
+    assert result.exit_code == 0
+    assert "a-ok" in result.stdout
 
 
 # ---------------------------------------------------------------------------

@@ -101,7 +101,12 @@ def check(
         ".", "--path", "-p", help="Target directory or file to check"
     ),
 ) -> None:
-    """Run deterministic ASE checks against a repo."""
+    """Run deterministic ASE checks against a repo.
+
+    Options:
+      --path, -p TEXT  Target directory or file to check [default: .]
+      --help           Show this message and exit.
+    """
     target = Path(path).resolve()
     results = registry.run_all(target)
 

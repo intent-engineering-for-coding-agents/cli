@@ -97,7 +97,9 @@ registry = Registry()
 
 @check_app.callback(invoke_without_command=True)
 def check(
-    path: str = typer.Option(".", help="Target directory or file to check"),
+    path: str = typer.Option(
+        ".", "--path", "-p", help="Target directory or file to check"
+    ),
 ) -> None:
     """Run deterministic ASE checks against a repo."""
     target = Path(path).resolve()

@@ -4,7 +4,7 @@ This guide documents known issues, best practices, and troubleshooting steps for
 
 ## Known Issues & Workarounds
 
-### Typer Help Text Formatting (RESOLVED in commit b56c6e4)
+### Typer Help Text Formatting
 
 **Problem:** Tests checking for specific strings in Typer command help output fail on Linux CI but pass on local Windows development.
 
@@ -181,7 +181,3 @@ uv run ase check --help
 uv run ase init --help
 ```
 
----
-
-## Last Updated
-- 2026-05-07: Documented Typer help text environment-specific issue and solution

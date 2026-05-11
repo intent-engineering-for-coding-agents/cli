@@ -1,11 +1,9 @@
 """docs-index-stale — cross-reference INDEX.md entries against actual files."""
 
-import re
 from pathlib import Path
 
 from ase_cli.check import CheckResult, Severity, Status, registry
-
-_LINK_RE = re.compile(r"\[([^\]]*)\]\(([^)]*)\)")
+from ase_cli.checkers._shared import LINK_RE
 
 
 @registry.register
@@ -40,7 +38,7 @@ class DocsIndexStale:
             # Parse referenced files from INDEX.md links
             referenced_names: set[str] = set()
             for line in index_file.read_text(encoding="utf-8").splitlines():
-                match = _LINK_RE.search(line)
+                match = LINK_RE.search(line)
                 if not match:
                     continue
                 ref_path = Path(match.group(2))

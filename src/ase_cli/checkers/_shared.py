@@ -1,6 +1,10 @@
 """Shared helpers for docs checkers."""
 
+import re
 from pathlib import Path
+
+LINK_RE = re.compile(r"\[([^\]]*)\]\(([^)]*)\)")
+"""Match Markdown inline links — group 1 = text, group 2 = target."""
 
 
 def is_effectively_empty(dirpath: Path) -> bool:

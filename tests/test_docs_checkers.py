@@ -5,6 +5,7 @@ from pathlib import Path
 from ase_cli.check import Registry, Status
 from ase_cli.checkers import (
     docs_index_exists,
+    docs_index_scope,
     docs_index_stale,
     docs_readme_exists,
 )
@@ -263,3 +264,81 @@ def test_stale_registered() -> None:
     reg = Registry()
     reg.register(docs_index_stale.DocsIndexStale)
     assert "docs-index-stale" in [c[0] for c in reg.list_all()]
+
+
+# ---------------------------------------------------------------------------
+# docs-index-scope
+# ---------------------------------------------------------------------------
+
+
+def test_scope_same_dir_file_link(tmp_path: Path) -> None:
+    """Covers: DISO-001 — same-directory file link is in scope."""
+    _make_tree(tmp_path, "docs/a.md")
+    (tmp_path / "docs" / "INDEX.md").write_text("- [A](a.md)\n")
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_scope_subdir_index_pointer(tmp_path: Path) -> None:
+    """Covers: DISO-002 — immediate subdir/INDEX.md pointer is in scope."""
+    _make_tree(tmp_path, "docs/decisions/INDEX.md")
+    (tmp_path / "docs" / "INDEX.md").write_text("- [Decisions](decisions/INDEX.md)\n")
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_scope_subdir_readme_pointer(tmp_path: Path) -> None:
+    """Covers: DISO-003 — immediate subdir/README.md pointer is in scope."""
+    _make_tree(tmp_path, "docs/decisions/README.md")
+    (tmp_path / "docs" / "INDEX.md").write_text("- [Decisions](decisions/README.md)\n")
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_scope_deeper_path_flagged(tmp_path: Path) -> None:
+    """Covers: DISO-004 — deeper paths reach into a sub-INDEX's territory."""
+    _make_tree(tmp_path, "docs/decisions/0001-x.md")
+    (tmp_path / "docs" / "INDEX.md").write_text("- [ADR-0001](decisions/0001-x.md)\n")
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "decisions/0001-x.md" in result.message
+
+
+def test_scope_parent_path_flagged(tmp_path: Path) -> None:
+    """Covers: DISO-005 — parent paths point outside the docs tree."""
+    _make_tree(tmp_path, "docs/AGENTS.md")
+    (tmp_path / "docs" / "INDEX.md").write_text("- [Agents](../AGENTS.md)\n")
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "../AGENTS.md" in result.message
+
+
+def test_scope_absolute_url_flagged(tmp_path: Path) -> None:
+    """Covers: DISO-006 — absolute URLs belong in README prose, not INDEX."""
+    _make_tree(tmp_path, "docs/a.md")
+    (tmp_path / "docs" / "INDEX.md").write_text("- [External](https://example.com/x)\n")
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "https://example.com/x" in result.message
+
+
+def test_scope_skips_dirs_without_index(tmp_path: Path) -> None:
+    """Covers: DISO-007 — checker is not redundant with docs-index-exists."""
+    _make_tree(tmp_path, "docs/decisions/0001-x.md")
+    # No INDEX.md anywhere — scope checker has nothing to inspect, returns PASS
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_scope_registered() -> None:
+    """Covers: DISO-008"""
+    reg = Registry()
+    reg.register(docs_index_scope.DocsIndexScope)
+    assert "docs-index-scope" in [c[0] for c in reg.list_all()]
+
+
+def test_scope_docs_missing(tmp_path: Path) -> None:
+    """docs/ missing returns FAIL (consistent with sibling checkers)."""
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.FAIL
+    assert "not found" in result.message.lower()

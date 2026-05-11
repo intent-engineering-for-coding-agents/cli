@@ -5,6 +5,7 @@ from ase_cli.checkers import (
     agents_links,
     agents_size,
     docs_index_exists,
+    docs_index_scope,
     docs_index_stale,
     docs_readme_exists,
 )
@@ -14,6 +15,7 @@ __all__ = [
     "agents_links",
     "agents_size",
     "docs_index_exists",
+    "docs_index_scope",
     "docs_index_stale",
     "docs_readme_exists",
 ]

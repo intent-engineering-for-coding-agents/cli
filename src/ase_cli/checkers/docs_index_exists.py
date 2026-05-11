@@ -3,6 +3,7 @@
 from pathlib import Path
 
 from ase_cli.check import CheckResult, Severity, Status, registry
+from ase_cli.checkers._shared import is_effectively_empty
 
 
 @registry.register
@@ -20,7 +21,11 @@ class DocsIndexExists:
         missing: list[str] = []
         dirs = [docs_dir] + sorted(docs_dir.rglob("*"))
         for dirpath in dirs:
-            if dirpath.is_dir() and not (dirpath / "INDEX.md").is_file():
+            if (
+                dirpath.is_dir()
+                and not is_effectively_empty(dirpath)
+                and not (dirpath / "INDEX.md").is_file()
+            ):
                 missing.append(dirpath.relative_to(path).as_posix())
 
         if not missing:

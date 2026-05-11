@@ -32,8 +32,7 @@ def test_readme_all_present(tmp_path: Path) -> None:
 
 def test_readme_one_missing(tmp_path: Path) -> None:
     """Covers: DRME-002"""
-    _make_tree(tmp_path, "docs/README.md")
-    (tmp_path / "docs" / "architecture").mkdir(parents=True)
+    _make_tree(tmp_path, "docs/README.md", "docs/architecture/overview.md")
     result = docs_readme_exists.DocsReadmeExists().check(tmp_path)
     assert result.status == Status.FAIL
     assert "docs/architecture" in result.message
@@ -41,9 +40,12 @@ def test_readme_one_missing(tmp_path: Path) -> None:
 
 def test_readme_multiple_missing(tmp_path: Path) -> None:
     """Covers: DRME-003"""
-    _make_tree(tmp_path, "docs/README.md")
-    (tmp_path / "docs" / "architecture").mkdir(parents=True)
-    (tmp_path / "docs" / "decisions").mkdir(parents=True)
+    _make_tree(
+        tmp_path,
+        "docs/README.md",
+        "docs/architecture/overview.md",
+        "docs/decisions/0001-x.md",
+    )
     result = docs_readme_exists.DocsReadmeExists().check(tmp_path)
     assert result.status == Status.FAIL
     assert "architecture" in result.message
@@ -64,6 +66,47 @@ def test_readme_registered() -> None:
     assert "docs-readme-exists" in [c[0] for c in reg.list_all()]
 
 
+def test_readme_gitkeep_only_subdir_exempt(tmp_path: Path) -> None:
+    """Covers: DRME-006 — directory containing only .gitkeep is skipped."""
+    _make_tree(tmp_path, "docs/README.md", "docs/design/.gitkeep")
+    result = docs_readme_exists.DocsReadmeExists().check(tmp_path)
+    assert result.status == Status.PASS
+    assert "docs/design" not in result.message
+
+
+def test_readme_dotfiles_only_subdir_exempt(tmp_path: Path) -> None:
+    """Covers: DRME-006 — directory containing only dotfiles is skipped."""
+    _make_tree(
+        tmp_path,
+        "docs/README.md",
+        "docs/design/.gitkeep",
+        "docs/design/.hidden",
+        "docs/design/.DS_Store",
+    )
+    result = docs_readme_exists.DocsReadmeExists().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_readme_nested_empty_subdir_exempt(tmp_path: Path) -> None:
+    """Covers: DRME-006 — nested subdirectory with only a placeholder is skipped."""
+    _make_tree(tmp_path, "docs/README.md", "docs/design/wip/.gitkeep")
+    result = docs_readme_exists.DocsReadmeExists().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_readme_gitkeep_plus_real_file_still_fails(tmp_path: Path) -> None:
+    """Covers: DRME-006 — a real file alongside .gitkeep is substantive content."""
+    _make_tree(
+        tmp_path,
+        "docs/README.md",
+        "docs/design/.gitkeep",
+        "docs/design/draft.md",
+    )
+    result = docs_readme_exists.DocsReadmeExists().check(tmp_path)
+    assert result.status == Status.FAIL
+    assert "docs/design" in result.message
+
+
 # ---------------------------------------------------------------------------
 # docs-index-exists
 # ---------------------------------------------------------------------------
@@ -78,8 +121,7 @@ def test_index_all_present(tmp_path: Path) -> None:
 
 def test_index_one_missing(tmp_path: Path) -> None:
     """Covers: DINE-002"""
-    _make_tree(tmp_path, "docs/INDEX.md")
-    (tmp_path / "docs" / "decisions").mkdir(parents=True)
+    _make_tree(tmp_path, "docs/INDEX.md", "docs/decisions/0001-x.md")
     result = docs_index_exists.DocsIndexExists().check(tmp_path)
     assert result.status == Status.WARN
     assert "docs/decisions" in result.message
@@ -87,9 +129,12 @@ def test_index_one_missing(tmp_path: Path) -> None:
 
 def test_index_multiple_missing(tmp_path: Path) -> None:
     """Covers: DINE-003"""
-    _make_tree(tmp_path, "docs/INDEX.md")
-    (tmp_path / "docs" / "architecture").mkdir(parents=True)
-    (tmp_path / "docs" / "decisions").mkdir(parents=True)
+    _make_tree(
+        tmp_path,
+        "docs/INDEX.md",
+        "docs/architecture/overview.md",
+        "docs/decisions/0001-x.md",
+    )
     result = docs_index_exists.DocsIndexExists().check(tmp_path)
     assert result.status == Status.WARN
     assert "architecture" in result.message
@@ -108,6 +153,47 @@ def test_index_registered() -> None:
     reg = Registry()
     reg.register(docs_index_exists.DocsIndexExists)
     assert "docs-index-exists" in [c[0] for c in reg.list_all()]
+
+
+def test_index_gitkeep_only_subdir_exempt(tmp_path: Path) -> None:
+    """Covers: DINE-006 — directory containing only .gitkeep is skipped."""
+    _make_tree(tmp_path, "docs/INDEX.md", "docs/design/.gitkeep")
+    result = docs_index_exists.DocsIndexExists().check(tmp_path)
+    assert result.status == Status.PASS
+    assert "docs/design" not in result.message
+
+
+def test_index_dotfiles_only_subdir_exempt(tmp_path: Path) -> None:
+    """Covers: DINE-006 — directory containing only dotfiles is skipped."""
+    _make_tree(
+        tmp_path,
+        "docs/INDEX.md",
+        "docs/design/.gitkeep",
+        "docs/design/.hidden",
+        "docs/design/.DS_Store",
+    )
+    result = docs_index_exists.DocsIndexExists().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_index_nested_empty_subdir_exempt(tmp_path: Path) -> None:
+    """Covers: DINE-006 — nested subdirectory with only a placeholder is skipped."""
+    _make_tree(tmp_path, "docs/INDEX.md", "docs/design/wip/.gitkeep")
+    result = docs_index_exists.DocsIndexExists().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+def test_index_gitkeep_plus_real_file_still_warns(tmp_path: Path) -> None:
+    """Covers: DINE-006 — a real file alongside .gitkeep is substantive content."""
+    _make_tree(
+        tmp_path,
+        "docs/INDEX.md",
+        "docs/design/.gitkeep",
+        "docs/design/draft.md",
+    )
+    result = docs_index_exists.DocsIndexExists().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "docs/design" in result.message
 
 
 # ---------------------------------------------------------------------------

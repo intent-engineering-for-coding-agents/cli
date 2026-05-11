@@ -16,7 +16,7 @@ Load when relevant:
 - [Build and CI](.agents/instructions/build-and-ci.md) — uv commands, lint, test, CI pipeline
 - [Coding standards](.agents/instructions/coding-standards.md) — Python style, project structure, testing
 - [OpenSpec workflow](.agents/instructions/openspec.md) — Specs, AC IDs, test traceability
-- [Index maintenance](.agents/instructions/index-maintenance.md) — When to update docs/INDEX.md
+- [Index maintenance](.agents/instructions/index-maintenance.md) — When to update docs/INDEX.md. Mirrored in ase-book — update both.
 - [docs/INDEX.md](docs/INDEX.md) — Full map of all documentation
 
 ## Commands

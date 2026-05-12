@@ -6,6 +6,8 @@ import pytest
 from typer.testing import CliRunner
 
 from ase_cli.check import registry
+from ase_cli.checkers.adr_format import AdrFormat
+from ase_cli.checkers.adr_index import AdrIndex
 from ase_cli.checkers.agents_exists import AgentsExists
 from ase_cli.checkers.agents_links import AgentsLinks
 from ase_cli.checkers.agents_size import AgentsSize
@@ -24,6 +26,8 @@ def _register_all() -> None:
     registry.register(DocsReadmeExists)
     registry.register(DocsIndexExists)
     registry.register(DocsIndexStale)
+    registry.register(AdrFormat)
+    registry.register(AdrIndex)
 
 
 @pytest.fixture(autouse=True)
@@ -34,7 +38,7 @@ def _reset_registry() -> None:
 
 
 def test_ase_check_runs_all_checkers() -> None:
-    """Covers: AGEX-001, AGSZ-001, AGLN-001 — real checkers against ase-cli repo"""
+    """Covers: AGEX-001, AGSZ-001, AGLN-001, ADRF-001, ADRI-001"""
     result = runner.invoke(app, ["check"])
     assert "agents-exists" in result.stdout
     assert "agents-size" in result.stdout
@@ -42,6 +46,8 @@ def test_ase_check_runs_all_checkers() -> None:
     assert "docs-readme-exists" in result.stdout
     assert "docs-index-exists" in result.stdout
     assert "docs-index-stale" in result.stdout
+    assert "adr-format" in result.stdout
+    assert "adr-index" in result.stdout
     assert "check(s)" in result.stdout
 
 

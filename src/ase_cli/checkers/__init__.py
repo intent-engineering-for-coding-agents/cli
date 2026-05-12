@@ -1,6 +1,8 @@
 """ASE deterministic checkers — each module registers itself on import."""
 
 from ase_cli.checkers import (
+    adr_format,
+    adr_index,
     agents_exists,
     agents_links,
     agents_size,
@@ -11,6 +13,8 @@ from ase_cli.checkers import (
 )
 
 __all__ = [
+    "adr_format",
+    "adr_index",
     "agents_exists",
     "agents_links",
     "agents_size",

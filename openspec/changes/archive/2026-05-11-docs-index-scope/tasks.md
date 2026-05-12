@@ -28,7 +28,7 @@
 
 ## 5. Verify
 
-- [ ] 5.1 `uv run ruff check` — no lint errors
-- [ ] 5.2 `uv run ruff format --check` — no formatting issues
-- [ ] 5.3 `uv run pytest -v` — all DISO scenarios + all existing tests pass
-- [ ] 5.4 `uv run ase check --path C:\Code\ase-book` — confirm the new checker fires WARN on the *pre-cleanup* book `docs/INDEX.md`
+- [x] 5.1 `uv run ruff check` — no lint errors
+- [x] 5.2 `uv run ruff format --check` — no formatting issues
+- [x] 5.3 `uv run pytest -v` — all DISO scenarios + all existing tests pass
+- [x] 5.4 `uv run ase check --path C:\Code\ase-book` — confirm the new checker fires WARN on the *pre-cleanup* book `docs/INDEX.md`

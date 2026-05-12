@@ -31,7 +31,7 @@
 
 ## 5. Verify
 
-- [ ] 5.1 `uv run ruff check` — no lint errors
-- [ ] 5.2 `uv run ruff format --check` — no formatting issues
-- [ ] 5.3 `uv run pytest -v` — all DRME, DINE scenarios green (including the four new ones per checker)
-- [ ] 5.4 Reinstall `ase-cli` in the ase-book repo and confirm `ase check` returns all-PASS.
+- [x] 5.1 `uv run ruff check` — no lint errors
+- [x] 5.2 `uv run ruff format --check` — no formatting issues
+- [x] 5.3 `uv run pytest -v` — all DRME, DINE scenarios green (including the four new ones per checker)
+- [x] 5.4 Reinstall `ase-cli` in the ase-book repo and confirm `ase check` returns all-PASS.

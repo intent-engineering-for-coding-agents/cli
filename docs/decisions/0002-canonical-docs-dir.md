@@ -1,8 +1,10 @@
-# ADR-0002: Use `docs/` as Canonical Documentation Directory
+---
+status: accepted
+date: 2026-05-04
+decision-makers: ASE Book Contributors
+---
 
-* Status: accepted
-* Deciders: ASE Book Contributors
-* Date: 2026-05-04
+# ADR-0002: Use `docs/` as Canonical Documentation Directory
 
 ## Context and Problem Statement
 

@@ -1,8 +1,10 @@
-# ADR-0005: Use MADR Format for All Architectural Decision Records
+---
+status: accepted
+date: 2026-05-04
+decision-makers: ASE Book Contributors
+---
 
-* Status: accepted
-* Deciders: ASE Book Contributors
-* Date: 2026-05-04
+# ADR-0005: Use MADR Format for All Architectural Decision Records
 
 ## Context and Problem Statement
 

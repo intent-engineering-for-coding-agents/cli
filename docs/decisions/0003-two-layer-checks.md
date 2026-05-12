@@ -1,8 +1,10 @@
-# ADR-0003: Two-Layer Check Architecture (Deterministic + MCP for AI)
+---
+status: accepted
+date: 2026-05-04
+decision-makers: ASE Book Contributors
+---
 
-* Status: accepted
-* Deciders: ASE Book Contributors
-* Date: 2026-05-04
+# ADR-0003: Two-Layer Check Architecture (Deterministic + MCP for AI)
 
 ## Context and Problem Statement
 

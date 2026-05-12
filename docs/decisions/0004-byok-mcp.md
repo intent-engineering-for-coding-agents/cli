@@ -1,8 +1,10 @@
-# ADR-0004: BYOK via MCP — Not Direct API Calls, Not Shell-Out
+---
+status: accepted
+date: 2026-05-04
+decision-makers: ASE Book Contributors
+---
 
-* Status: accepted
-* Deciders: ASE Book Contributors
-* Date: 2026-05-04
+# ADR-0004: BYOK via MCP — Not Direct API Calls, Not Shell-Out
 
 ## Context and Problem Statement
 

@@ -1,8 +1,10 @@
-# ADR-0006: Use OpenSpec for Spec-Driven Development
+---
+status: accepted
+date: 2026-05-04
+decision-makers: ASE Book Contributors
+---
 
-* Status: accepted
-* Deciders: ASE Book Contributors
-* Date: 2026-05-04
+# ADR-0006: Use OpenSpec for Spec-Driven Development
 
 ## Context and Problem Statement
 

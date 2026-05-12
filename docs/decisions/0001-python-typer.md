@@ -1,8 +1,10 @@
-# ADR-0001: Use Python with Typer for the CLI
+---
+status: accepted
+date: 2026-05-04
+decision-makers: ASE Book Contributors
+---
 
-* Status: accepted
-* Deciders: ASE Book Contributors
-* Date: 2026-05-04
+# ADR-0001: Use Python with Typer for the CLI
 
 ## Context and Problem Statement
 

@@ -9,12 +9,14 @@ from ase_cli.check import registry
 from ase_cli.checkers.adr_format import AdrFormat
 from ase_cli.checkers.adr_index import AdrIndex
 from ase_cli.checkers.agents_exists import AgentsExists
+from ase_cli.checkers.agents_hub_structure import AgentsHubStructure
 from ase_cli.checkers.agents_links import AgentsLinks
 from ase_cli.checkers.agents_size import AgentsSize
 from ase_cli.checkers.docs_index_exists import DocsIndexExists
 from ase_cli.checkers.docs_index_stale import DocsIndexStale
 from ase_cli.checkers.docs_readme_exists import DocsReadmeExists
 from ase_cli.checkers.file_size import FileSize
+from ase_cli.checkers.secrets import Secrets
 from ase_cli.checkers.spec_ac_ids import SpecAcIds
 from ase_cli.checkers.spec_size import SpecSize
 from ase_cli.checkers.spec_test_category import SpecTestCategory
@@ -36,6 +38,8 @@ def _register_all() -> None:
     registry.register(SpecTestCategory)
     registry.register(SpecSize)
     registry.register(FileSize)
+    registry.register(AgentsHubStructure)
+    registry.register(Secrets)
 
 
 @pytest.fixture(autouse=True)
@@ -47,7 +51,7 @@ def _reset_registry() -> None:
 
 def test_ase_check_runs_all_checkers() -> None:
     """Covers: AGEX-001, AGSZ-001, AGLN-001, ADRF-001, ADRI-001
-    ACID-002, STCT-002, SPSZ-001, FLSZ-001"""
+    ACID-002, STCT-002, AHUB-001, SECR-001"""
     result = runner.invoke(app, ["check"])
     assert "agents-exists" in result.stdout
     assert "agents-size" in result.stdout
@@ -61,6 +65,8 @@ def test_ase_check_runs_all_checkers() -> None:
     assert "spec-test-category" in result.stdout
     assert "spec-size" in result.stdout
     assert "file-size" in result.stdout
+    assert "agents-hub-structure" in result.stdout
+    assert "secrets" in result.stdout
     assert "check(s)" in result.stdout
 
 

@@ -10,6 +10,8 @@ from ase_cli.checkers import (
     docs_index_scope,
     docs_index_stale,
     docs_readme_exists,
+    spec_ac_ids,
+    spec_test_category,
 )
 
 __all__ = [
@@ -22,4 +24,6 @@ __all__ = [
     "docs_index_scope",
     "docs_index_stale",
     "docs_readme_exists",
+    "spec_ac_ids",
+    "spec_test_category",
 ]

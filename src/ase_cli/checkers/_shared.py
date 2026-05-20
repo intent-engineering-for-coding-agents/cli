@@ -7,6 +7,22 @@ LINK_RE = re.compile(r"\[([^\]]*)\]\(([^)]*)\)")
 """Match Markdown inline links — group 1 = text, group 2 = target."""
 
 
+def find_spec_files(path: Path) -> list[Path]:
+    """Return all spec .md files under openspec/, excluding archived changes."""
+    files: list[Path] = []
+    specs_dir = path / "openspec" / "specs"
+    if specs_dir.is_dir():
+        files.extend(f for f in specs_dir.rglob("*.md") if f.is_file())
+    changes_dir = path / "openspec" / "changes"
+    if changes_dir.is_dir():
+        for change_dir in changes_dir.iterdir():
+            if change_dir.is_dir() and change_dir.name != "archive":
+                spec_subdir = change_dir / "specs"
+                if spec_subdir.is_dir():
+                    files.extend(f for f in spec_subdir.rglob("*.md") if f.is_file())
+    return sorted(files)
+
+
 def is_effectively_empty(dirpath: Path) -> bool:
     """True if dirpath has no substantive content anywhere below it.
 

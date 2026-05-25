@@ -9,21 +9,21 @@ The system SHALL provide an `ase check` CLI command that runs all registered det
 
 #### Scenario: Run checks with the default path [CHKCLI-001]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase check` is invoked without arguments
 - **THEN** all registered checkers run against the current working directory and results are printed
 
 #### Scenario: Run checks with explicit path [CHKCLI-002]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase check --path /some/repo` is invoked
 - **THEN** all registered checkers run against `/some/repo`
 
 #### Scenario: --help shows check command [CHKCLI-003]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase check --help` is invoked
 - **THEN** the help text shows `--path` option with description
@@ -34,21 +34,21 @@ The system SHALL print a human-readable summary after running all checks. The ou
 
 #### Scenario: All checks pass [CHKCLI-004]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** all registered checkers return `PASS`
 - **THEN** the output shows each checker with `PASS`, a summary line "X check(s): X passed", and exit code 0
 
 #### Scenario: One check fails [CHKCLI-005]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** one checker returns `FAIL`
 - **THEN** the output shows the failing checker with `FAIL` and its message, and a summary line reflecting the failure
 
 #### Scenario: Mixed results [CHKCLI-006]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** checkers return PASS, WARN, and FAIL
 - **THEN** the summary shows all three counts and exit code 2 (failure)
@@ -59,21 +59,21 @@ The system SHALL exit with code 0 when all checks pass, code 1 when there are wa
 
 #### Scenario: Exit code 0 — all pass [CHKCLI-007]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** all checkers return `PASS`
 - **THEN** the process exits with code 0
 
 #### Scenario: Exit code 1 — warnings only [CHKCLI-008]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** at least one checker returns `WARN` and none return `FAIL`
 - **THEN** the process exits with code 1
 
 #### Scenario: Exit code 2 — failures present [CHKCLI-009]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** at least one checker returns `FAIL` (regardless of warnings)
 - **THEN** the process exits with code 2
@@ -84,7 +84,7 @@ The system SHALL display results in the same order checkers were registered in t
 
 #### Scenario: Output order matches registration order [CHKCLI-010]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** checkers are registered with IDs "b", "a", "c"
 - **THEN** the output lists results in order "b", "a", "c"

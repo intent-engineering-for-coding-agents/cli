@@ -14,21 +14,21 @@ The default limit is 500 lines. The limit is overridden by the `ASE_SPEC_MAX_LIN
 
 #### Scenario: Spec file within default limit [SPSZ-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** all spec files have 500 or fewer lines
 - **THEN** the result is `PASS`
 
 #### Scenario: Spec file exceeds default limit [SPSZ-002]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** a spec file has more than 500 lines
 - **THEN** the result is `WARN` with the filename and line count in the message
 
 #### Scenario: Env var overrides limit [SPSZ-003]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `ASE_SPEC_MAX_LINES=50` is set and a spec file has 80 lines
 - **THEN** the result is `WARN`
@@ -39,7 +39,7 @@ When no spec files exist, the checker SHALL return PASS.
 
 #### Scenario: No spec files found [SPSZ-004]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `openspec/` does not exist or contains no spec files
 - **THEN** the result is `PASS`
@@ -48,7 +48,7 @@ When no spec files exist, the checker SHALL return PASS.
 
 #### Scenario: Invalid ASE_SPEC_MAX_LINES falls back to default [SPSZ-005]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `ASE_SPEC_MAX_LINES=not-a-number` is set and the spec file has 100 lines
 - **THEN** the result is `PASS` (default 500 applies)
@@ -57,7 +57,7 @@ When no spec files exist, the checker SHALL return PASS.
 
 #### Scenario: Checker is registered [SPSZ-006]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** the checkers package is imported
 - **THEN** `"spec-size"` appears in `registry.list_all()`

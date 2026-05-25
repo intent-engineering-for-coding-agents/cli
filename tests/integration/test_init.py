@@ -262,7 +262,7 @@ def test_testing_convention_content(tmp_path: Path) -> None:
     assert "Baseline" in content
     assert "AC ID" in content
     assert "[PREFIX-NNN]" in content
-    assert "**Test:**" in content
+    assert "Test-type:" in content
     assert "Traceability Markers" in content
     assert len(content.splitlines()) <= 300
 

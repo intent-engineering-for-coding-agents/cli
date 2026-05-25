@@ -37,7 +37,7 @@ Example scenario:
 ```markdown
 #### Scenario: Init in empty directory [SCAFFOLD-001]
 
-**Test:** Integration
+Test-type: integration
 ```
 
 ---

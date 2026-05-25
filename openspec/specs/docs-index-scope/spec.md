@@ -12,49 +12,49 @@ The system SHALL provide a `docs-index-scope` checker that walks the `docs/` dir
 
 #### Scenario: Same-directory file link [DISO-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/INDEX.md` contains `[A](a.md)` and `docs/a.md` exists
 - **THEN** the result is `PASS`
 
 #### Scenario: Immediate subdir INDEX.md pointer [DISO-002]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/INDEX.md` contains `[Decisions](decisions/INDEX.md)`
 - **THEN** the result is `PASS`
 
 #### Scenario: Immediate subdir README.md pointer [DISO-003]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/INDEX.md` contains `[Decisions](decisions/README.md)`
 - **THEN** the result is `PASS`
 
 #### Scenario: Deeper path is out of scope [DISO-004]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/INDEX.md` contains `[ADR-0001](decisions/0001-x.md)`
 - **THEN** the result is `WARN` and the message lists `decisions/0001-x.md`
 
 #### Scenario: Parent path is out of scope [DISO-005]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/INDEX.md` contains `[Agents](../AGENTS.md)`
 - **THEN** the result is `WARN` and the message lists `../AGENTS.md`
 
 #### Scenario: Absolute URL is out of scope [DISO-006]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/INDEX.md` contains `[External](https://example.com/x)`
 - **THEN** the result is `WARN` and the message lists the URL
 
 #### Scenario: Directories without INDEX.md are skipped [DISO-007]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** a `docs/` subdirectory has no `INDEX.md`
 - **THEN** the checker does not inspect it and does not report it (presence is the job of `docs-index-exists`)
@@ -65,7 +65,7 @@ The checker SHALL register itself via `@registry.register` with `id` `"docs-inde
 
 #### Scenario: Checker is registered [DISO-008]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** the checkers package is imported
 - **THEN** `"docs-index-scope"` appears in `registry.list_all()`

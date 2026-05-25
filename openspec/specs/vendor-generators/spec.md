@@ -8,7 +8,7 @@ The `--with-claude` flag on `ase init` SHALL create a `CLAUDE.md` file containin
 
 #### Scenario: Claude file created alongside init [VENDOR-001]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-claude` is run
 - **THEN** `CLAUDE.md` is created in the target directory
@@ -16,7 +16,7 @@ The `--with-claude` flag on `ase init` SHALL create a `CLAUDE.md` file containin
 
 #### Scenario: Claude file not overwritten without --force [VENDOR-002]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-claude` is run and `CLAUDE.md` already exists
 - **THEN** the existing `CLAUDE.md` is preserved
@@ -24,14 +24,14 @@ The `--with-claude` flag on `ase init` SHALL create a `CLAUDE.md` file containin
 
 #### Scenario: Claude file with --force [VENDOR-003]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-claude --force` is run and `CLAUDE.md` already exists
 - **THEN** `CLAUDE.md` is overwritten with fresh `@AGENTS.md` content
 
 #### Scenario: --with-claude without init context [VENDOR-004]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-claude` is run in an already-initialized directory
 - **THEN** only `CLAUDE.md` is created (directory scaffolding skipped)
@@ -42,7 +42,7 @@ The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` fi
 
 #### Scenario: Gemini settings created alongside init [VENDOR-005]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-gemini` is run
 - **THEN** `.gemini/settings.json` is created in the target directory
@@ -50,7 +50,7 @@ The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` fi
 
 #### Scenario: Gemini settings not overwritten without --force [VENDOR-006]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-gemini` is run and `.gemini/settings.json` already exists
 - **THEN** the existing file is preserved
@@ -58,7 +58,7 @@ The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` fi
 
 #### Scenario: Both vendor flags combined [VENDOR-007]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-claude --with-gemini` is run
 - **THEN** both `CLAUDE.md` and `.gemini/settings.json` are created
@@ -66,7 +66,7 @@ The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` fi
 
 #### Scenario: Vendor flags with --dry-run [VENDOR-008]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --with-claude --dry-run` is run
 - **THEN** the output lists `CLAUDE.md` as a file that would be created

@@ -9,28 +9,28 @@ The system SHALL provide a `docs-readme-exists` checker that walks the `docs/` d
 
 #### Scenario: All directories have README.md [DRME-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/` contains `README.md` and all subdirectories contain `README.md`
 - **THEN** the result is `PASS`
 
 #### Scenario: Missing README.md in a subdirectory [DRME-002]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/architecture/` exists but has no `README.md`
 - **THEN** the result is `FAIL` with message listing `docs/architecture/` as missing
 
 #### Scenario: Multiple directories missing README.md [DRME-003]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** multiple subdirectories under `docs/` lack `README.md`
 - **THEN** the result is `FAIL` listing all missing directories
 
 #### Scenario: docs/ directory missing entirely [DRME-004]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/` directory does not exist at all
 - **THEN** the result is `FAIL` with appropriate message
@@ -41,7 +41,7 @@ The checker SHALL register itself via `@registry.register` with `id` `"docs-read
 
 #### Scenario: Checker is registered [DRME-005]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** the checkers package is imported
 - **THEN** `"docs-readme-exists"` appears in `registry.list_all()`
@@ -52,28 +52,28 @@ The checker SHALL skip any subdirectory of `docs/` that is *effectively empty* â
 
 #### Scenario: Subdirectory with only .gitkeep is skipped [DRME-006]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/design/` contains only `.gitkeep`
 - **THEN** the result is `PASS` and `docs/design` is not listed as missing
 
 #### Scenario: Subdirectory with only dotfiles is skipped [DRME-006]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/design/` contains only `.gitkeep`, `.hidden`, `.DS_Store`
 - **THEN** the result is `PASS`
 
 #### Scenario: Nested empty subdirectory is skipped [DRME-006]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/design/wip/` contains only `.gitkeep` (and no other files anywhere below `docs/design/`)
 - **THEN** the result is `PASS`
 
 #### Scenario: Substantive content alongside .gitkeep still requires README [DRME-006]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/design/` contains `.gitkeep` and a regular file (e.g. `draft.md`)
 - **THEN** the result is `FAIL` and `docs/design` is listed as missing

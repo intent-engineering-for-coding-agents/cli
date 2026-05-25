@@ -22,7 +22,7 @@ _SPEC_ALL_AC_IDS = """\
 
 #### Scenario: Happy path [ACID-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** something
 - **THEN** result
@@ -33,7 +33,7 @@ _SPEC_MISSING_AC_ID = """\
 
 #### Scenario: Happy path
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** something
 - **THEN** result
@@ -42,11 +42,11 @@ _SPEC_MISSING_AC_ID = """\
 _SPEC_MIXED_AC_IDS = """\
 #### Scenario: Has AC ID [ACID-001]
 
-**Test:** Unit
+Test-type: unit
 
 #### Scenario: Missing AC ID
 
-**Test:** Unit
+Test-type: unit
 """
 
 
@@ -93,7 +93,7 @@ def test_spec_ac_ids_registered() -> None:
 _SPEC_ALL_TEST_FIELDS = """\
 #### Scenario: Happy path [STCT-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** something
 - **THEN** result
@@ -109,7 +109,7 @@ _SPEC_MISSING_TEST_FIELD = """\
 _SPEC_MIXED_TEST_FIELDS = """\
 #### Scenario: Has Test field [STCT-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** something
 

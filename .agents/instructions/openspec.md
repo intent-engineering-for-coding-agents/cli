@@ -60,7 +60,7 @@ If a new task is needed during implementation, add it and **renumber the section
 
 Run `/opsx:archive`. Delta specs merge into `openspec/specs/` (ADDED → appended, MODIFIED → replaced, REMOVED → deleted). The change folder moves to `changes/archive/YYYY-MM-DD-name/` to preserve history.
 
-> **IMPORTANT:** The `openspec instructions specs` template shows bare `#### Scenario: <name>` without AC IDs or `**Test:**` fields. The OpenSpec template is generic and does NOT enforce ase-cli conventions. You MUST add `[PREFIX-NNN]` AC IDs to every scenario heading and a `**Test:**` field to every scenario yourself. See below.
+> **IMPORTANT:** The `openspec instructions specs` template shows bare `#### Scenario: <name>` without AC IDs or `Test-type:` fields. The OpenSpec template is generic and does NOT enforce ase-cli conventions. You MUST add `[PREFIX-NNN]` AC IDs to every scenario heading and a `Test-type:` field to every scenario yourself. See below.
 
 ## Acceptance Criteria (AC IDs)
 
@@ -69,7 +69,7 @@ Every spec scenario MUST have an AC ID in `[PREFIX-NNN]` format, embedded in the
 ```markdown
 #### Scenario: Points earned on delivery [LP-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **GIVEN** an order has been marked as delivered
 - **WHEN** the order total is at least $5.00
@@ -81,7 +81,7 @@ Rules:
 - IDs are unique within the project, zero-padded, sequential per prefix
 - Once assigned, an ID SHALL NOT be reused or renumbered
 - Removed scenarios keep their IDs in archive history — do not renumber remaining scenarios
-- Every scenario MUST have a `**Test:**` field declaring the required test layer
+- Every scenario MUST have a `Test-type:` field declaring the required test layer
 - Every non-Manual AC MUST have positive and negative proof via its significant equivalence classes and boundaries
 - See `docs/testing-convention.md` for the full test layer taxonomy and traceability contract
 

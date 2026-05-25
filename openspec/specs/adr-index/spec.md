@@ -12,21 +12,21 @@ The system SHALL provide an `adr-index` checker. When `docs/decisions/` is absen
 
 #### Scenario: README.md exists and all ADRs are listed [ADRI-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/decisions/README.md` exists and contains a link to every `NNNN-*.md` file in the directory
 - **THEN** the result is `PASS`
 
 #### Scenario: docs/decisions/README.md missing when ADRs exist [ADRI-002]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/decisions/` contains `NNNN-*.md` files but no `README.md`
 - **THEN** the result is `FAIL` with a message noting the missing index file
 
 #### Scenario: docs/decisions/ absent or empty [ADRI-003]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/decisions/` does not exist, or exists but contains no `NNNN-*.md` files
 - **THEN** the result is `PASS`
@@ -37,21 +37,21 @@ For each `NNNN-*.md` file found in `docs/decisions/`, the checker SHALL verify t
 
 #### Scenario: All ADRs linked in README.md [ADRI-004]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** every `NNNN-*.md` file in `docs/decisions/` has a corresponding Markdown link in README.md
 - **THEN** the result is `PASS`
 
 #### Scenario: One ADR not linked in README.md [ADRI-005]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `docs/decisions/0007-new-decision.md` exists but is not referenced in README.md
 - **THEN** the result is `FAIL` with a message mentioning `0007-new-decision.md`
 
 #### Scenario: Multiple ADRs not listed [ADRI-006]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** two `NNNN-*.md` files are absent from README.md
 - **THEN** the result is `FAIL` listing both filenames
@@ -62,7 +62,7 @@ The checker SHALL register itself via `@registry.register` with `id` `"adr-index
 
 #### Scenario: Checker is registered [ADRI-007]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** the checkers package is imported
 - **THEN** `"adr-index"` appears in `registry.list_all()`

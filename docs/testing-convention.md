@@ -8,7 +8,7 @@ This is the invariant part of ASE testing. It defines what doesn't change across
 
 ## Test Layers
 
-Every acceptance criterion declares its required proof layer. The layer tells implementers and CI what kind of test proves the behavior. A scenario that says `**Test:** Unit` asks for fast pure-logic proof. A scenario that says `**Test:** E2E` asks for workflow-level evidence.
+Every acceptance criterion declares its required proof layer. The layer tells implementers and CI what kind of test proves the behavior. A scenario that says `Test-type: unit` asks for fast pure-logic proof. A scenario that says `Test-type: e2e` asks for workflow-level evidence.
 
 | Layer | Category | Purpose | Run |
 |---|---|---|---|
@@ -44,7 +44,7 @@ Every scenario in a spec SHALL have a stable AC ID in `[PREFIX-NNN]` format:
 ```markdown
 #### Scenario: Points earned on delivery [LP-001]
 
-**Test:** Unit
+Test-type: unit
 
 - **GIVEN** an order has been marked as delivered
 - **WHEN** the order total is at least $5.00
@@ -64,12 +64,12 @@ Rules:
 Every scenario SHALL declare its required test layer immediately after the heading:
 
 ```markdown
-**Test:** Unit
-**Test:** Integration
-**Test:** Unit, Integration  # When multiple layers are required
+Test-type: unit
+Test-type: integration
+Test-type: unit, integration  # When multiple layers are required
 ```
 
-If a scenario has no `**Test:**` field, the proof strategy is implicit — that is a spec quality gap.
+If a scenario has no `Test-type:` field, the proof strategy is implicit — that is a spec quality gap.
 
 ---
 

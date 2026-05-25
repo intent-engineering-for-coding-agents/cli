@@ -377,9 +377,9 @@ Rules:
 Every scenario SHALL declare its required test layer immediately after the heading:
 
 ```markdown
-**Test:** Unit
-**Test:** Integration
-**Test:** Unit, Integration
+Test-type: unit
+Test-type: integration
+Test-type: unit, integration
 ```
 
 ---

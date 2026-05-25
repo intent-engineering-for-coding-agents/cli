@@ -1,4 +1,4 @@
-"""spec-test-category — every spec scenario section has a **Test:** field."""
+"""spec-test-category — every spec scenario section has a Test-type: field."""
 
 import re
 from pathlib import Path
@@ -7,11 +7,11 @@ from ase_cli.check import CheckResult, Severity, Status, registry
 from ase_cli.checkers._shared import find_spec_files
 
 _SCENARIO_SPLIT_RE = re.compile(r"(^#{3,6}\s+Scenario:\s+.+$)", re.MULTILINE)
-_TEST_FIELD_RE = re.compile(r"^\*\*Test:\*\*", re.MULTILINE)
+_TEST_FIELD_RE = re.compile(r"^Test-type:", re.MULTILINE)
 
 
 def _check_test_fields(content: str, rel_path: str) -> list[str]:
-    """Return violation messages for scenarios missing a **Test:** field."""
+    """Return violation messages for scenarios missing a Test-type: field."""
     parts = _SCENARIO_SPLIT_RE.split(content)
     violations = []
     # parts alternates: [pre, heading1, body1, heading2, body2, ...]
@@ -26,7 +26,7 @@ def _check_test_fields(content: str, rel_path: str) -> list[str]:
 @registry.register
 class SpecTestCategory:
     id = "spec-test-category"
-    description = "Every spec scenario section has a **Test:** field"
+    description = "Every spec scenario section has a Test-type: field"
 
     def check(self, path: Path) -> CheckResult:
         spec_files = find_spec_files(path)
@@ -45,13 +45,13 @@ class SpecTestCategory:
             return CheckResult(
                 self.id,
                 Status.PASS,
-                "All scenario sections have **Test:** field",
+                "All scenario sections have Test-type: field",
                 Severity.HIGH,
             )
         return CheckResult(
             self.id,
             Status.FAIL,
-            f"{len(violations)} scenario(s) missing **Test:** field: "
+            f"{len(violations)} scenario(s) missing Test-type: field: "
             f"{'; '.join(violations)}",
             Severity.HIGH,
         )

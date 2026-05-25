@@ -8,7 +8,7 @@ The `ase init` command SHALL create the full canonical ASE directory structure i
 
 #### Scenario: Init in empty directory [SCAFFOLD-001]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init` is run in a directory with no ASE structure
 - **THEN** all directories are created: `docs/architecture/`, `docs/decisions/`, `docs/design/`, `openspec/changes/archive/`, `openspec/specs/`, `.agents/instructions/`, `.agents/commands/`, `.agents/skills/`, `.agents/hooks/`
@@ -18,7 +18,7 @@ The `ase init` command SHALL create the full canonical ASE directory structure i
 
 #### Scenario: Init in directory with partial structure [SCAFFOLD-002]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init` is run where some ASE directories already exist but others are missing
 - **THEN** missing directories and files are created
@@ -26,7 +26,7 @@ The `ase init` command SHALL create the full canonical ASE directory structure i
 
 #### Scenario: Init in fully initialized directory [SCAFFOLD-003]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init` is run in a directory that already has the full ASE structure
 - **THEN** no files are created or overwritten
@@ -37,7 +37,7 @@ The generated `AGENTS.md` SHALL follow the TOC pattern: a short header (project 
 
 #### Scenario: AGENTS.md content structure [SCAFFOLD-004]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `ase init` creates `AGENTS.md`
 - **THEN** the file contains a project section with placeholder for name/language/framework
@@ -49,7 +49,7 @@ The `--dry-run` flag SHALL print all files and directories that would be created
 
 #### Scenario: Dry run on empty directory [SCAFFOLD-005]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --dry-run` is run in an empty directory
 - **THEN** all directories and files that would be created are listed in the output
@@ -57,7 +57,7 @@ The `--dry-run` flag SHALL print all files and directories that would be created
 
 #### Scenario: Dry run on partially initialized directory [SCAFFOLD-006]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --dry-run` is run where some ASE directories exist
 - **THEN** only the missing directories and files are listed
@@ -68,7 +68,7 @@ The `--force` flag SHALL overwrite existing ASE files with fresh generated conte
 
 #### Scenario: Force overwrite of existing AGENTS.md [SCAFFOLD-007]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --force` is run and `AGENTS.md` already exists
 - **THEN** the existing `AGENTS.md` is overwritten with the generated skeleton
@@ -76,7 +76,7 @@ The `--force` flag SHALL overwrite existing ASE files with fresh generated conte
 
 #### Scenario: Force on fully initialized directory [SCAFFOLD-008]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --force` is run in a fully initialized directory
 - **THEN** all stub files are overwritten with fresh content
@@ -87,7 +87,7 @@ The `--path` flag SHALL target a specific directory for initialization instead o
 
 #### Scenario: Init with explicit path [SCAFFOLD-009]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --path /tmp/my-project` is run
 - **THEN** the ASE structure is created under `/tmp/my-project/`
@@ -95,14 +95,14 @@ The `--path` flag SHALL target a specific directory for initialization instead o
 
 #### Scenario: Init with relative path [SCAFFOLD-010]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --path ../other-repo` is run
 - **THEN** the ASE structure is created under the resolved `../other-repo/` path
 
 #### Scenario: Init with non-existent path [SCAFFOLD-011]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init --path /nonexistent/dir` is run
 - **THEN** the target directory is created first, then the ASE structure is scaffolded inside it
@@ -112,19 +112,19 @@ The `ase init` command SHALL create `docs/testing-convention.md` with the full g
 
 #### Scenario: testing-convention.md contains canonical content [SCAFFOLD-012]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `ase init` creates `docs/testing-convention.md`
 - **THEN** the content defines the test layer taxonomy (Unit, Slice, Integration, E2E, Performance, Baseline, Architectural, Manual, Sanity)
 - **AND** defines the AC ID format (`[PREFIX-NNN]`)
-- **AND** defines the `**Test:**` field contract
+- **AND** defines the `Test-type:` field contract
 - **AND** defines positive/negative proof requirements
 - **AND** defines traceability marker conventions
 - **AND** is under 300 lines
 
 #### Scenario: testing-strategy.md is a project stub [SCAFFOLD-013]
 
-**Test:** Unit
+Test-type: unit
 
 - **WHEN** `ase init` creates `docs/testing-strategy.md`
 - **THEN** the stub references `testing-convention.md`
@@ -135,7 +135,7 @@ The `ase init` command SHALL place `.gitkeep` files in directories that would ot
 
 #### Scenario: .gitkeep placed in empty directories [SCAFFOLD-014]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase init` is run in an empty directory
 - **THEN** `.gitkeep` files are created in: `docs/architecture/`, `openspec/changes/archive/`, `openspec/specs/`, `.agents/instructions/`, `.agents/commands/`, `.agents/skills/`, `.agents/hooks/`
@@ -146,7 +146,7 @@ The `ase` CLI SHALL display usage via `--help` and version via `--version`.
 
 #### Scenario: --help shows command reference [SCAFFOLD-015]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase --help` is run
 - **THEN** the output lists available commands including `init`
@@ -154,7 +154,7 @@ The `ase` CLI SHALL display usage via `--help` and version via `--version`.
 
 #### Scenario: --version shows version number [SCAFFOLD-016]
 
-**Test:** Integration
+Test-type: integration
 
 - **WHEN** `ase --version` is run
 - **THEN** the output matches the version in `pyproject.toml`

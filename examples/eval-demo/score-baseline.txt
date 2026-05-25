@@ -1,0 +1,11 @@
+$ ase eval --path baseline --eval-dir eval
+
+Task                            Pass  Warn  Fail
+------------------------------------------------
+01-service-architecture            3     0     0
+02-test-traceability               4     0     0
+03-documentation                   2     0     0
+------------------------------------------------
+Total                              9     0     0
+
+Score: 9/9 (100%)

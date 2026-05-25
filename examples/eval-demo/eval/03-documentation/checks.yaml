@@ -1,0 +1,12 @@
+task: "Documentation index is maintained after the change"
+checks:
+  - id: docs-index-exists
+    description: "docs/INDEX.md exists"
+    type: file_exists
+    path: docs/INDEX.md
+
+  - id: docs-mentions-service
+    description: "Index references the user service"
+    type: file_contains
+    file: docs/INDEX.md
+    pattern: "user.service"

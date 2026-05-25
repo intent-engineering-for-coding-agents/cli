@@ -1,0 +1,18 @@
+task: "Service uses class-based design with validation in the service layer"
+checks:
+  - id: service-file-exists
+    description: "src/user_service.py exists"
+    type: file_exists
+    path: src/user_service.py
+
+  - id: service-uses-class
+    description: "user_service.py defines a class"
+    type: file_contains
+    file: src/user_service.py
+    pattern: "^class "
+
+  - id: validation-in-service
+    description: "Validation is a method on the service class"
+    type: file_contains
+    file: src/user_service.py
+    pattern: "_validate"

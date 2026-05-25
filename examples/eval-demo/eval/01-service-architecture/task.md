@@ -1,0 +1,1 @@
+Ask the agent to implement the `create_user` endpoint for the user service, following the instructions in `AGENTS.md`. Verify that the agent used a class-based design and placed validation in the service layer.

@@ -5,11 +5,13 @@ from importlib.metadata import version
 import typer
 
 from ase_cli.check import check_app
+from ase_cli.eval import eval_app
 from ase_cli.init import init
 
 app = typer.Typer(no_args_is_help=True)
 app.command(name="init")(init)
 app.add_typer(check_app, name="check")
+app.add_typer(eval_app, name="eval")
 
 
 def _version_callback(value: bool) -> None:

@@ -1,0 +1,24 @@
+task: "Tests include acceptance-criterion markers traceable to the spec"
+checks:
+  - id: test-file-exists
+    description: "tests/test_user_service.py exists"
+    type: file_exists
+    path: tests/test_user_service.py
+
+  - id: tests-have-functions
+    description: "Test file contains test functions"
+    type: file_contains
+    file: tests/test_user_service.py
+    pattern: "^def test_"
+
+  - id: tests-have-ac-markers
+    description: "Tests use @pytest.mark.ac"
+    type: file_contains
+    file: tests/test_user_service.py
+    pattern: "@pytest.mark.ac"
+
+  - id: tests-reference-ac-ids
+    description: "Tests reference USER- AC IDs"
+    type: file_contains
+    file: tests/test_user_service.py
+    pattern: "USER-"

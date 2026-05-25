@@ -1,0 +1,17 @@
+$ ase eval --path after-drift --eval-dir eval
+
+Task                            Pass  Warn  Fail
+------------------------------------------------
+01-service-architecture            1     0     2
+02-test-traceability               2     0     2
+03-documentation                   2     0     0
+------------------------------------------------
+Total                              5     0     4
+
+Score: 5/9 (55%)
+
+Failures:
+  01-service-architecture / service-uses-class: src/user_service.py does not match '^class '
+  01-service-architecture / validation-in-service: src/user_service.py does not match '_validate'
+  02-test-traceability / tests-have-ac-markers: tests/test_user_service.py does not match '@pytest.mark.ac'
+  02-test-traceability / tests-reference-ac-ids: tests/test_user_service.py does not match 'USER-'

@@ -19,6 +19,7 @@ classifiers = [
 
 dependencies = [
     "typer>=0.15",
+    "pyyaml>=6",
 ]
 
 [dependency-groups]
@@ -37,6 +38,7 @@ build-backend = "hatchling.build"
 
 [tool.ruff]
 target-version = "py312"
+exclude = ["examples/"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W", "UP"]

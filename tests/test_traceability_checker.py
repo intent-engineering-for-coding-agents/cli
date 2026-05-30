@@ -170,12 +170,8 @@ def test_coverage_no_spec_files(tmp_path: Path) -> None:
 def test_coverage_all_have_two_markers(tmp_path: Path) -> None:
     """Covers: TCOV-002"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
-    _write_test(
-        tmp_path,
-        "test_foo.py",
-        '@pytest.mark.ac("FOO-001")\ndef test_positive(): pass\n'
-        '@pytest.mark.ac("FOO-001")\ndef test_negative(): pass\n',
-    )
+    _write_test(tmp_path, "test_positive.py", _PYTEST_FOO_001)
+    _write_test(tmp_path, "test_negative.py", _PYTEST_FOO_001)
     result = test_coverage.TestCoverage().check(tmp_path)
     assert result.status == Status.PASS
 
@@ -211,11 +207,13 @@ def test_coverage_manual_exempt(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
-def test_coverage_zero_markers_not_reported(tmp_path: Path) -> None:
-    """Covers: TCOV-006 — uncovered ACs belong to test-traceability."""
+def test_coverage_zero_markers_warns_with_count(tmp_path: Path) -> None:
+    """Covers: TCOV-006 — AC with 0 markers shows (0) in WARN message."""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
     result = test_coverage.TestCoverage().check(tmp_path)
-    assert result.status == Status.PASS
+    assert result.status == Status.WARN
+    assert "FOO-001" in result.message
+    assert "(0)" in result.message
 
 
 def test_coverage_registered() -> None:

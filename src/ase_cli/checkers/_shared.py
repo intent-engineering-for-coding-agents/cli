@@ -1,5 +1,6 @@
 """Shared helpers for docs checkers."""
 
+import os
 import re
 from pathlib import Path
 
@@ -21,6 +22,24 @@ def find_spec_files(path: Path) -> list[Path]:
                 if spec_subdir.is_dir():
                     files.extend(f for f in spec_subdir.rglob("*.md") if f.is_file())
     return sorted(files)
+
+
+def find_test_files(path: Path) -> list[Path]:
+    """Return all .py and .feature test files under the tests/ directory.
+
+    The directory defaults to ``<path>/tests`` but can be overridden via the
+    ``ASE_TESTS_DIR`` environment variable (absolute or relative to ``path``).
+    """
+    tests_dir_name = os.environ.get("ASE_TESTS_DIR", "tests")
+    tests_dir = Path(tests_dir_name)
+    if not tests_dir.is_absolute():
+        tests_dir = path / tests_dir_name
+    if not tests_dir.is_dir():
+        return []
+    extensions = {".py", ".feature", ".java", ".kt", ".go", ".ts", ".js"}
+    return sorted(
+        f for f in tests_dir.rglob("*") if f.is_file() and f.suffix in extensions
+    )
 
 
 def is_effectively_empty(dirpath: Path) -> bool:

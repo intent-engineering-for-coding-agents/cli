@@ -20,6 +20,8 @@ from ase_cli.checkers.secrets import Secrets
 from ase_cli.checkers.spec_ac_ids import SpecAcIds
 from ase_cli.checkers.spec_size import SpecSize
 from ase_cli.checkers.spec_test_category import SpecTestCategory
+from ase_cli.checkers.test_coverage import TestCoverage
+from ase_cli.checkers.test_traceability import TestTraceability
 from ase_cli.main import app
 
 runner = CliRunner()
@@ -40,6 +42,8 @@ def _register_all() -> None:
     registry.register(FileSize)
     registry.register(AgentsHubStructure)
     registry.register(Secrets)
+    registry.register(TestTraceability)
+    registry.register(TestCoverage)
 
 
 @pytest.fixture(autouse=True)
@@ -67,6 +71,8 @@ def test_ase_check_runs_all_checkers() -> None:
     assert "file-size" in result.stdout
     assert "agents-hub-structure" in result.stdout
     assert "secrets" in result.stdout
+    assert "test-traceability" in result.stdout
+    assert "test-coverage" in result.stdout
     assert "check(s)" in result.stdout
 
 

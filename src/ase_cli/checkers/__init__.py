@@ -16,6 +16,8 @@ from ase_cli.checkers import (
     spec_ac_ids,
     spec_size,
     spec_test_category,
+    test_coverage,
+    test_traceability,
 )
 
 __all__ = [
@@ -34,4 +36,6 @@ __all__ = [
     "spec_ac_ids",
     "spec_size",
     "spec_test_category",
+    "test_coverage",
+    "test_traceability",
 ]

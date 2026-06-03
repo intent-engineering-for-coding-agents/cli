@@ -2,7 +2,7 @@
 
 ## Why
 
-`docs-index-exists` proves every directory has an `INDEX.md`. `docs-index-stale` proves each index matches its directory contents. Neither catches the most common drift in practice: a top-level `INDEX.md` that lists files from sub-directories ("decisions/0001-x.md", "decisions/0002-y.md", ...) — duplicating the sub-INDEX and silently rotting as sub-directory contents change. The book repo's `docs/INDEX.md` exhibits exactly this pattern today, plus an "AI instruction hub" block linking to `../AGENTS.md` and `../.agents/...` files that don't belong in the docs tree map at all.
+`docs-index-exists` proves every directory has an `INDEX.md`. `docs-index-stale` proves each index matches its directory contents. Neither catches the most common drift in practice: a top-level `INDEX.md` that lists files from sub-directories ("decisions/0001-x.md", "decisions/0002-y.md", ...) — duplicating the sub-INDEX and silently rotting as sub-directory contents change. The book repo's `docs/INDEX.md` exhibits exactly this pattern today, plus an "agent instruction hub" block linking to `../AGENTS.md` and `../.agents/...` files that don't belong in the docs tree map at all.
 
 The rule is implied by two principles already in `plan.md` (ase-book):
 

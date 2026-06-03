@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Validates that the `.agents/` AI instruction hub exists and contains both `instructions/` and `skills/` subdirectories. Without this structure, agents cannot load context files or invoke skills.
+Validates that the `.agents/` agent instruction hub exists and contains both `instructions/` and `skills/` subdirectories. Without this structure, agents cannot load context files or invoke skills.
 
 ## Requirements
 

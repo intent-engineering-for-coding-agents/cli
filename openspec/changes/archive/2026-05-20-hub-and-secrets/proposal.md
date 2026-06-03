@@ -2,7 +2,7 @@
 
 ## Why
 
-The `.agents/` hub is the single source of truth for AI instructions. Without `instructions/` and `skills/` subdirectories, the hub is incomplete and agents fall back to guessing. The `secrets` check catches the most common class of credential exposure before it reaches a commit — private keys, AWS access keys, and password assignments with non-trivial values.
+The `.agents/` hub is the single source of truth for agent instructions. Without `instructions/` and `skills/` subdirectories, the hub is incomplete and agents fall back to guessing. The `secrets` check catches the most common class of credential exposure before it reaches a commit — private keys, AWS access keys, and password assignments with non-trivial values.
 
 ## What Changes
 

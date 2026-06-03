@@ -15,7 +15,7 @@ Adopting ASE practices currently requires manually creating the canonical direct
 ### New Capabilities
 
 - `scaffold-command`: The `ase init` subcommand that creates the canonical ASE directory structure (`docs/`, `openspec/`, `.agents/`, `AGENTS.md` skeleton) in a target repository. Supports dry-run, force overwrite, and path targeting.
-- `vendor-generators`: Emit vendor-specific AI instruction pointer files for the two tools that do NOT auto-discover `AGENTS.md`: **Claude Code** (`CLAUDE.md` via `--with-claude`, using `@AGENTS.md` import) and **Gemini CLI** (`.gemini/settings.json` via `--with-gemini`). All other major tools (Codex, Copilot, Cursor, Windsurf, Devin, Aider, Zed, etc. — 20+ tools) read `AGENTS.md` natively and need no pointer file.
+- `vendor-generators`: Emit vendor-specific agent instruction pointer files for the two tools that do NOT auto-discover `AGENTS.md`: **Claude Code** (`CLAUDE.md` via `--with-claude`, using `@AGENTS.md` import) and **Gemini CLI** (`.gemini/settings.json` via `--with-gemini`). All other major tools (Codex, Copilot, Cursor, Windsurf, Devin, Aider, Zed, etc. — 20+ tools) read `AGENTS.md` natively and need no pointer file.
 
 ### Modified Capabilities
 

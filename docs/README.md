@@ -51,7 +51,7 @@ ase check                 # Run deterministic checks only (future)
 ase check --all           # Run deterministic + AI-assisted (future)
 ase check --path src/     # Scope to a directory or file (future)
 
-ase generate              # Emit vendor AI instruction files (future)
+ase generate              # Emit vendor agent instruction files (future)
 ```
 
 ## Technology Stack

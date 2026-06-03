@@ -2,7 +2,7 @@
 
 ## Why
 
-Every ASE repo needs an AGENTS.md. Its presence, size, and link quality determine whether AI agents receive useful context or drift. The check framework from Change 002 can run checkers, but no checkers exist yet. These three are the first — they validate the most critical AI-facing file.
+Every ASE repo needs an AGENTS.md. Its presence, size, and link quality determine whether coding agents receive useful context or drift. The check framework from Change 002 can run checkers, but no checkers exist yet. These three are the first — they validate the most critical agent-facing file.
 
 ## What Changes
 

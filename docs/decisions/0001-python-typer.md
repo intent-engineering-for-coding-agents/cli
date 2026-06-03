@@ -57,7 +57,7 @@ Chosen option: "Python + Typer", because Python is universal — pre-installed o
 * Good, because single binary, fast, memory-safe
 * Bad, because steep learning curve reduces contributor pool
 * Bad, because compile times slow iteration
-* Bad, because over-engineered for a validation CLI — the bottleneck is I/O and AI calls, not CPU
+* Bad, because over-engineered for a validation CLI — the bottleneck is I/O and model calls, not CPU
 
 ## Validation
 

@@ -2,7 +2,7 @@
 
 ## Why
 
-Change 003 validates the single most critical AI-facing file (`AGENTS.md`). But ASE conventions require the entire `docs/` tree to be structured correctly: every subdirectory must have a `README.md` (human-facing overview, auto-renders on GitHub) and an `INDEX.md` (agent-facing file map). And every `INDEX.md` must stay in sync with actual files — a stale index misleads agents. These three recursive checkers close the gap.
+Change 003 validates the single most critical agent-facing file (`AGENTS.md`). But ASE conventions require the entire `docs/` tree to be structured correctly: every subdirectory must have a `README.md` (human-facing overview, auto-renders on GitHub) and an `INDEX.md` (agent-facing file map). And every `INDEX.md` must stay in sync with actual files — a stale index misleads agents. These three recursive checkers close the gap.
 
 ## What Changes
 

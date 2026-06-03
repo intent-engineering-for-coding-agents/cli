@@ -2,7 +2,7 @@
 
 ## Context
 
-The check framework from Change 002 provides a `Registry`, `Checker` protocol, and `CheckResult` model. Now the first real checkers are needed. These three validate the most critical AI-facing file: `AGENTS.md`. They are the first consumers of the framework and will establish patterns for all future checkers.
+The check framework from Change 002 provides a `Registry`, `Checker` protocol, and `CheckResult` model. Now the first real checkers are needed. These three validate the most critical agent-facing file: `AGENTS.md`. They are the first consumers of the framework and will establish patterns for all future checkers.
 
 ## Goals / Non-Goals
 
@@ -74,4 +74,4 @@ The check framework from Change 002 provides a `Registry`, `Checker` protocol, a
   → **Mitigation**: Document in check output message: "AGENTS.md has 72 lines (limit: 50). Set ASE_AGENTS_MAX_LINES to change limit."
 
 - **[Trade-off]** No `--fix` mode for bare links
-  → Accept. Detection-first approach. AI agents can write descriptions themselves — the check flags what needs attention.
+  → Accept. Detection-first approach. coding agents can write descriptions themselves — the check flags what needs attention.

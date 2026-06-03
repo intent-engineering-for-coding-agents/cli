@@ -9,7 +9,7 @@
 - **Plugin registry**: Checkers are discovered and registered via a central registry. New checkers are added by creating a module — no CLI wiring changes needed.
 - **Checker interface (Protocol)**: Every checker implements a lightweight protocol: one method that takes a repo path returns a result. No base class required.
 - **Shared result model**: Structured result type (pass / warn / fail), severity, message, optional location (file path, line), and traceability (AC ID reference).
-- **`ase check` command**: CLI entry point that runs registered checkers, collects results, and prints a summary. Accepts `--path` to scope to a directory or file. `--all` flag reserved for future AI-assisted checks.
+- **`ase check` command**: CLI entry point that runs registered checkers, collects results, and prints a summary. Accepts `--path` to scope to a directory or file. `--all` flag reserved for future agent-assisted checks.
 - **No spec modifications**: Both existing capabilities (`scaffold-command`, `vendor-generators`) are unchanged.
 
 ## Capabilities

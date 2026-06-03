@@ -1,6 +1,6 @@
 # Development Guide for ase-cli
 
-This guide documents known issues, best practices, and troubleshooting steps for AI assistants working on this codebase.
+This guide documents known issues, best practices, and troubleshooting steps for coding agents working on this codebase.
 
 ## Setup
 

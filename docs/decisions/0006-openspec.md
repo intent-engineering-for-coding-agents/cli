@@ -8,7 +8,7 @@ decision-makers: ASE Book Contributors
 
 ## Context and Problem Statement
 
-ASE practices require a spec-driven development workflow. Specs capture intent before implementation, produce acceptance criteria with traceable IDs, and survive the implementation they guided. The spec format and tooling must be lightweight (plain text, Git-native), support brownfield codebases, and work across AI coding agents. The ASE book must recommend one spec approach.
+ASE practices require a spec-driven development workflow. Specs capture intent before implementation, produce acceptance criteria with traceable IDs, and survive the implementation they guided. The spec format and tooling must be lightweight (plain text, Git-native), support brownfield codebases, and work across coding agents. The ASE book must recommend one spec approach.
 
 ## Considered Options
 
@@ -19,14 +19,14 @@ ASE practices require a spec-driven development workflow. Specs capture intent b
 
 ## Decision Outcome
 
-Chosen option: "OpenSpec", because it is the only option that is lightweight (no API keys, no MCP dependency, no vendor lock-in), universal (supports all major AI coding agents natively), and provides both a spec format and a CLI tool for managing spec lifecycles. Its directory structure maps directly to the canonical ASE layout. It works on brownfield codebases — specs are created incrementally as changes are proposed.
+Chosen option: "OpenSpec", because it is the only option that is lightweight (no API keys, no MCP dependency, no vendor lock-in), universal (supports all major coding agents natively), and provides both a spec format and a CLI tool for managing spec lifecycles. Its directory structure maps directly to the canonical ASE layout. It works on brownfield codebases — specs are created incrementally as changes are proposed.
 
 ### Consequences
 
 * Good, because specs are plain Markdown — Git-diffable, readable by any agent, no proprietary format
 * Good, because AC IDs are part of the spec format — enables deterministic traceability checks in ase-cli
 * Good, because `openspec/` directory maps to the ASE canonical structure (specs/ for current, changes/ for proposals)
-* Good, because natively supported by the AI agents the book's audience uses (Claude Code, Codex, Cursor, Copilot, OpenCode, Windsurf)
+* Good, because natively supported by the coding agents the book's audience uses (Claude Code, Codex, Cursor, Copilot, OpenCode, Windsurf)
 * Good, because no API keys needed — the `openspec` CLI works locally
 * Neutral, because the `openspec` CLI is distributed via npm — an additional tool install for readers using Python/uv. Mitigated by ase-cli providing its own spec validation layer, so npm is only needed for spec authoring, not validation
 
@@ -45,7 +45,7 @@ The two tools are complementary, not overlapping:
 ### OpenSpec
 
 * Good, because lightweight — plain Markdown, no API keys, no MCP
-* Good, because universal — works with all major AI coding agents
+* Good, because universal — works with all major coding agents
 * Good, because brownfield-first — specs created incrementally, not all upfront
 * Good, because structured — proposal, design, tasks, spec deltas in a known directory layout
 * Good, because open source with an active community

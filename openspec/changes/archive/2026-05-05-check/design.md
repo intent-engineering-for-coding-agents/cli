@@ -17,7 +17,7 @@ This design covers the architectural backbone — registry, protocol, result mod
 
 **Non-Goals:**
 - Individual checker implementations (`agents-exists`, `adr-format`, etc.)
-- AI-assisted checks (MCP server, Change 011)
+- agent-assisted checks (MCP server, Change 011)
 - `--all` flag wiring (reserved, not implemented)
 - Third-party plugin system (entry_points, namespace packages)
 - Config file support (.ase.toml)

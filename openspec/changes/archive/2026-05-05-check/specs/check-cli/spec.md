@@ -6,7 +6,7 @@ The `ase check` command runs registered deterministic checkers against a repo an
 
 ### Requirement: ase check command
 
-The system SHALL provide an `ase check` CLI command that runs all registered deterministic checkers. It SHALL accept an optional `--path` argument to scope checks to a specific directory (defaults to current working directory). It SHALL NOT accept `--all` or AI-related flags at this stage.
+The system SHALL provide an `ase check` CLI command that runs all registered deterministic checkers. It SHALL accept an optional `--path` argument to scope checks to a specific directory (defaults to current working directory). It SHALL NOT accept `--all` or agent-related flags at this stage.
 
 #### Scenario: Run checks with the default path [CHKCLI-001]
 

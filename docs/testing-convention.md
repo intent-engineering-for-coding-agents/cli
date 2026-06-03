@@ -142,7 +142,7 @@ ASE testing verification operates at three levels:
 |---|---|---|
 | **Registry** | Machine-generated map: every AC ID → spec source → test markers → coverage status. Read by humans and agents as a single source of traceability truth. | Deterministic |
 | **Deterministic check** | Invalid ACs, missing coverage, orphaned markers — fails CI. Enforces the traceability contract mechanically. | Deterministic |
-| **AC fidelity check** | AI review: does a tagged test actually prove its linked Gherkin, or has it drifted? A test can carry the right `@Tag` and still test the wrong thing. | AI-assisted |
+| **AC fidelity check** | agent review: does a tagged test actually prove its linked Gherkin, or has it drifted? A test can carry the right `@Tag` and still test the wrong thing. | agent-assisted |
 
 The registry is the rendered output of the deterministic scan. When specs change, re-run the check and the registry updates. The fidelity check catches what static scanning cannot: a tagged test that is well-formed but unfaithful to its scenario.
 

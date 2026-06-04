@@ -12,4 +12,5 @@ Every file in `docs/decisions/` listed with its purpose. Load this first for con
 | [0004-byok-mcp.md](0004-byok-mcp.md) | Why BYOK via MCP — user brings their own coding agent, tool doesn't care which one |
 | [0005-madr-format.md](0005-madr-format.md) | Why MADR format for all architectural decisions — lightweight, structured, git-diffable |
 | [0006-openspec.md](0006-openspec.md) | Why OpenSpec for spec-driven development — AC IDs, traceability, archive flow |
+| [0007-ac-id-and-test-type-convention.md](0007-ac-id-and-test-type-convention.md) | Why `[PREFIX-NNN]` AC IDs and `Test-type:` field — machine-readable traceability |
 | [README.md](README.md) | Auto-rendered listing of all ADRs with status |

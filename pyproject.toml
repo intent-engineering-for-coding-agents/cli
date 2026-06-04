@@ -54,6 +54,8 @@ quote-style = "double"
 testpaths = ["tests"]
 markers = [
     "ac: marks a test as proving a specific acceptance criterion",
-    "baseline: marks coverage threshold or structural regression tests",
+    "unit: marks a pure-function unit test (no CLI invocation)",
+    "integration: marks an integration test (CLI invocation via CliRunner)",
     "sanity: marks environment or toolchain readiness tests",
+    "baseline: marks coverage threshold or structural regression tests",
 ]

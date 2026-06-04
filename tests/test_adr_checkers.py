@@ -3,6 +3,8 @@
 import shutil
 from pathlib import Path
 
+import pytest
+
 from iec_cli.check import Registry, Status
 from iec_cli.checkers import adr_format, adr_index
 
@@ -35,6 +37,9 @@ def _write_readme(base: Path, content: str) -> Path:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-001")
+@pytest.mark.ac("ADRF-007")
 def test_format_valid_bullet(tmp_path: Path) -> None:
     """Covers: ADRF-001, ADRF-007"""
     _place(tmp_path, "valid_bullet.md", "0001-example.md")
@@ -42,6 +47,8 @@ def test_format_valid_bullet(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-002")
 def test_format_invalid_filename(tmp_path: Path) -> None:
     """Covers: ADRF-002"""
     _place(tmp_path, "valid_bullet.md", "my-decision.md")
@@ -50,6 +57,8 @@ def test_format_invalid_filename(tmp_path: Path) -> None:
     assert "my-decision.md" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-003")
 def test_format_missing_title_heading(tmp_path: Path) -> None:
     """Covers: ADRF-003"""
     _place(tmp_path, "missing_title.md", "0001-example.md")
@@ -58,6 +67,8 @@ def test_format_missing_title_heading(tmp_path: Path) -> None:
     assert "title heading" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-004")
 def test_format_title_number_mismatch(tmp_path: Path) -> None:
     """Covers: ADRF-004"""
     _place(tmp_path, "title_mismatch.md", "0001-example.md")
@@ -67,6 +78,8 @@ def test_format_title_number_mismatch(tmp_path: Path) -> None:
     assert "0002" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-005")
 def test_format_missing_context_section(tmp_path: Path) -> None:
     """Covers: ADRF-005"""
     _place(tmp_path, "missing_context.md", "0001-example.md")
@@ -75,6 +88,8 @@ def test_format_missing_context_section(tmp_path: Path) -> None:
     assert "Context and Problem Statement" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-006")
 def test_format_missing_decision_outcome(tmp_path: Path) -> None:
     """Covers: ADRF-006"""
     _place(tmp_path, "missing_decision.md", "0001-example.md")
@@ -83,6 +98,8 @@ def test_format_missing_decision_outcome(tmp_path: Path) -> None:
     assert "Decision Outcome" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-008")
 def test_format_missing_status(tmp_path: Path) -> None:
     """Covers: ADRF-008"""
     _place(tmp_path, "missing_status.md", "0001-example.md")
@@ -91,6 +108,8 @@ def test_format_missing_status(tmp_path: Path) -> None:
     assert "missing status" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-009")
 def test_format_invalid_status_bullet(tmp_path: Path) -> None:
     """Covers: ADRF-009"""
     _place(tmp_path, "invalid_status_bullet.md", "0001-example.md")
@@ -99,12 +118,16 @@ def test_format_invalid_status_bullet(tmp_path: Path) -> None:
     assert "draft" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-010")
 def test_format_no_decisions_dir(tmp_path: Path) -> None:
     """Covers: ADRF-010 — missing docs/decisions/"""
     result = adr_format.AdrFormat().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-010")
 def test_format_empty_decisions_dir(tmp_path: Path) -> None:
     """Covers: ADRF-010 — empty docs/decisions/"""
     (tmp_path / "docs" / "decisions").mkdir(parents=True)
@@ -112,6 +135,8 @@ def test_format_empty_decisions_dir(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-011")
 def test_format_registered() -> None:
     """Covers: ADRF-011"""
     reg = Registry()
@@ -119,6 +144,9 @@ def test_format_registered() -> None:
     assert "adr-format" in [c[0] for c in reg.list_all()]
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-012")
+@pytest.mark.ac("ADRF-013")
 def test_format_valid_yaml_plain_title(tmp_path: Path) -> None:
     """Covers: ADRF-012, ADRF-013 — YAML front matter with plain title"""
     _place(tmp_path, "valid_yaml.md", "0001-example.md")
@@ -126,6 +154,8 @@ def test_format_valid_yaml_plain_title(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-014")
 def test_format_invalid_status_yaml(tmp_path: Path) -> None:
     """Covers: ADRF-014"""
     _place(tmp_path, "invalid_status_yaml.md", "0001-example.md")
@@ -134,6 +164,8 @@ def test_format_invalid_status_yaml(tmp_path: Path) -> None:
     assert "draft" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRF-015")
 def test_format_superseded_with_reference(tmp_path: Path) -> None:
     """Covers: ADRF-015 — 'superseded by [ADR-XXXX]' starts with valid prefix"""
     _place(tmp_path, "superseded_bullet.md", "0001-example.md")
@@ -146,6 +178,9 @@ def test_format_superseded_with_reference(tmp_path: Path) -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRI-001")
+@pytest.mark.ac("ADRI-004")
 def test_index_all_listed(tmp_path: Path) -> None:
     """Covers: ADRI-001, ADRI-004"""
     _place(tmp_path, "valid_bullet.md", "0001-example.md")
@@ -154,6 +189,8 @@ def test_index_all_listed(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRI-002")
 def test_index_readme_missing_with_adrs(tmp_path: Path) -> None:
     """Covers: ADRI-002"""
     _place(tmp_path, "valid_bullet.md", "0001-example.md")
@@ -162,12 +199,16 @@ def test_index_readme_missing_with_adrs(tmp_path: Path) -> None:
     assert "README.md missing" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRI-003")
 def test_index_no_decisions_dir(tmp_path: Path) -> None:
     """Covers: ADRI-003 — missing docs/decisions/"""
     result = adr_index.AdrIndex().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRI-003")
 def test_index_empty_decisions_dir(tmp_path: Path) -> None:
     """Covers: ADRI-003 — empty docs/decisions/"""
     (tmp_path / "docs" / "decisions").mkdir(parents=True)
@@ -175,6 +216,8 @@ def test_index_empty_decisions_dir(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRI-005")
 def test_index_one_adr_unlisted(tmp_path: Path) -> None:
     """Covers: ADRI-005"""
     _place(tmp_path, "valid_bullet.md", "0001-example.md")
@@ -185,6 +228,8 @@ def test_index_one_adr_unlisted(tmp_path: Path) -> None:
     assert "0002-another.md" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRI-006")
 def test_index_multiple_adrs_unlisted(tmp_path: Path) -> None:
     """Covers: ADRI-006"""
     _place(tmp_path, "valid_bullet.md", "0001-example.md")
@@ -197,6 +242,8 @@ def test_index_multiple_adrs_unlisted(tmp_path: Path) -> None:
     assert "0003-third.md" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ADRI-007")
 def test_index_registered() -> None:
     """Covers: ADRI-007"""
     reg = Registry()

@@ -51,6 +51,8 @@ def _clean_registry() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-001")
 def test_check_default_path() -> None:
     """Covers: CHKCLI-001"""
     registry.register(_Pass())
@@ -60,6 +62,8 @@ def test_check_default_path() -> None:
     assert "all good" in result.stdout
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-002")
 def test_check_explicit_path() -> None:
     """Covers: CHKCLI-002"""
     registry.register(_Pass())
@@ -68,6 +72,8 @@ def test_check_explicit_path() -> None:
     assert "a-ok" in result.stdout
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-003")
 def test_check_help() -> None:
     """Covers: CHKCLI-003"""
     result = runner.invoke(check_app, ["--help"])
@@ -84,6 +90,8 @@ def test_check_help() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-004")
 def test_output_all_pass() -> None:
     """Covers: CHKCLI-004"""
     registry.register(_Pass())
@@ -95,6 +103,8 @@ def test_output_all_pass() -> None:
     assert "warning" not in result.stdout.lower()
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-005")
 def test_output_one_fail() -> None:
     """Covers: CHKCLI-005"""
     registry.register(_Fail())
@@ -105,6 +115,8 @@ def test_output_one_fail() -> None:
     assert "1 failed" in result.stdout
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-006")
 def test_output_mixed() -> None:
     """Covers: CHKCLI-006"""
     registry.register(_Pass())
@@ -120,6 +132,8 @@ def test_output_mixed() -> None:
     assert "1 failed" in result.stdout
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-010")
 def test_output_registration_order() -> None:
     """Covers: CHKCLI-010"""
     registry.register(_Fail())  # registered first
@@ -134,6 +148,8 @@ def test_output_registration_order() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-007")
 def test_exit_code_zero_all_pass() -> None:
     """Covers: CHKCLI-007"""
     registry.register(_Pass())
@@ -141,6 +157,8 @@ def test_exit_code_zero_all_pass() -> None:
     assert result.exit_code == 0
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-008")
 def test_exit_code_one_warnings_only() -> None:
     """Covers: CHKCLI-008"""
     registry.register(_Warn())
@@ -148,6 +166,8 @@ def test_exit_code_one_warnings_only() -> None:
     assert result.exit_code == 1
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-009")
 def test_exit_code_two_failures() -> None:
     """Covers: CHKCLI-009"""
     registry.register(_Fail())
@@ -155,6 +175,8 @@ def test_exit_code_two_failures() -> None:
     assert result.exit_code == 2
 
 
+@pytest.mark.integration
+@pytest.mark.ac("CHKCLI-009")
 def test_exit_code_two_failures_and_warnings() -> None:
     """Covers: CHKCLI-009 — failures take precedence over warnings"""
     registry.register(_Warn())
@@ -168,6 +190,8 @@ def test_exit_code_two_failures_and_warnings() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.integration
+@pytest.mark.baseline
 def test_ase_help_lists_check() -> None:
     """`iec --help` lists the `check` command."""
     from iec_cli.main import app

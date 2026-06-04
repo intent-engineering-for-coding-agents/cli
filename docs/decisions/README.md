@@ -8,3 +8,4 @@
 | [0004](0004-byok-mcp.md) | BYOK via MCP | accepted | 2026-05-04 |
 | [0005](0005-madr-format.md) | MADR format for all ADRs | accepted | 2026-05-04 |
 | [0006](0006-openspec.md) | OpenSpec for spec-driven development | accepted | 2026-05-04 |
+| [0007](0007-ac-id-and-test-type-convention.md) | AC ID and test-type convention | accepted | 2026-06-04 |

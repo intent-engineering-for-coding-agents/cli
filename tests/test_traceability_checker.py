@@ -2,6 +2,8 @@
 
 from pathlib import Path
 
+import pytest
+
 from iec_cli.check import Registry, Status
 from iec_cli.checkers import test_coverage, test_traceability
 
@@ -65,12 +67,16 @@ _PYTEST_FOO_001 = '@pytest.mark.ac("FOO-001")\ndef test_it(): pass\n'
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-001")
 def test_traceability_no_spec_files(tmp_path: Path) -> None:
     """Covers: TRTC-001"""
     result = test_traceability.TestTraceability().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-002")
 def test_traceability_all_covered(tmp_path: Path) -> None:
     """Covers: TRTC-002"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -79,6 +85,8 @@ def test_traceability_all_covered(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-003")
 def test_traceability_missing_marker(tmp_path: Path) -> None:
     """Covers: TRTC-003"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -87,6 +95,8 @@ def test_traceability_missing_marker(tmp_path: Path) -> None:
     assert "FOO-001" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-004")
 def test_traceability_multiple_missing(tmp_path: Path) -> None:
     """Covers: TRTC-004"""
     _write_spec(tmp_path, "my-spec", _SPEC_TWO_ACS)
@@ -96,6 +106,7 @@ def test_traceability_multiple_missing(tmp_path: Path) -> None:
     assert "FOO-002" in result.message
 
 
+@pytest.mark.unit
 def test_traceability_manual_exempt(tmp_path: Path) -> None:
     """Covers: TRTC-005"""
     _write_spec(tmp_path, "my-spec", _SPEC_MANUAL_AC)
@@ -103,6 +114,8 @@ def test_traceability_manual_exempt(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-006")
 def test_traceability_pytest_marker(tmp_path: Path) -> None:
     """Covers: TRTC-006"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -111,6 +124,8 @@ def test_traceability_pytest_marker(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-007")
 def test_traceability_junit_tag(tmp_path: Path) -> None:
     """Covers: TRTC-007"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -119,6 +134,8 @@ def test_traceability_junit_tag(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-008")
 def test_traceability_cucumber_tag(tmp_path: Path) -> None:
     """Covers: TRTC-008"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -127,6 +144,8 @@ def test_traceability_cucumber_tag(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-009")
 def test_traceability_inline_comment(tmp_path: Path) -> None:
     """Covers: TRTC-009"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -135,6 +154,8 @@ def test_traceability_inline_comment(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-010")
 def test_traceability_orphaned_marker(tmp_path: Path) -> None:
     """Covers: TRTC-010"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -149,6 +170,8 @@ def test_traceability_orphaned_marker(tmp_path: Path) -> None:
     assert "BAR-999" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TRTC-011")
 def test_traceability_registered() -> None:
     """Covers: TRTC-011"""
     reg = Registry()
@@ -161,12 +184,16 @@ def test_traceability_registered() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TCOV-001")
 def test_coverage_no_spec_files(tmp_path: Path) -> None:
     """Covers: TCOV-001"""
     result = test_coverage.TestCoverage().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TCOV-002")
 def test_coverage_all_have_two_markers(tmp_path: Path) -> None:
     """Covers: TCOV-002"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -176,6 +203,8 @@ def test_coverage_all_have_two_markers(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TCOV-003")
 def test_coverage_single_marker_warns(tmp_path: Path) -> None:
     """Covers: TCOV-003"""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -185,6 +214,8 @@ def test_coverage_single_marker_warns(tmp_path: Path) -> None:
     assert "FOO-001" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TCOV-004")
 def test_coverage_multiple_under_covered(tmp_path: Path) -> None:
     """Covers: TCOV-004"""
     _write_spec(tmp_path, "my-spec", _SPEC_TWO_ACS)
@@ -200,6 +231,7 @@ def test_coverage_multiple_under_covered(tmp_path: Path) -> None:
     assert "FOO-002" in result.message
 
 
+@pytest.mark.unit
 def test_coverage_manual_exempt(tmp_path: Path) -> None:
     """Covers: TCOV-005"""
     _write_spec(tmp_path, "my-spec", _SPEC_MANUAL_AC)
@@ -207,6 +239,8 @@ def test_coverage_manual_exempt(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TCOV-006")
 def test_coverage_zero_markers_warns_with_count(tmp_path: Path) -> None:
     """Covers: TCOV-006 — AC with 0 markers shows (0) in WARN message."""
     _write_spec(tmp_path, "my-spec", _SPEC_ONE_AC)
@@ -216,6 +250,8 @@ def test_coverage_zero_markers_warns_with_count(tmp_path: Path) -> None:
     assert "(0)" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("TCOV-007")
 def test_coverage_registered() -> None:
     """Covers: TCOV-007"""
     reg = Registry()

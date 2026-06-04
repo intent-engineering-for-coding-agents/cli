@@ -2,6 +2,8 @@
 
 from pathlib import Path
 
+import pytest
+
 from iec_cli.check import Registry, Status
 from iec_cli.checkers import spec_ac_ids, spec_test_category
 
@@ -50,12 +52,16 @@ Test-type: unit
 """
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ACID-001")
 def test_spec_ac_ids_no_spec_files(tmp_path: Path) -> None:
     """Covers: ACID-001"""
     result = spec_ac_ids.SpecAcIds().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ACID-002")
 def test_spec_ac_ids_all_present(tmp_path: Path) -> None:
     """Covers: ACID-002"""
     _write_spec(tmp_path, "my-spec", _SPEC_ALL_AC_IDS)
@@ -63,6 +69,8 @@ def test_spec_ac_ids_all_present(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ACID-003")
 def test_spec_ac_ids_missing(tmp_path: Path) -> None:
     """Covers: ACID-003"""
     _write_spec(tmp_path, "my-spec", _SPEC_MISSING_AC_ID)
@@ -71,6 +79,8 @@ def test_spec_ac_ids_missing(tmp_path: Path) -> None:
     assert "Happy path" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ACID-004")
 def test_spec_ac_ids_multiple_one_missing(tmp_path: Path) -> None:
     """Covers: ACID-004"""
     _write_spec(tmp_path, "my-spec", _SPEC_MIXED_AC_IDS)
@@ -79,6 +89,8 @@ def test_spec_ac_ids_multiple_one_missing(tmp_path: Path) -> None:
     assert "Missing AC ID" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("ACID-005")
 def test_spec_ac_ids_registered() -> None:
     """Covers: ACID-005"""
     reg = Registry()
@@ -119,12 +131,16 @@ Test-type: unit
 """
 
 
+@pytest.mark.unit
+@pytest.mark.ac("STCT-001")
 def test_spec_test_category_no_spec_files(tmp_path: Path) -> None:
     """Covers: STCT-001"""
     result = spec_test_category.SpecTestCategory().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("STCT-002")
 def test_spec_test_category_all_present(tmp_path: Path) -> None:
     """Covers: STCT-002"""
     _write_spec(tmp_path, "my-spec", _SPEC_ALL_TEST_FIELDS)
@@ -132,6 +148,8 @@ def test_spec_test_category_all_present(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("STCT-003")
 def test_spec_test_category_missing(tmp_path: Path) -> None:
     """Covers: STCT-003"""
     _write_spec(tmp_path, "my-spec", _SPEC_MISSING_TEST_FIELD)
@@ -140,6 +158,8 @@ def test_spec_test_category_missing(tmp_path: Path) -> None:
     assert "Happy path" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("STCT-004")
 def test_spec_test_category_multiple_one_missing(tmp_path: Path) -> None:
     """Covers: STCT-004"""
     _write_spec(tmp_path, "my-spec", _SPEC_MIXED_TEST_FIELDS)
@@ -148,6 +168,8 @@ def test_spec_test_category_multiple_one_missing(tmp_path: Path) -> None:
     assert "Missing Test field" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("STCT-005")
 def test_spec_test_category_registered() -> None:
     """Covers: STCT-005"""
     reg = Registry()

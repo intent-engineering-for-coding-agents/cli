@@ -12,3 +12,5 @@ Flat map of `docs/`. Sub-directories own their own INDEX/README. Load this file 
 | [decisions/README.md](decisions/README.md) | ADR listing — human-facing, status + date |
 | [design/INDEX.md](design/INDEX.md) | Agent-facing map of `docs/design/` |
 | [design/README.md](design/README.md) | Design doc listing — human-facing |
+| [architecture/INDEX.md](architecture/INDEX.md) | Agent-facing map of `docs/architecture/` |
+| [architecture/README.md](architecture/README.md) | Architecture docs listing |

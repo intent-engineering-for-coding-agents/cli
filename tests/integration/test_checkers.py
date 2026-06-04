@@ -12,6 +12,7 @@ from iec_cli.checkers.agents_exists import AgentsExists
 from iec_cli.checkers.agents_hub_structure import AgentsHubStructure
 from iec_cli.checkers.agents_links import AgentsLinks
 from iec_cli.checkers.agents_size import AgentsSize
+from iec_cli.checkers.change_archived import ChangeArchived
 from iec_cli.checkers.docs_index_exists import DocsIndexExists
 from iec_cli.checkers.docs_index_stale import DocsIndexStale
 from iec_cli.checkers.docs_readme_exists import DocsReadmeExists
@@ -20,7 +21,6 @@ from iec_cli.checkers.secrets import Secrets
 from iec_cli.checkers.spec_ac_ids import SpecAcIds
 from iec_cli.checkers.spec_size import SpecSize
 from iec_cli.checkers.spec_test_category import SpecTestCategory
-from iec_cli.checkers.change_archived import ChangeArchived
 from iec_cli.checkers.tasks_complete import TasksComplete
 from iec_cli.checkers.test_coverage import TestCoverage
 from iec_cli.checkers.test_traceability import TestTraceability

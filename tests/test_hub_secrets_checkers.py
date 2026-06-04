@@ -2,6 +2,8 @@
 
 from pathlib import Path
 
+import pytest
+
 from iec_cli.check import Registry, Status
 from iec_cli.checkers import agents_hub_structure, secrets
 
@@ -28,6 +30,8 @@ def _make_hub(
         (agents_dir / "skills").mkdir()
 
 
+@pytest.mark.unit
+@pytest.mark.ac("AHUB-001")
 def test_hub_structure_complete(tmp_path: Path) -> None:
     """Covers: AHUB-001"""
     _make_hub(tmp_path)
@@ -35,6 +39,8 @@ def test_hub_structure_complete(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("AHUB-002")
 def test_hub_structure_missing_agents_dir(tmp_path: Path) -> None:
     """Covers: AHUB-002"""
     result = agents_hub_structure.AgentsHubStructure().check(tmp_path)
@@ -42,6 +48,8 @@ def test_hub_structure_missing_agents_dir(tmp_path: Path) -> None:
     assert ".agents/" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("AHUB-003")
 def test_hub_structure_missing_instructions(tmp_path: Path) -> None:
     """Covers: AHUB-003"""
     _make_hub(tmp_path, with_instructions=False)
@@ -50,6 +58,8 @@ def test_hub_structure_missing_instructions(tmp_path: Path) -> None:
     assert "instructions/" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("AHUB-004")
 def test_hub_structure_missing_skills(tmp_path: Path) -> None:
     """Covers: AHUB-004"""
     _make_hub(tmp_path, with_skills=False)
@@ -58,6 +68,8 @@ def test_hub_structure_missing_skills(tmp_path: Path) -> None:
     assert "skills/" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("AHUB-005")
 def test_hub_structure_missing_both(tmp_path: Path) -> None:
     """Covers: AHUB-005"""
     (tmp_path / ".agents").mkdir()
@@ -67,6 +79,8 @@ def test_hub_structure_missing_both(tmp_path: Path) -> None:
     assert "skills/" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("AHUB-006")
 def test_hub_structure_registered() -> None:
     """Covers: AHUB-006"""
     reg = Registry()
@@ -79,6 +93,8 @@ def test_hub_structure_registered() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SECR-001")
 def test_secrets_clean(tmp_path: Path) -> None:
     """Covers: SECR-001"""
     (tmp_path / "README.md").write_text("# Hello World\n\nNo secrets here.\n")
@@ -86,6 +102,8 @@ def test_secrets_clean(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SECR-002")
 def test_secrets_aws_key(tmp_path: Path) -> None:
     """Covers: SECR-002"""
     (tmp_path / "config.py").write_text(f'AWS_KEY = "{_FAKE_AWS_KEY}"\n')
@@ -94,6 +112,8 @@ def test_secrets_aws_key(tmp_path: Path) -> None:
     assert "config.py" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SECR-003")
 def test_secrets_private_key(tmp_path: Path) -> None:
     """Covers: SECR-003"""
     (tmp_path / "key.pem").write_text(f"{_FAKE_PEM_LINE}\nMIIEpAIB...\n")
@@ -102,6 +122,8 @@ def test_secrets_private_key(tmp_path: Path) -> None:
     assert "key.pem" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SECR-004")
 def test_secrets_credential_assignment(tmp_path: Path) -> None:
     """Covers: SECR-004"""
     (tmp_path / "settings.py").write_text(_FAKE_CRED_LINE + "\n")
@@ -110,6 +132,8 @@ def test_secrets_credential_assignment(tmp_path: Path) -> None:
     assert "settings.py" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SECR-005")
 def test_secrets_skips_git_dir(tmp_path: Path) -> None:
     """Covers: SECR-005"""
     git_dir = tmp_path / ".git"
@@ -119,6 +143,8 @@ def test_secrets_skips_git_dir(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SECR-006")
 def test_secrets_registered() -> None:
     """Covers: SECR-006"""
     reg = Registry()

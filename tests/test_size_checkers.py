@@ -20,12 +20,16 @@ def _write_spec(base: Path, content: str) -> Path:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SPSZ-004")
 def test_spec_size_no_spec_files(tmp_path: Path) -> None:
     """Covers: SPSZ-004"""
     result = spec_size.SpecSize().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SPSZ-001")
 def test_spec_size_under_limit(tmp_path: Path) -> None:
     """Covers: SPSZ-001"""
     _write_spec(tmp_path, "\n".join(f"line {i}" for i in range(100)))
@@ -33,6 +37,8 @@ def test_spec_size_under_limit(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SPSZ-002")
 def test_spec_size_over_limit(tmp_path: Path) -> None:
     """Covers: SPSZ-002"""
     _write_spec(tmp_path, "\n".join(f"line {i}" for i in range(600)))
@@ -41,6 +47,8 @@ def test_spec_size_over_limit(tmp_path: Path) -> None:
     assert "600 lines" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SPSZ-003")
 def test_spec_size_env_override(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -51,6 +59,8 @@ def test_spec_size_env_override(
     assert result.status == Status.WARN
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SPSZ-005")
 def test_spec_size_invalid_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """Covers: SPSZ-005"""
     monkeypatch.setenv("ASE_SPEC_MAX_LINES", "not-a-number")
@@ -59,6 +69,8 @@ def test_spec_size_invalid_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) 
     assert result.status == Status.PASS  # falls back to default 500
 
 
+@pytest.mark.unit
+@pytest.mark.ac("SPSZ-006")
 def test_spec_size_registered() -> None:
     """Covers: SPSZ-006"""
     reg = Registry()
@@ -71,12 +83,16 @@ def test_spec_size_registered() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("FLSZ-004")
 def test_file_size_no_md_files(tmp_path: Path) -> None:
     """Covers: FLSZ-004"""
     result = file_size.FileSize().check(tmp_path)
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("FLSZ-001")
 def test_file_size_under_limit(tmp_path: Path) -> None:
     """Covers: FLSZ-001"""
     (tmp_path / "README.md").write_text("\n".join(f"line {i}" for i in range(100)))
@@ -84,6 +100,8 @@ def test_file_size_under_limit(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("FLSZ-002")
 def test_file_size_over_limit(tmp_path: Path) -> None:
     """Covers: FLSZ-002"""
     (tmp_path / "README.md").write_text("\n".join(f"line {i}" for i in range(600)))
@@ -92,6 +110,8 @@ def test_file_size_over_limit(tmp_path: Path) -> None:
     assert "600 lines" in result.message
 
 
+@pytest.mark.unit
+@pytest.mark.ac("FLSZ-003")
 def test_file_size_env_override(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -102,6 +122,8 @@ def test_file_size_env_override(
     assert result.status == Status.WARN
 
 
+@pytest.mark.unit
+@pytest.mark.ac("FLSZ-005")
 def test_file_size_skips_node_modules(tmp_path: Path) -> None:
     """Covers: FLSZ-005"""
     pkg_dir = tmp_path / "node_modules" / "some-pkg"
@@ -111,6 +133,8 @@ def test_file_size_skips_node_modules(tmp_path: Path) -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("FLSZ-006")
 def test_file_size_invalid_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """Covers: FLSZ-006"""
     monkeypatch.setenv("ASE_FILE_MAX_LINES", "not-a-number")
@@ -119,6 +143,8 @@ def test_file_size_invalid_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) 
     assert result.status == Status.PASS  # falls back to default 500
 
 
+@pytest.mark.unit
+@pytest.mark.ac("FLSZ-007")
 def test_file_size_registered() -> None:
     """Covers: FLSZ-007"""
     reg = Registry()

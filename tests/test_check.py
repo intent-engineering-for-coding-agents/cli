@@ -11,6 +11,8 @@ from iec_cli.check import Checker, CheckResult, Registry, Severity, Status, regi
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKRSL-001")
 def test_status_enum_has_all_values() -> None:
     """Covers: CHKRSL-001"""
     assert Status.PASS.value == "PASS"
@@ -19,6 +21,8 @@ def test_status_enum_has_all_values() -> None:
     assert len(Status) == 3
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKRSL-002")
 def test_severity_enum_has_all_values() -> None:
     """Covers: CHKRSL-002"""
     assert Severity.HIGH.value == "HIGH"
@@ -32,6 +36,8 @@ def test_severity_enum_has_all_values() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKRSL-003")
 def test_check_result_all_fields() -> None:
     """Covers: CHKRSL-003"""
     result = CheckResult(
@@ -50,6 +56,8 @@ def test_check_result_all_fields() -> None:
     assert result.ac_id == "CHKRSL-003"
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKRSL-004")
 def test_check_result_minimal_fields() -> None:
     """Covers: CHKRSL-004"""
     result = CheckResult(
@@ -62,6 +70,8 @@ def test_check_result_minimal_fields() -> None:
     assert result.ac_id is None
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKRSL-005")
 def test_check_result_equality() -> None:
     """Covers: CHKRSL-005"""
     a = CheckResult("x", Status.PASS, "ok", Severity.HIGH)
@@ -71,6 +81,8 @@ def test_check_result_equality() -> None:
     assert a != c
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKRSL-006")
 def test_check_result_is_warning() -> None:
     """Covers: CHKRSL-006"""
     result = CheckResult("x", Status.WARN, "msg", Severity.MEDIUM)
@@ -78,6 +90,8 @@ def test_check_result_is_warning() -> None:
     assert result.is_failure is False
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKRSL-007")
 def test_check_result_is_failure() -> None:
     """Covers: CHKRSL-007"""
     result = CheckResult("x", Status.FAIL, "msg", Severity.HIGH)
@@ -110,6 +124,8 @@ class MissingCheckChecker:
     description = "Missing check method"
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-004")
 def test_protocol_conformance() -> None:
     """Covers: CHKREG-004"""
     # ConformingChecker satisfies the Checker protocol structurally
@@ -120,6 +136,8 @@ def test_protocol_conformance() -> None:
     assert result.status == Status.PASS
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-004")
 def test_protocol_non_conforming_missing_id() -> None:
     """Covers: CHKREG-004 — negative: class without id does not conform"""
     # Verify MissingIdChecker has no 'id' attribute usable as str
@@ -127,6 +145,8 @@ def test_protocol_non_conforming_missing_id() -> None:
     assert not hasattr(instance, "id")
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-004")
 def test_protocol_non_conforming_missing_check() -> None:
     """Covers: CHKREG-004 — negative: class without check method does not conform"""
     instance = MissingCheckChecker()
@@ -140,6 +160,8 @@ def test_protocol_non_conforming_missing_check() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-001")
 def test_register_checker_positive() -> None:
     """Covers: CHKREG-001"""
     reg = Registry()
@@ -147,6 +169,8 @@ def test_register_checker_positive() -> None:
     assert "test-check" in [c[0] for c in reg.list_all()]
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-003")
 def test_register_typeerror_missing_id() -> None:
     """Covers: CHKREG-003"""
     reg = Registry()
@@ -154,6 +178,8 @@ def test_register_typeerror_missing_id() -> None:
         reg.register(MissingIdChecker())
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-003")
 def test_register_typeerror_missing_check() -> None:
     """Covers: CHKREG-003"""
     reg = Registry()
@@ -161,6 +187,8 @@ def test_register_typeerror_missing_check() -> None:
         reg.register(MissingCheckChecker())
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-002")
 def test_register_idempotent() -> None:
     """Covers: CHKREG-002"""
     reg = Registry()
@@ -170,6 +198,8 @@ def test_register_idempotent() -> None:
     assert ids.count("test-check") == 1
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-011")
 def test_list_all_returns_registration_order() -> None:
     """Covers: CHKREG-011"""
 
@@ -206,6 +236,8 @@ def test_list_all_returns_registration_order() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-005")
 def test_run_all_all_pass() -> None:
     """Covers: CHKREG-005"""
     reg = Registry()
@@ -224,6 +256,8 @@ def test_run_all_all_pass() -> None:
     assert all(r.status == Status.PASS for r in results)
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-006")
 def test_run_all_one_fails_others_continue() -> None:
     """Covers: CHKREG-006"""
     reg = Registry()
@@ -254,6 +288,8 @@ def test_run_all_one_fails_others_continue() -> None:
     assert statuses == [Status.PASS, Status.FAIL, Status.PASS]
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-007")
 def test_run_all_exception_caught() -> None:
     """Covers: CHKREG-007"""
     reg = Registry()
@@ -273,6 +309,8 @@ def test_run_all_exception_caught() -> None:
     assert results[0].check_id == "broken"
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-008")
 def test_run_all_empty_registry() -> None:
     """Covers: CHKREG-008"""
     reg = Registry()
@@ -285,6 +323,8 @@ def test_run_all_empty_registry() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-009")
 def test_run_one_existing_checker() -> None:
     """Covers: CHKREG-009"""
     reg = Registry()
@@ -294,6 +334,8 @@ def test_run_one_existing_checker() -> None:
     assert result.check_id == "test-check"
 
 
+@pytest.mark.unit
+@pytest.mark.ac("CHKREG-010")
 def test_run_one_unknown_raises_keyerror() -> None:
     """Covers: CHKREG-010"""
     reg = Registry()
@@ -306,6 +348,7 @@ def test_run_one_unknown_raises_keyerror() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.baseline
 def test_module_registry_is_registry_instance() -> None:
     """Module-level `registry` is a usable Registry instance."""
     assert isinstance(registry, Registry)

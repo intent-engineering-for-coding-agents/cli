@@ -102,12 +102,12 @@ Registry:
 flowchart TD
     CMD["iec check [--path dir]"] --> Main["main.py<br>app.add_typer(check_app)"]
     Main --> App["check.py: check_app (Typer)"]
-    App --> Registry["registry.run_all(Path) → list[CheckResult]"]
+    App --> Registry["registry.run_all(Path) →<br>list[CheckResult]"]
     Registry --> Checkers["for each Checker:<br>checker.check(path)"]
     App --> Collector["ResultCollector<br>pass_count / warn_count / fail_count<br>by_severity, by_checker"]
     App --> Formatter["Output formatter"]
-    Formatter --> PerCheck["Per-checker: ✓ PASS / ⚠ WARN / ✗ FAIL"]
-    Formatter --> Exit["Exit code: 0 all pass / 1 warnings / 2 failures"]
+    Formatter --> PerCheck["Per-checker:<br>✓ PASS<br>⚠ WARN<br>✗ FAIL"]
+    Formatter --> Exit["Exit code:<br>0 all pass<br>1 warnings<br>2 failures"]
 ```
 
 ## Risks / Trade-offs

@@ -12,10 +12,17 @@ Coding agents drift. They skip `AGENTS.md`, write specs without AC IDs, implemen
 
 ```bash
 # From a local checkout (requires uv)
-git clone <repo-url>
+git clone https://github.com/intent-engineering-for-coding-agents/cli.git intent-cli
 cd intent-cli
 uv sync
 uv run iec --version
+```
+
+Or install as a tool (available anywhere in the shell, no `uv run` prefix needed):
+
+```bash
+uv tool install .
+iec --version
 ```
 
 ## Quick start

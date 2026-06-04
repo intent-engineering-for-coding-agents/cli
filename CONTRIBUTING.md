@@ -6,9 +6,33 @@
 - [uv](https://docs.astral.sh/uv/) for package management
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/intent-engineering-for-coding-agents/cli.git intent-cli
 cd intent-cli
 uv sync --group dev
+```
+
+## Running the CLI from a local checkout
+
+With `uv run`, no installation step is needed — the CLI runs directly from the source tree:
+
+```bash
+uv run iec --version
+uv run iec check
+uv run iec init --dry-run
+```
+
+To install the tool globally so `iec` is available without `uv run`:
+
+```bash
+uv tool install .
+iec --version
+```
+
+To verify the install resolves correctly:
+
+```bash
+iec --version          # prints version derived from git tag (e.g. 1.0.0)
+iec check              # runs all checks on the current directory
 ```
 
 ## Running checks

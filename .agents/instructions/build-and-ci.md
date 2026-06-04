@@ -34,11 +34,15 @@ In Phase H, CI will also run `iec check --deterministic` on the repo itself — 
 
 ## Version Tagging
 
-When a phase completes and a new tag is created, the version in `pyproject.toml` MUST be bumped to match:
+Version is derived automatically from git tags via `hatch-vcs`. **Do not edit `version` in `pyproject.toml`** — there is none.
 
-1. Update `version = "..."` in `pyproject.toml` (top-level `[project]` table)
-2. Run `uv sync` to regenerate the lockfile
-3. Create the git tag: `git tag vX.Y.Z && git push origin vX.Y.Z`
-4. Commit the version bump as a separate commit before or with the tag
+To cut a release:
 
-`iec --version` reads from `pyproject.toml` via `importlib.metadata.version()`. A tag without a matching version in `pyproject.toml` is broken.
+```
+git tag v0.7.0
+git push origin v0.7.0
+```
+
+That's it. `iec --version` will return `0.7.0` on the next build. Between tags, the version looks like `0.6.0.dev3+gabcdef1` (commits since last tag).
+
+CI fetches full git history (`fetch-depth: 0`) so tag resolution works in GitHub Actions.

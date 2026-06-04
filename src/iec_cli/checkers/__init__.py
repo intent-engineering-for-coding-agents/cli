@@ -7,6 +7,7 @@ from iec_cli.checkers import (
     agents_hub_structure,
     agents_links,
     agents_size,
+    change_archived,
     docs_index_exists,
     docs_index_scope,
     docs_index_stale,
@@ -16,6 +17,7 @@ from iec_cli.checkers import (
     spec_ac_ids,
     spec_size,
     spec_test_category,
+    tasks_complete,
     test_coverage,
     test_traceability,
 )
@@ -27,6 +29,7 @@ __all__ = [
     "agents_hub_structure",
     "agents_links",
     "agents_size",
+    "change_archived",
     "docs_index_exists",
     "docs_index_scope",
     "docs_index_stale",
@@ -36,6 +39,7 @@ __all__ = [
     "spec_ac_ids",
     "spec_size",
     "spec_test_category",
+    "tasks_complete",
     "test_coverage",
     "test_traceability",
 ]

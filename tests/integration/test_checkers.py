@@ -20,6 +20,8 @@ from iec_cli.checkers.secrets import Secrets
 from iec_cli.checkers.spec_ac_ids import SpecAcIds
 from iec_cli.checkers.spec_size import SpecSize
 from iec_cli.checkers.spec_test_category import SpecTestCategory
+from iec_cli.checkers.change_archived import ChangeArchived
+from iec_cli.checkers.tasks_complete import TasksComplete
 from iec_cli.checkers.test_coverage import TestCoverage
 from iec_cli.checkers.test_traceability import TestTraceability
 from iec_cli.main import app
@@ -44,6 +46,8 @@ def _register_all() -> None:
     registry.register(Secrets)
     registry.register(TestTraceability)
     registry.register(TestCoverage)
+    registry.register(TasksComplete)
+    registry.register(ChangeArchived)
 
 
 @pytest.fixture(autouse=True)
@@ -73,6 +77,8 @@ def test_ase_check_runs_all_checkers() -> None:
     assert "secrets" in result.stdout
     assert "test-traceability" in result.stdout
     assert "test-coverage" in result.stdout
+    assert "tasks-complete" in result.stdout
+    assert "change-archived" in result.stdout
     assert "check(s)" in result.stdout
 
 

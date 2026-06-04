@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import find_spec_files
 
 _SCENARIO_SPLIT_RE = re.compile(r"(^#{3,6}\s+Scenario:\s+.+$)", re.MULTILINE)
@@ -26,6 +26,7 @@ def _check_test_fields(content: str, rel_path: str) -> list[str]:
 @registry.register
 class SpecTestCategory:
     id = "spec-test-category"
+    maturity = Maturity.CI
     description = "Every spec scenario section has a Test-type: field"
 
     def check(self, path: Path) -> CheckResult:

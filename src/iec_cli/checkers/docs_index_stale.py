@@ -2,13 +2,14 @@
 
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import LINK_RE
 
 
 @registry.register
 class DocsIndexStale:
     id = "docs-index-stale"
+    maturity = Maturity.ADVISORY
     description = "Cross-reference INDEX.md entries against actual files"
 
     def check(self, path: Path) -> CheckResult:

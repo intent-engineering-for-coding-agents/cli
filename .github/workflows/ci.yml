@@ -1,5 +1,10 @@
 name: CI
 
+# Gates per PR type (see docs/pr-taxonomy.md):
+#   docs:       lint
+#   structural: lint + self-check
+#   behavior:   lint + test + self-check (test-traceability and tasks-complete run inside self-check)
+
 on:
   push:
     branches: [main]
@@ -33,7 +38,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: uv sync --group dev
-      - run: uv run pytest
+      - name: Run tests with AC traceability markers
+        run: uv run pytest -v --tb=short
 
   self-check:
     runs-on: ubuntu-latest
@@ -46,4 +52,7 @@ jobs:
           python-version: "3.12"
       - run: uv sync --group dev
       - name: Self-check (fail on errors, allow warnings)
+        # Exit 0 = all pass, 1 = advisory warnings only, 2 = hard failure.
+        # Covers: agents-exists, spec-ac-ids, test-traceability, tasks-complete,
+        #         change-archived, secrets, and all other ci-enforced checks.
         run: uv run iec check; code=$?; [ $code -le 1 ]

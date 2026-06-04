@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 _UNCHECKED_RE = re.compile(r"^- \[ \]", re.MULTILINE)
 _TASK_RE = re.compile(r"^- \[[ x]\]", re.MULTILINE | re.IGNORECASE)
@@ -20,6 +20,7 @@ def _active_change_dirs(path: Path) -> list[Path]:
 @registry.register
 class TasksComplete:
     id = "tasks-complete"
+    maturity = Maturity.CI
     description = "Every active change folder's tasks.md has no unchecked items"
 
     def check(self, path: Path) -> CheckResult:

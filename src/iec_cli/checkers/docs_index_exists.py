@@ -2,13 +2,14 @@
 
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import is_effectively_empty
 
 
 @registry.register
 class DocsIndexExists:
     id = "docs-index-exists"
+    maturity = Maturity.ADVISORY
     description = "Verify every docs/ subdirectory has an INDEX.md"
 
     def check(self, path: Path) -> CheckResult:

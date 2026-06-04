@@ -2,12 +2,13 @@
 
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 
 @registry.register
 class AgentsHubStructure:
     id = "agents-hub-structure"
+    maturity = Maturity.CI
     description = "Verify .agents/ hub has instructions/ and skills/ subdirectories"
 
     def check(self, path: Path) -> CheckResult:

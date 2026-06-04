@@ -22,6 +22,11 @@ class Severity(Enum):
     LOW = "LOW"
 
 
+class Maturity(Enum):
+    CI = "ci-enforced"  # FAIL on violation; recommended as a hard CI gate
+    ADVISORY = "advisory"  # WARN on violation; useful locally or in advisory CI mode
+
+
 @dataclass
 class CheckResult:
     check_id: str
@@ -43,6 +48,7 @@ class CheckResult:
 class Checker(Protocol):
     id: str
     description: str
+    maturity: Maturity
 
     def check(self, path: Path) -> CheckResult: ...
 

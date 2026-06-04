@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 DEFAULT_MAX_LINES = 50
 
@@ -11,6 +11,7 @@ DEFAULT_MAX_LINES = 50
 @registry.register
 class AgentsSize:
     id = "agents-size"
+    maturity = Maturity.CI
     description = "Verify AGENTS.md is under the line limit"
 
     def check(self, path: Path) -> CheckResult:

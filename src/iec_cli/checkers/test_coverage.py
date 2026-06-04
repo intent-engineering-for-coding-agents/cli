@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import (
     collect_marker_counts,
     collect_required_ids,
@@ -13,6 +13,7 @@ from iec_cli.checkers._shared import (
 @registry.register
 class TestCoverage:
     id = "test-coverage"
+    maturity = Maturity.ADVISORY
     description = (
         "Every non-Manual spec AC ID has at least 2 test markers (positive + negative)"
     )

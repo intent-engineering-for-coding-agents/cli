@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import LINK_RE
 
 _SUBDIR_INDEX_OR_README = re.compile(r"^[^/]+/(INDEX|README)\.md$")
@@ -31,6 +31,7 @@ def _is_in_scope(target: str) -> bool:
 @registry.register
 class DocsIndexScope:
     id = "docs-index-scope"
+    maturity = Maturity.ADVISORY
     description = "Each INDEX.md maps only its own directory"
 
     def check(self, path: Path) -> CheckResult:

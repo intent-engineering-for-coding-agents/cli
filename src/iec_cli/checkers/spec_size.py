@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import find_spec_files
 
 _DEFAULT_LIMIT = 500
@@ -19,6 +19,7 @@ def _get_limit() -> int:
 @registry.register
 class SpecSize:
     id = "spec-size"
+    maturity = Maturity.ADVISORY
     description = "Spec files under configurable line limit (default 500)"
 
     def check(self, path: Path) -> CheckResult:

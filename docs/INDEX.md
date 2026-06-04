@@ -14,3 +14,5 @@ Flat map of `docs/`. Sub-directories own their own INDEX/README. Load this file 
 | [design/README.md](design/README.md) | Design doc listing — human-facing |
 | [architecture/INDEX.md](architecture/INDEX.md) | Agent-facing map of `docs/architecture/` |
 | [architecture/README.md](architecture/README.md) | Architecture docs listing |
+| [checks.md](checks.md) | Full check catalogue — maturity labels, exit codes, CI integration, configuration |
+| [pr-taxonomy.md](pr-taxonomy.md) | PR taxonomy: `docs`, `structural`, `behavior` — CI gates per type |

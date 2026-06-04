@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers.tasks_complete import _TASK_RE, _UNCHECKED_RE, _active_change_dirs
 
 
@@ -17,6 +17,7 @@ def _is_completed(tasks_file: Path) -> bool:
 @registry.register
 class ChangeArchived:
     id = "change-archived"
+    maturity = Maturity.CI
     description = (
         "Every fully-completed change folder has been archived "
         "(moved to openspec/changes/archive/)"

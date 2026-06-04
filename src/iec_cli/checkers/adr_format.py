@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 _FILENAME_RE = re.compile(r"^\d{4}-[a-z0-9-]+\.md$")
 _NUMBERED_HEADING_RE = re.compile(r"^# ADR-(\d{4}):")
@@ -94,6 +94,7 @@ def _check_adr(filepath: Path) -> list[str]:
 @registry.register
 class AdrFormat:
     id = "adr-format"
+    maturity = Maturity.CI
     description = "Validate ADR filenames, headings, required sections, and status"
 
     def check(self, path: Path) -> CheckResult:

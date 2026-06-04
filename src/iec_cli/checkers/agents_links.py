@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 _LINK_RE = re.compile(r"\[([^\]]*)\]\(([^)]*)\)")
 
@@ -11,6 +11,7 @@ _LINK_RE = re.compile(r"\[([^\]]*)\]\(([^)]*)\)")
 @registry.register
 class AgentsLinks:
     id = "agents-links"
+    maturity = Maturity.ADVISORY
     description = "Verify links in AGENTS.md have descriptive text"
 
     def check(self, path: Path) -> CheckResult:

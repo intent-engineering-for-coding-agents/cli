@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import LINK_RE
 
 _ADR_FILENAME_RE = re.compile(r"^\d{4}-[a-z0-9-]+\.md$")
@@ -12,6 +12,7 @@ _ADR_FILENAME_RE = re.compile(r"^\d{4}-[a-z0-9-]+\.md$")
 @registry.register
 class AdrIndex:
     id = "adr-index"
+    maturity = Maturity.CI
     description = "Verify docs/decisions/README.md lists every ADR file"
 
     def check(self, path: Path) -> CheckResult:

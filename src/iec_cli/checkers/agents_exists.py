@@ -2,12 +2,13 @@
 
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 
 @registry.register
 class AgentsExists:
     id = "agents-exists"
+    maturity = Maturity.CI
     description = "Verify AGENTS.md exists at repo root"
 
     def check(self, path: Path) -> CheckResult:

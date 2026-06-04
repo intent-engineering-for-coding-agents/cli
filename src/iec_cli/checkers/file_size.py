@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 _DEFAULT_LIMIT = 500
 _SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".vitepress"}
@@ -27,6 +27,7 @@ def _md_files(path: Path) -> list[Path]:
 @registry.register
 class FileSize:
     id = "file-size"
+    maturity = Maturity.ADVISORY
     description = "All .md files under configurable line limit (default 500)"
 
     def check(self, path: Path) -> CheckResult:

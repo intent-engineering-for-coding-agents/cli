@@ -2,13 +2,14 @@
 
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 from iec_cli.checkers._shared import is_effectively_empty
 
 
 @registry.register
 class DocsReadmeExists:
     id = "docs-readme-exists"
+    maturity = Maturity.CI
     description = "Verify every docs/ subdirectory has a README.md"
 
     def check(self, path: Path) -> CheckResult:

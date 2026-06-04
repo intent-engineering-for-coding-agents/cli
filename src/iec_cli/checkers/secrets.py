@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
 
 _SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".mypy_cache"}
 
@@ -81,6 +81,7 @@ def _scan_file(filepath: Path, path: Path) -> list[str]:
 @registry.register
 class Secrets:
     id = "secrets"
+    maturity = Maturity.CI
     description = "Scan for secrets and credentials in plaintext files"
 
     def check(self, path: Path) -> CheckResult:

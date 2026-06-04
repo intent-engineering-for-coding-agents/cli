@@ -40,7 +40,7 @@ iec check              # runs all checks on the current directory
 ```bash
 uv run ruff check .          # lint
 uv run ruff format --check . # format check
-uv run pytest                # all tests
+uv run python -m pytest      # all tests
 uv run iec check             # Intent Engineering self-check
 ```
 

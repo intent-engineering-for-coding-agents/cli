@@ -33,9 +33,6 @@ iec init
 
 # Run all deterministic checks
 iec check
-
-# Scope to a subdirectory
-iec check --path src/
 ```
 
 ## Checks

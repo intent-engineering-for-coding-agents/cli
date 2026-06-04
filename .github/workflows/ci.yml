@@ -55,4 +55,4 @@ jobs:
         # Exit 0 = all pass, 1 = advisory warnings only, 2 = hard failure.
         # Covers: agents-exists, spec-ac-ids, test-traceability, tasks-complete,
         #         change-archived, secrets, and all other ci-enforced checks.
-        run: uv run iec check; code=$?; [ $code -le 1 ]
+        run: uv run iec check || [ $? -le 1 ]

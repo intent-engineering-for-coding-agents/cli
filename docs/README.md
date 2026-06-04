@@ -4,25 +4,13 @@ iec-cli is a Python CLI tool that validates Intent Engineering practices in any 
 
 ## Design
 
-```
-┌──────────┐     ┌─────────────────┐     ┌──────────────┐
-│   User   │────▶│  iec-cli (CLI)  │────▶│  Repo files  │
-└──────────┘     └────────┬────────┘     └──────────────┘
-                          │
-                 ┌────────▼────────┐
-                 │  Deterministic   │
-                 │  checks (Python) │
-                 └────────┬────────┘
-                          │
-                 ┌────────▼────────┐
-                 │  MCP Server      │
-                 │  (agent-assisted)   │
-                 └────────┬────────┘
-                          │
-                 ┌────────▼────────┐
-                 │  User's agent       │
-                 │  Agent (BYOK)    │
-                 └─────────────────┘
+```mermaid
+flowchart LR
+    User --> CLI["iec-cli (CLI)"]
+    CLI --> Repo["Repo files"]
+    CLI --> Det["Deterministic<br>checks (Python)"]
+    Det --> MCP["MCP Server<br>(agent-assisted)"]
+    MCP --> Agent["User's agent<br>(BYOK)"]
 ```
 
 ## Two-Layer Check Architecture

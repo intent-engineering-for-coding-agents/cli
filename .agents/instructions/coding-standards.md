@@ -38,6 +38,14 @@ Rules selected: `E` (pycodestyle), `F` (pyflakes), `I` (isort), `N` (pep8-naming
 
 No additional linters. Ruff is the single lint/format tool.
 
+## Diagrams
+
+Use Mermaid for all diagrams in documentation and design files:
+
+- Use fenced ` ```mermaid ` blocks — never ASCII / box-art
+- Use `<br>` for line breaks inside node labels, not `\n`
+- File trees (directory listings) are the one exception — keep them as indented text
+
 ## Testing
 
 pytest with standard conventions:

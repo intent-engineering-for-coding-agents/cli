@@ -98,27 +98,16 @@ Registry:
 
 ## Architecture
 
-```
-iec check [--path <dir>]
-    │
-    ▼
-main.py: app.add_typer(check_app)
-    │
-    ▼
-check.py: check_app (Typer)
-    │
-    ├── registry.run_all(Path) → list[CheckResult]
-    │       │
-    │       └── for each registered Checker:
-    │               checker.check(path)
-    │
-    ├── ResultCollector aggregates results
-    │       ├── pass_count, warn_count, fail_count
-    │       └── by_severity, by_checker groupings
-    │
-    └── Output formatter prints summary
-            ├── Per-checker: ✓ PASS / ⚠ WARN / ✗ FAIL
-            └── Exit code: 0 (all pass), 1 (warnings), 2 (failures)
+```mermaid
+flowchart TD
+    CMD["iec check [--path dir]"] --> Main["main.py<br>app.add_typer(check_app)"]
+    Main --> App["check.py: check_app (Typer)"]
+    App --> Registry["registry.run_all(Path) → list[CheckResult]"]
+    Registry --> Checkers["for each Checker:<br>checker.check(path)"]
+    App --> Collector["ResultCollector<br>pass_count / warn_count / fail_count<br>by_severity, by_checker"]
+    App --> Formatter["Output formatter"]
+    Formatter --> PerCheck["Per-checker: ✓ PASS / ⚠ WARN / ✗ FAIL"]
+    Formatter --> Exit["Exit code: 0 all pass / 1 warnings / 2 failures"]
 ```
 
 ## Risks / Trade-offs

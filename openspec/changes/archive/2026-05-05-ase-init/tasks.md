@@ -1,7 +1,7 @@
 ## 1. Module setup and CLI basics
 
-- [x] 1.1 Create `src/ase_cli/init.py` with Typer app and `init` command placeholder
-- [x] 1.2 Wire `init` command into `src/ase_cli/main.py`
+- [x] 1.1 Create `src/iec_cli/init.py` with Typer app and `init` command placeholder
+- [x] 1.2 Wire `init` command into `src/iec_cli/main.py`
 - [x] 1.3 Add `--version` flag to CLI callback (reads from `importlib.metadata`)
 - [x] 1.4 Update `docs/README.md` with accurate command reference (`--help`, `--version`, init flags)
 
@@ -25,7 +25,7 @@
 
 ## 5. Testing convention scaffolding
 
-- [x] 5.1 Embed `docs/testing-convention.md` as static content (full ASE testing convention — test layers, AC IDs, traceability markers, proof requirements)
+- [x] 5.1 Embed `docs/testing-convention.md` as static content (full Intent Engineering testing convention — test layers, AC IDs, traceability markers, proof requirements)
 - [x] 5.2 Create `docs/testing-strategy.md` stub referencing `testing-convention.md` with placeholder sections for test tools, CI wiring, and directory layout
 
 ## 6. Vendor generators
@@ -46,25 +46,25 @@
 
 ## 9. Tests
 
-- [x] 9.1 Test `ase init` in empty directory — all dirs and files created
+- [x] 9.1 Test `iec init` in empty directory — all dirs and files created
   - Covers: SCAFFOLD-001
-- [x] 9.2 Test `ase init` in partially initialized directory — missing items created, existing preserved
+- [x] 9.2 Test `iec init` in partially initialized directory — missing items created, existing preserved
   - Covers: SCAFFOLD-002
-- [x] 9.3 Test `ase init` in fully initialized directory — nothing created, "already initialized" message
+- [x] 9.3 Test `iec init` in fully initialized directory — nothing created, "already initialized" message
   - Covers: SCAFFOLD-003
 - [x] 9.4 Test AGENTS.md content — TOC pattern, project placeholder, INDEX.md link, under 25 lines
   - Covers: SCAFFOLD-004
-- [x] 9.5 Test `ase init --dry-run` — no filesystem changes, correct output listing
+- [x] 9.5 Test `iec init --dry-run` — no filesystem changes, correct output listing
   - Covers: SCAFFOLD-005, SCAFFOLD-006
-- [x] 9.6 Test `ase init --force` — overwrites existing files
+- [x] 9.6 Test `iec init --force` — overwrites existing files
   - Covers: SCAFFOLD-007, SCAFFOLD-008
-- [x] 9.7 Test `ase init --path` — creates structure in target dir
+- [x] 9.7 Test `iec init --path` — creates structure in target dir
   - Covers: SCAFFOLD-009, SCAFFOLD-010, SCAFFOLD-011
-- [x] 9.8 Test `ase init --with-claude` — `CLAUDE.md` created with `@AGENTS.md`
+- [x] 9.8 Test `iec init --with-claude` — `CLAUDE.md` created with `@AGENTS.md`
   - Covers: VENDOR-001, VENDOR-002, VENDOR-003, VENDOR-004
-- [x] 9.9 Test `ase init --with-gemini` — `.gemini/settings.json` created with correct JSON
+- [x] 9.9 Test `iec init --with-gemini` — `.gemini/settings.json` created with correct JSON
   - Covers: VENDOR-005, VENDOR-006
-- [x] 9.10 Test `ase init --with-claude --with-gemini` — both vendor files created
+- [x] 9.10 Test `iec init --with-claude --with-gemini` — both vendor files created
   - Covers: VENDOR-007
 - [x] 9.11 Test vendor flags with `--dry-run` — files listed but not created
   - Covers: VENDOR-008
@@ -76,14 +76,14 @@
   - Covers: SCAFFOLD-013
 - [x] 9.15 Test `.gitkeep` files in empty directories, absent where stubs exist
   - Covers: SCAFFOLD-014
-- [x] 9.16 Test `ase --help` shows commands
+- [x] 9.16 Test `iec --help` shows commands
   - Covers: SCAFFOLD-015
-- [x] 9.17 Test `ase --version` shows version from pyproject.toml
+- [x] 9.17 Test `iec --version` shows version from pyproject.toml
   - Covers: SCAFFOLD-016
 
 ## 10. Verify
 
 - [x] 10.1 Run `ruff check` and `ruff format` — no errors
 - [x] 10.2 Run `pytest` — all tests pass (21 tests)
-- [x] 10.3 Run `ase init` on ase-cli itself with `--dry-run` — verify idempotency report
+- [x] 10.3 Run `iec init` on iec-cli itself with `--dry-run` — verify idempotency report
 - [x] 10.4 Verify all 24 AC IDs are covered (SCAFFOLD-001..016, VENDOR-001..008)

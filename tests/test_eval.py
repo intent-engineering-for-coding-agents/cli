@@ -1,11 +1,11 @@
-"""Unit tests for ase eval — EvalCheck, _run_check."""
+"""Unit tests for iec eval — EvalCheck, _run_check."""
 
 from pathlib import Path
 
 import pytest
 
-from ase_cli.check import Severity, Status
-from ase_cli.eval import EvalCheck, _load_tasks, _run_check
+from iec_cli.check import Severity, Status
+from iec_cli.eval import EvalCheck, _load_tasks, _run_check
 
 # ---------------------------------------------------------------------------
 # file_exists

@@ -1,14 +1,14 @@
 ---
 status: accepted
 date: 2026-05-04
-decision-makers: ASE Book Contributors
+decision-makers: Intent Engineering for Coding Agents Contributors
 ---
 
 # ADR-0001: Use Python with Typer for the CLI
 
 ## Context and Problem Statement
 
-ase-cli needs a command-line interface for validating ASE practices. The tool must be easy to install and run on macOS, Linux, and Windows. Senior developers are the target audience. The language and framework choice affects install experience, development speed, ecosystem access, and alignment with ASE principles.
+iec-cli needs a command-line interface for validating Intent Engineering practices. The tool must be easy to install and run on macOS, Linux, and Windows. Senior developers are the target audience. The language and framework choice affects install experience, development speed, ecosystem access, and alignment with Intent Engineering principles.
 
 ## Considered Options
 
@@ -19,7 +19,7 @@ ase-cli needs a command-line interface for validating ASE practices. The tool mu
 
 ## Decision Outcome
 
-Chosen option: "Python + Typer", because Python is universal — pre-installed or trivially installed on all three target platforms — and Typer provides type-hint-driven CLI development with zero boilerplate. uv eliminates the historical Python packaging pain, making `uv tool install ase-cli` a single-step install comparable to Go or Rust. Python's readability aligns with the ASE principle of plain-text-as-code.
+Chosen option: "Python + Typer", because Python is universal — pre-installed or trivially installed on all three target platforms — and Typer provides type-hint-driven CLI development with zero boilerplate. uv eliminates the historical Python packaging pain, making `uv tool install iec-cli` a single-step install comparable to Go or Rust. Python's readability aligns with the Intent Engineering principle of plain-text-as-code.
 
 ### Consequences
 

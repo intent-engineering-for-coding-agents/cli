@@ -2,13 +2,13 @@
 
 ## Purpose
 
-`ase eval` runs a YAML-driven eval suite against a repo state and prints a score table. Each eval task is a directory with a `checks.yaml` defining structural property checks. The command is used to detect regressions in agent output across AGENTS.md changes.
+`iec eval` runs a YAML-driven eval suite against a repo state and prints a score table. Each eval task is a directory with a `checks.yaml` defining structural property checks. The command is used to detect regressions in agent output across AGENTS.md changes.
 
 ## Requirements
 
 ### Requirement: Task discovery
 
-`ase eval` discovers tasks by walking the eval directory, sorted alphabetically, filtering to subdirectories that contain `checks.yaml`.
+`iec eval` discovers tasks by walking the eval directory, sorted alphabetically, filtering to subdirectories that contain `checks.yaml`.
 
 #### Scenario: No eval tasks found [EVAL-001]
 
@@ -140,11 +140,11 @@ Test-type: integration
 
 ### Requirement: Help registration
 
-#### Scenario: ase --help lists eval [EVAL-017]
+#### Scenario: iec --help lists eval [EVAL-017]
 
 Test-type: integration
 
-- **WHEN** `ase --help` is run
+- **WHEN** `iec --help` is run
 - **THEN** `eval` appears in the command list
 
 ### Requirement: Score output

@@ -1,8 +1,8 @@
-# ASE Testing Convention
+# Intent Engineering Testing Convention
 
 > Generic. Applicable to any project, any stack. Instantiate via `docs/testing-strategy.md`.
 
-This is the invariant part of ASE testing. It defines what doesn't change across projects: the test layer taxonomy, the AC ID contract, the traceability model, and the proof requirements. `docs/testing-strategy.md` instantiates these for a specific project — choosing tools, CI wiring, and directory layout.
+This is the invariant part of Intent Engineering testing. It defines what doesn't change across projects: the test layer taxonomy, the AC ID contract, the traceability model, and the proof requirements. `docs/testing-strategy.md` instantiates these for a specific project — choosing tools, CI wiring, and directory layout.
 
 ---
 
@@ -136,7 +136,7 @@ The negative proof tests the same behavior through a complementary equivalence c
 
 ## Verification Layers
 
-ASE testing verification operates at three levels:
+Intent Engineering testing verification operates at three levels:
 
 | Layer | What it does | Automation |
 |---|---|---|

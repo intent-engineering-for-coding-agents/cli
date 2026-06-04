@@ -2,7 +2,7 @@
 
 ## Context
 
-Change 003 checks `AGENTS.md`. Now we extend to the `docs/` directory tree. ASE conventions require every `docs/` subdirectory to have both `README.md` and `INDEX.md`. Both serve as entry points but for different audiences — README for humans (renders on GitHub), INDEX for agents (loaded first for context economy).
+Change 003 checks `AGENTS.md`. Now we extend to the `docs/` directory tree. Intent Engineering conventions require every `docs/` subdirectory to have both `README.md` and `INDEX.md`. Both serve as entry points but for different audiences — README for humans (renders on GitHub), INDEX for agents (loaded first for context economy).
 
 ## Goals / Non-Goals
 

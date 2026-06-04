@@ -2,13 +2,13 @@
 
 ## 1. Shared link parser
 
-- [x] 1.1 Add `LINK_RE` to `src/ase_cli/checkers/_shared.py` (promoted from `docs_index_stale.py`).
-- [x] 1.2 Update `src/ase_cli/checkers/docs_index_stale.py` to import `LINK_RE` from `_shared`; remove the local copy.
+- [x] 1.1 Add `LINK_RE` to `src/iec_cli/checkers/_shared.py` (promoted from `docs_index_stale.py`).
+- [x] 1.2 Update `src/iec_cli/checkers/docs_index_stale.py` to import `LINK_RE` from `_shared`; remove the local copy.
 
 ## 2. New checker
 
-- [x] 2.1 Create `src/ase_cli/checkers/docs_index_scope.py` with `DocsIndexScope` class, `@registry.register`, and the in-scope rule (same-dir or immediate sub-INDEX/README pointer; anchor fragments allowed).
-- [x] 2.2 Register the module in `src/ase_cli/checkers/__init__.py`.
+- [x] 2.1 Create `src/iec_cli/checkers/docs_index_scope.py` with `DocsIndexScope` class, `@registry.register`, and the in-scope rule (same-dir or immediate sub-INDEX/README pointer; anchor fragments allowed).
+- [x] 2.2 Register the module in `src/iec_cli/checkers/__init__.py`.
 
 ## 3. Tests
 
@@ -31,4 +31,4 @@
 - [x] 5.1 `uv run ruff check` — no lint errors
 - [x] 5.2 `uv run ruff format --check` — no formatting issues
 - [x] 5.3 `uv run pytest -v` — all DISO scenarios + all existing tests pass
-- [x] 5.4 `uv run ase check --path C:\Code\ase-book` — confirm the new checker fires WARN on the *pre-cleanup* book `docs/INDEX.md`
+- [x] 5.4 `uv run iec check --path C:\Code\intent-book` — confirm the new checker fires WARN on the *pre-cleanup* book `docs/INDEX.md`

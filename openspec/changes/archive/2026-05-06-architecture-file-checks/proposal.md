@@ -2,7 +2,7 @@
 
 ## Why
 
-Change 003 validates the single most critical agent-facing file (`AGENTS.md`). But ASE conventions require the entire `docs/` tree to be structured correctly: every subdirectory must have a `README.md` (human-facing overview, auto-renders on GitHub) and an `INDEX.md` (agent-facing file map). And every `INDEX.md` must stay in sync with actual files — a stale index misleads agents. These three recursive checkers close the gap.
+Change 003 validates the single most critical agent-facing file (`AGENTS.md`). But Intent Engineering conventions require the entire `docs/` tree to be structured correctly: every subdirectory must have a `README.md` (human-facing overview, auto-renders on GitHub) and an `INDEX.md` (agent-facing file map). And every `INDEX.md` must stay in sync with actual files — a stale index misleads agents. These three recursive checkers close the gap.
 
 ## What Changes
 
@@ -26,7 +26,7 @@ Change 003 validates the single most critical agent-facing file (`AGENTS.md`). B
 
 ## Impact
 
-- **New modules**: `src/ase_cli/checkers/docs_readme_exists.py`, `docs_index_exists.py`, `docs_index_stale.py`
-- **`src/ase_cli/checkers/__init__.py`**: Import new checker modules
-- **Tests**: Unit tests with tmp_path directory trees, integration test against ase-cli's own `docs/`
+- **New modules**: `src/iec_cli/checkers/docs_readme_exists.py`, `docs_index_exists.py`, `docs_index_stale.py`
+- **`src/iec_cli/checkers/__init__.py`**: Import new checker modules
+- **Tests**: Unit tests with tmp_path directory trees, integration test against iec-cli's own `docs/`
 - **No new dependencies**: Pure Python file I/O

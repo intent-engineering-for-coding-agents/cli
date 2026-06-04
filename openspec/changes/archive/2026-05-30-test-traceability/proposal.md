@@ -21,6 +21,6 @@ Specs define AC IDs; tests are supposed to prove them. Without a cross-reference
 
 ## Impact
 
-- New file: `src/ase_cli/checkers/test_traceability.py`
-- Update: `src/ase_cli/checkers/__init__.py`
+- New file: `src/iec_cli/checkers/test_traceability.py`
+- Update: `src/iec_cli/checkers/__init__.py`
 - New test file: `tests/test_traceability_checker.py`

@@ -2,11 +2,11 @@
 
 ## 1. Shared helper
 
-- [x] 1.1 Add `find_test_files(path)` to `src/ase_cli/checkers/_shared.py` — walks `tests/` (or `ASE_TESTS_DIR`) recursively, returns `.py` and `.feature` files
+- [x] 1.1 Add `find_test_files(path)` to `src/iec_cli/checkers/_shared.py` — walks `tests/` (or `ASE_TESTS_DIR`) recursively, returns `.py` and `.feature` files
 
 ## 2. test-traceability — implementation
 
-- [x] 2.1 Create `src/ase_cli/checkers/test_traceability.py` with `TestTraceability` class registered via `@registry.register`
+- [x] 2.1 Create `src/iec_cli/checkers/test_traceability.py` with `TestTraceability` class registered via `@registry.register`
 - [x] 2.2 Implement `_collect_required_ids(path)` — scans spec files, extracts non-Manual AC IDs
 - [x] 2.3 Implement `_collect_marked_ids(path)` — scans test files, extracts AC IDs from all four marker patterns
 
@@ -26,7 +26,7 @@
 
 ## 4. Wiring
 
-- [x] 4.1 Import `test_traceability` in `src/ase_cli/checkers/__init__.py`
+- [x] 4.1 Import `test_traceability` in `src/iec_cli/checkers/__init__.py`
 - [x] 4.2 Add `test-traceability` assertion to integration test
 
 ## 5. Verify

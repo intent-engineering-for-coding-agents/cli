@@ -30,7 +30,7 @@ CI uses `astral-sh/setup-uv@v5` with `python-version`. No pip, no virtualenv man
 
 ## Self-Validation
 
-In Phase H, CI will also run `ase check --deterministic` on the repo itself — the tool validates its own practices. Until then, manual compliance with all ADRs is expected.
+In Phase H, CI will also run `iec check --deterministic` on the repo itself — the tool validates its own practices. Until then, manual compliance with all ADRs is expected.
 
 ## Version Tagging
 
@@ -41,4 +41,4 @@ When a phase completes and a new tag is created, the version in `pyproject.toml`
 3. Create the git tag: `git tag vX.Y.Z && git push origin vX.Y.Z`
 4. Commit the version bump as a separate commit before or with the tag
 
-`ase --version` reads from `pyproject.toml` via `importlib.metadata.version()`. A tag without a matching version in `pyproject.toml` is broken.
+`iec --version` reads from `pyproject.toml` via `importlib.metadata.version()`. A tag without a matching version in `pyproject.toml` is broken.

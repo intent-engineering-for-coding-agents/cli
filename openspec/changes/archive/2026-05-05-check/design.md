@@ -2,17 +2,17 @@
 
 ## Context
 
-`ase init` scaffolds the canonical directory structure. Now the tool needs to validate ASE practices in any repo. The plan defines 14+ checkers across Changes 003–010. Without a shared framework, each checker would duplicate discovery logic, result formatting, and CLI wiring.
+`iec init` scaffolds the canonical directory structure. Now the tool needs to validate Intent Engineering practices in any repo. The plan defines 14+ checkers across Changes 003–010. Without a shared framework, each checker would duplicate discovery logic, result formatting, and CLI wiring.
 
 This design covers the architectural backbone — registry, protocol, result model, and CLI command. Individual checker implementations are out of scope.
 
 ## Goals / Non-Goals
 
 **Goals:**
-- Single-module framework: `src/ase_cli/check.py` (~200 lines)
+- Single-module framework: `src/iec_cli/check.py` (~200 lines)
 - Decorator-based checker registration (zero-config, discoverable)
 - Structured result model with pass/warn/fail, severity, and AC traceability
-- `ase check` CLI command: runs registered checkers, prints summary, exits with appropriate code
+- `iec check` CLI command: runs registered checkers, prints summary, exits with appropriate code
 - Open for extension: adding a checker = create a class/decorated function + import it
 
 **Non-Goals:**
@@ -44,16 +44,16 @@ This design covers the architectural backbone — registry, protocol, result mod
 - Module auto-discovery (`importlib.import_module` on a `checkers/` directory): Premature for first-party checkers. Adds complexity without benefit.
 - Setuptools entry_points: Overkill. These are internal checkers, not third-party plugins.
 
-**Rationale**: A decorator is the Pythonic standard for plugin registration (see pytest markers, Flask routes, Typer commands). Each checker file imports the registry and decorates its class. `ase check` calls `registry.run_all(path)` — it doesn't know or care about individual checker modules.
+**Rationale**: A decorator is the Pythonic standard for plugin registration (see pytest markers, Flask routes, Typer commands). Each checker file imports the registry and decorates its class. `iec check` calls `registry.run_all(path)` — it doesn't know or care about individual checker modules.
 
 ### Decision 3: Single module file, not package
 
-**Chosen**: `src/ase_cli/check.py` as a single module.
+**Chosen**: `src/iec_cli/check.py` as a single module.
 
 **Alternatives considered**:
-- Package (`src/ase_cli/check/` with `__init__.py`, `registry.py`, `result.py`, `cli.py`): Better for large check frameworks. Premature for 200 lines.
+- Package (`src/iec_cli/check/` with `__init__.py`, `registry.py`, `result.py`, `cli.py`): Better for large check frameworks. Premature for 200 lines.
 
-**Rationale**: Start with one file. If Type 003–005 checkers push it past ~400 lines, extract a package. The module boundary is clear — `from ase_cli.check import registry, CheckResult` works either way. Change 002's `check.py` can become `check/__init__.py` later without breaking imports.
+**Rationale**: Start with one file. If Type 003–005 checkers push it past ~400 lines, extract a package. The module boundary is clear — `from iec_cli.check import registry, CheckResult` works either way. Change 002's `check.py` can become `check/__init__.py` later without breaking imports.
 
 ### Decision 4: Result model as dataclass
 
@@ -69,7 +69,7 @@ This design covers the architectural backbone — registry, protocol, result mod
 - Rich library: Beautiful but adds a dependency. Revisit when user experience matters more.
 - No output format yet: Users need to see results. Plain text is zero-cost and works everywhere.
 
-**Rationale**: Match the existing `ase init` style — clean, minimal output. Color and formatting can be added later as non-breaking enhancements.
+**Rationale**: Match the existing `iec init` style — clean, minimal output. Color and formatting can be added later as non-breaking enhancements.
 
 ## Data Model
 
@@ -99,7 +99,7 @@ Registry:
 ## Architecture
 
 ```
-ase check [--path <dir>]
+iec check [--path <dir>]
     │
     ▼
 main.py: app.add_typer(check_app)
@@ -124,7 +124,7 @@ check.py: check_app (Typer)
 ## Risks / Trade-offs
 
 - **[Risk]** Single-file module grows beyond maintainable size in Change 003–005
-  → **Mitigation**: Extract to `src/ase_cli/check/` package when `check.py` exceeds 400 lines. Protocol and result model are import-stable (`from ase_cli.check import ...`).
+  → **Mitigation**: Extract to `src/iec_cli/check/` package when `check.py` exceeds 400 lines. Protocol and result model are import-stable (`from iec_cli.check import ...`).
 
 - **[Risk]** Decorator registration means checker modules must be imported somewhere before `run_all()` is called
   → **Mitigation**: `check.py` explicitly imports all checker modules in a `_load_checkers()` function called once at startup. This is intentional — no magic, no auto-discovery of unexpected modules.

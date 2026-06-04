@@ -1,6 +1,6 @@
 # eval-demo: Agent Evaluation A/B Example
 
-This directory is the working example for the [Agent Evaluation and Regression](https://ase-book.dev/quality/agent-evaluation) chapter.
+This directory is the working example for the [Agent Evaluation and Regression](https://intent-book.dev/quality/agent-evaluation) chapter.
 
 It shows how a single line added to `AGENTS.md` — "Prefer functions over classes for utility code" — caused an agent to drift away from the team's architectural conventions over the course of a week. The drift was invisible in code review. The eval suite caught it.
 
@@ -22,8 +22,8 @@ eval-demo/
 │   ├── src/user_service.py
 │   ├── tests/test_user_service.py
 │   └── docs/INDEX.md
-├── score-baseline.txt       # pre-committed: ase eval output for baseline
-└── score-after-drift.txt    # pre-committed: ase eval output for after-drift
+├── score-baseline.txt       # pre-committed: iec eval output for baseline
+└── score-after-drift.txt    # pre-committed: iec eval output for after-drift
 ```
 
 ## Running it yourself
@@ -31,8 +31,8 @@ eval-demo/
 From this directory:
 
 ```bash
-ase eval --path baseline --eval-dir eval
-ase eval --path after-drift --eval-dir eval
+iec eval --path baseline --eval-dir eval
+iec eval --path after-drift --eval-dir eval
 ```
 
 Compare the output to `score-baseline.txt` and `score-after-drift.txt`.

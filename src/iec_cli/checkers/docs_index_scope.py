@@ -3,8 +3,8 @@
 import re
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
-from ase_cli.checkers._shared import LINK_RE
+from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.checkers._shared import LINK_RE
 
 _SUBDIR_INDEX_OR_README = re.compile(r"^[^/]+/(INDEX|README)\.md$")
 

@@ -1,14 +1,14 @@
 ---
 status: accepted
 date: 2026-05-04
-decision-makers: ASE Book Contributors
+decision-makers: Intent Engineering for Coding Agents Contributors
 ---
 
 # ADR-0004: BYOK via MCP — Not Direct API Calls, Not Shell-Out
 
 ## Context and Problem Statement
 
-The agent-assisted layer of ase-cli requires a model to evaluate semantic qualities. The tool must decide how to interact with a coding agent: direct API calls to a specific provider, shell-out to CLI tools, or a protocol-based bridge that lets the user's own coding agent handle the evaluation.
+The agent-assisted layer of iec-cli requires a model to evaluate semantic qualities. The tool must decide how to interact with a coding agent: direct API calls to a specific provider, shell-out to CLI tools, or a protocol-based bridge that lets the user's own coding agent handle the evaluation.
 
 ## Considered Options
 
@@ -18,7 +18,7 @@ The agent-assisted layer of ase-cli requires a model to evaluate semantic qualit
 
 ## Decision Outcome
 
-Chosen option: "MCP", because it is the only option that achieves BYOK (Bring Your Own Key/Agent). The tool does not hardcode a provider, does not manage API keys, and does not assume which coding agent the user has. MCP is the emerging standard for agent-tool integration and aligns with ASE's vendor-agnostic principle.
+Chosen option: "MCP", because it is the only option that achieves BYOK (Bring Your Own Key/Agent). The tool does not hardcode a provider, does not manage API keys, and does not assume which coding agent the user has. MCP is the emerging standard for agent-tool integration and aligns with Intent Engineering's vendor-agnostic principle.
 
 ### Consequences
 

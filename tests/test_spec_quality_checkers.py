@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
-from ase_cli.check import Registry, Status
-from ase_cli.checkers import spec_ac_ids, spec_test_category
+from iec_cli.check import Registry, Status
+from iec_cli.checkers import spec_ac_ids, spec_test_category
 
 
 def _write_spec(base: Path, name: str, content: str) -> Path:

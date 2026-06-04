@@ -23,7 +23,7 @@ Oversized spec files lose agent focus — specs over ~500 lines start drifting. 
 
 ## Impact
 
-- **New modules**: `src/ase_cli/checkers/spec_size.py`, `src/ase_cli/checkers/file_size.py`
-- **Updated**: `src/ase_cli/checkers/__init__.py`
+- **New modules**: `src/iec_cli/checkers/spec_size.py`, `src/iec_cli/checkers/file_size.py`
+- **Updated**: `src/iec_cli/checkers/__init__.py`
 - **Tests**: 13 unit tests (SPSZ-001..006, FLSZ-001..007)
 - **No new dependencies**

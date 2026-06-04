@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from ase_cli.check import Checker, CheckResult, Registry, Severity, Status, registry
+from iec_cli.check import Checker, CheckResult, Registry, Severity, Status, registry
 
 # ---------------------------------------------------------------------------
 # 1.1 — Enums

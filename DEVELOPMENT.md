@@ -1,4 +1,4 @@
-# Development Guide for ase-cli
+# Development Guide for iec-cli
 
 This guide documents known issues, best practices, and troubleshooting steps for coding agents working on this codebase.
 
@@ -122,8 +122,8 @@ assert "expected-behavior" in result.stdout
 
 Check the full CI logs:
 ```bash
-gh run list --repo ase-book/ase-cli --limit 1
-gh run view <run-id> --log --repo ase-book/ase-cli
+gh run list --repo intent-book/iec-cli --limit 1
+gh run view <run-id> --log --repo intent-book/iec-cli
 ```
 
 Look for:
@@ -188,7 +188,7 @@ uv run ruff check .                    # Check for issues
 uv run ruff format .                   # Auto-format
 
 # Check actual CLI
-uv run ase check --help
-uv run ase init --help
+uv run iec check --help
+uv run iec init --help
 ```
 

@@ -1,28 +1,28 @@
-"""Integration tests for ase check with real checkers."""
+"""Integration tests for iec check with real checkers."""
 
 from pathlib import Path
 
 import pytest
 from typer.testing import CliRunner
 
-from ase_cli.check import registry
-from ase_cli.checkers.adr_format import AdrFormat
-from ase_cli.checkers.adr_index import AdrIndex
-from ase_cli.checkers.agents_exists import AgentsExists
-from ase_cli.checkers.agents_hub_structure import AgentsHubStructure
-from ase_cli.checkers.agents_links import AgentsLinks
-from ase_cli.checkers.agents_size import AgentsSize
-from ase_cli.checkers.docs_index_exists import DocsIndexExists
-from ase_cli.checkers.docs_index_stale import DocsIndexStale
-from ase_cli.checkers.docs_readme_exists import DocsReadmeExists
-from ase_cli.checkers.file_size import FileSize
-from ase_cli.checkers.secrets import Secrets
-from ase_cli.checkers.spec_ac_ids import SpecAcIds
-from ase_cli.checkers.spec_size import SpecSize
-from ase_cli.checkers.spec_test_category import SpecTestCategory
-from ase_cli.checkers.test_coverage import TestCoverage
-from ase_cli.checkers.test_traceability import TestTraceability
-from ase_cli.main import app
+from iec_cli.check import registry
+from iec_cli.checkers.adr_format import AdrFormat
+from iec_cli.checkers.adr_index import AdrIndex
+from iec_cli.checkers.agents_exists import AgentsExists
+from iec_cli.checkers.agents_hub_structure import AgentsHubStructure
+from iec_cli.checkers.agents_links import AgentsLinks
+from iec_cli.checkers.agents_size import AgentsSize
+from iec_cli.checkers.docs_index_exists import DocsIndexExists
+from iec_cli.checkers.docs_index_stale import DocsIndexStale
+from iec_cli.checkers.docs_readme_exists import DocsReadmeExists
+from iec_cli.checkers.file_size import FileSize
+from iec_cli.checkers.secrets import Secrets
+from iec_cli.checkers.spec_ac_ids import SpecAcIds
+from iec_cli.checkers.spec_size import SpecSize
+from iec_cli.checkers.spec_test_category import SpecTestCategory
+from iec_cli.checkers.test_coverage import TestCoverage
+from iec_cli.checkers.test_traceability import TestTraceability
+from iec_cli.main import app
 
 runner = CliRunner()
 

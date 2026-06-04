@@ -1,4 +1,4 @@
-"""ase init — scaffold ASE canonical directory structure."""
+"""iec init — scaffold Intent Engineering canonical directory structure."""
 
 # ruff: noqa: E501  # File ships verbatim Markdown content as string literals
 
@@ -176,7 +176,7 @@ def resolve_target(path: Path | None) -> Path:
 
 
 def scaffold_dirs(target: Path, dry_run: bool = False) -> tuple[list[str], list[str]]:
-    """Create all ASE canonical directories. Returns (created_dirs, created_gitkeeps)."""
+    """Create all Intent Engineering canonical directories. Returns (created_dirs, created_gitkeeps)."""
     created_dirs: list[str] = []
     created_gitkeeps: list[str] = []
     for dirpath in ASE_DIRS:
@@ -196,7 +196,7 @@ def scaffold_dirs(target: Path, dry_run: bool = False) -> tuple[list[str], list[
 
 
 def scaffold_files(target: Path, force: bool = False, dry_run: bool = False) -> list[str]:
-    """Create all ASE stub files. Returns list of created paths."""
+    """Create all Intent Engineering stub files. Returns list of created paths."""
     created: list[str] = []
     name = target.resolve().name
 
@@ -305,7 +305,7 @@ Every file in `docs/` listed with its purpose. Load this first for context econo
 | File | Purpose |
 |---|---|
 | [README.md](README.md) | Architecture overview |
-| [testing-convention.md](testing-convention.md) | Generic ASE testing conventions |
+| [testing-convention.md](testing-convention.md) | Generic Intent Engineering testing conventions |
 | [testing-strategy.md](testing-strategy.md) | Project-specific test strategy |
 | INDEX.md | This file — agent-facing map, loaded first |
 
@@ -325,11 +325,11 @@ Every file in `docs/` listed with its purpose. Load this first for context econo
 
 def _testing_convention_content() -> str:
     return """\
-# ASE Testing Convention
+# Intent Engineering Testing Convention
 
 > Generic. Applicable to any project, any stack. Instantiate via `docs/testing-strategy.md`.
 
-This is the invariant part of ASE testing. It defines what doesn't change across projects: the test layer taxonomy, the AC ID contract, the traceability model, and the proof requirements.
+This is the invariant part of Intent Engineering testing. It defines what doesn't change across projects: the test layer taxonomy, the AC ID contract, the traceability model, and the proof requirements.
 
 ---
 
@@ -463,7 +463,7 @@ def init(
         False, "--with-gemini", help="Emit .gemini/settings.json pointing to AGENTS.md"
     ),
 ) -> None:
-    """Scaffold the canonical ASE directory structure."""
+    """Scaffold the canonical Intent Engineering directory structure."""
     target = resolve_target(Path(path) if path else None)
 
     dirs, gitkeeps = scaffold_dirs(target, dry_run=dry_run)

@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
-from ase_cli.checkers._shared import (
+from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.checkers._shared import (
     collect_marker_counts,
     collect_required_ids,
     find_spec_files,

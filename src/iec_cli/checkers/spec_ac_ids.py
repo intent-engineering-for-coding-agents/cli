@@ -3,8 +3,8 @@
 import re
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
-from ase_cli.checkers._shared import find_spec_files
+from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.checkers._shared import find_spec_files
 
 _SCENARIO_RE = re.compile(r"^#{3,6}\s+Scenario:\s+.+$", re.MULTILINE)
 _AC_ID_RE = re.compile(r"\[[A-Z][A-Z0-9]+-\d+\]")

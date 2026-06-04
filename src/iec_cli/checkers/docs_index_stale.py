@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
-from ase_cli.checkers._shared import LINK_RE
+from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.checkers._shared import LINK_RE
 
 
 @registry.register

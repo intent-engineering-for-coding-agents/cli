@@ -1,14 +1,14 @@
 ---
 status: accepted
 date: 2026-05-04
-decision-makers: ASE Book Contributors
+decision-makers: Intent Engineering for Coding Agents Contributors
 ---
 
 # ADR-0005: Use MADR Format for All Architectural Decision Records
 
 ## Context and Problem Statement
 
-ASE practices require architectural decisions to be recorded in a permanent, structured format. The format must be plain text, version-controllable (Git-diffable), and machine-readable enough for deterministic validation. The book recommends a single ADR format — the tool must exemplify it.
+Intent Engineering practices require architectural decisions to be recorded in a permanent, structured format. The format must be plain text, version-controllable (Git-diffable), and machine-readable enough for deterministic validation. The book recommends a single ADR format — the tool must exemplify it.
 
 ## Considered Options
 
@@ -19,15 +19,15 @@ ASE practices require architectural decisions to be recorded in a permanent, str
 
 ## Decision Outcome
 
-Chosen option: "MADR", because it is the most widely adopted structured plain-text ADR format. It requires a `Status` field (enabling deterministic validation of ADR state), a `Deciders` field, and structured sections (Context, Options, Decision, Consequences). MADR is plain Markdown — Git-diffable, GitHub-renderable, and simple enough that developers write ADRs rather than avoid them. The format aligns with ASE's plain-text-as-code principle.
+Chosen option: "MADR", because it is the most widely adopted structured plain-text ADR format. It requires a `Status` field (enabling deterministic validation of ADR state), a `Deciders` field, and structured sections (Context, Options, Decision, Consequences). MADR is plain Markdown — Git-diffable, GitHub-renderable, and simple enough that developers write ADRs rather than avoid them. The format aligns with Intent Engineering's plain-text-as-code principle.
 
 ### Consequences
 
-* Good, because structured — mandatory sections enable deterministic validation (`ase check` can verify MADR compliance)
+* Good, because structured — mandatory sections enable deterministic validation (`iec check` can verify MADR compliance)
 * Good, because plain Markdown — any editor, any Git host renders it
 * Good, because widespread adoption — established community, templates available
 * Good, because Michael Nygard's original format is a subset — MADR extends, does not break, it
-* Bad, because more structured than plain prose — slightly higher barrier to writing (mitigated by the `adr-format` check in ase-cli itself, which validates template compliance)
+* Bad, because more structured than plain prose — slightly higher barrier to writing (mitigated by the `adr-format` check in iec-cli itself, which validates template compliance)
 
 ## Pros and Cons of the Options
 
@@ -59,4 +59,4 @@ Chosen option: "MADR", because it is the most widely adopted structured plain-te
 
 ## Validation
 
-Verified by: ase-cli will include an `adr-format` deterministic check that validates all ADRs follow the MADR template. The tool dogfoods its own check — all ADRs in this repo pass `ase check --path docs/decisions/`.
+Verified by: iec-cli will include an `adr-format` deterministic check that validates all ADRs follow the MADR template. The tool dogfoods its own check — all ADRs in this repo pass `iec check --path docs/decisions/`.

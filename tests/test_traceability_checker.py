@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
-from ase_cli.check import Registry, Status
-from ase_cli.checkers import test_coverage, test_traceability
+from iec_cli.check import Registry, Status
+from iec_cli.checkers import test_coverage, test_traceability
 
 
 def _write_spec(base: Path, name: str, content: str) -> Path:

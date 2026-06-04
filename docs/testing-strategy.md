@@ -1,4 +1,4 @@
-# ase-cli Testing Strategy
+# iec-cli Testing Strategy
 
 > Concrete instantiation of `docs/testing-convention.md` for this project.
 
@@ -9,8 +9,8 @@
 | Layer | Category | Applies? | What it means here |
 |---|---|---|---|
 | L1 | `Unit` | Yes | Pure Python functions — individual checkers, scaffolding logic, utilities. No I/O, no CLI invocation. |
-| L2 | `Slice` | No | Not applicable. ase-cli is a CLI tool, not a web framework. No sliced test context equivalent. |
-| L3 | `Integration` | Yes | Invoke `ase` commands via `typer.testing.CliRunner` against real temporary directories. Test filesystem scaffolding, flag behavior, exit codes. |
+| L2 | `Slice` | No | Not applicable. iec-cli is a CLI tool, not a web framework. No sliced test context equivalent. |
+| L3 | `Integration` | Yes | Invoke `iec` commands via `typer.testing.CliRunner` against real temporary directories. Test filesystem scaffolding, flag behavior, exit codes. |
 | L4 | `E2E` | No | No service boundaries to cross. Reserved for future MCP server workflow tests. |
 | L5 | `Performance` | No | Not needed. CLI tool operations are sub-second. |
 
@@ -84,8 +84,8 @@ tests/
 │   └── test_checks.py     # Unit tests for individual checks
 ├── integration/
 │   └── __init__.py
-│   └── test_init.py       # Integration tests for ase init
-│   └── test_check.py      # Integration tests for ase check
+│   └── test_init.py       # Integration tests for iec init
+│   └── test_check.py      # Integration tests for iec check
 └── test_main.py           # Smoke/sanity tests
 ```
 

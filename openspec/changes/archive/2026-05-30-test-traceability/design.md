@@ -43,7 +43,7 @@ reported in the message.
 ### Module structure
 
 ```
-src/ase_cli/checkers/test_traceability.py
+src/iec_cli/checkers/test_traceability.py
   _SCENARIO_HEADING_RE   — matches #### Scenario: ... [ID]
   _AC_ID_RE              — extracts [PREFIX-NNN] from heading
   _MANUAL_RE             — matches Test-type: Manual in body

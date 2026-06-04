@@ -1,12 +1,12 @@
-"""Integration tests for the `ase eval` CLI command."""
+"""Integration tests for the `iec eval` CLI command."""
 
 from pathlib import Path
 
 import pytest
 from typer.testing import CliRunner
 
-from ase_cli.eval import eval_app
-from ase_cli.main import app
+from iec_cli.eval import eval_app
+from iec_cli.main import app
 
 runner = CliRunner()
 
@@ -198,7 +198,7 @@ def test_warnings_column_present_in_output(tmp_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# ase --help lists eval
+# iec --help lists eval
 # ---------------------------------------------------------------------------
 
 

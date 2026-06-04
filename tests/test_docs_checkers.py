@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
-from ase_cli.check import Registry, Status
-from ase_cli.checkers import (
+from iec_cli.check import Registry, Status
+from iec_cli.checkers import (
     docs_index_exists,
     docs_index_scope,
     docs_index_stale,

@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from ase_cli.check import Registry, Status
-from ase_cli.checkers import agents_exists, agents_links, agents_size
+from iec_cli.check import Registry, Status
+from iec_cli.checkers import agents_exists, agents_links, agents_size
 
 # ---------------------------------------------------------------------------
 # agents-exists

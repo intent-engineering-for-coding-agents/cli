@@ -3,29 +3,29 @@
 ## Purpose
 TBD - created by archiving change check. Update Purpose after archive.
 ## Requirements
-### Requirement: ase check command
+### Requirement: iec check command
 
-The system SHALL provide an `ase check` CLI command that runs all registered deterministic checkers. It SHALL accept an optional `--path` argument to scope checks to a specific directory (defaults to current working directory). It SHALL NOT accept `--all` or agent-related flags at this stage.
+The system SHALL provide an `iec check` CLI command that runs all registered deterministic checkers. It SHALL accept an optional `--path` argument to scope checks to a specific directory (defaults to current working directory). It SHALL NOT accept `--all` or agent-related flags at this stage.
 
 #### Scenario: Run checks with the default path [CHKCLI-001]
 
 Test-type: integration
 
-- **WHEN** `ase check` is invoked without arguments
+- **WHEN** `iec check` is invoked without arguments
 - **THEN** all registered checkers run against the current working directory and results are printed
 
 #### Scenario: Run checks with explicit path [CHKCLI-002]
 
 Test-type: integration
 
-- **WHEN** `ase check --path /some/repo` is invoked
+- **WHEN** `iec check --path /some/repo` is invoked
 - **THEN** all registered checkers run against `/some/repo`
 
 #### Scenario: --help shows check command [CHKCLI-003]
 
 Test-type: integration
 
-- **WHEN** `ase check --help` is invoked
+- **WHEN** `iec check --help` is invoked
 - **THEN** the help text shows `--path` option with description
 
 ### Requirement: Human-readable summary output

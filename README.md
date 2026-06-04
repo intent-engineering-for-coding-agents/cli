@@ -1,3 +1,3 @@
-# ase-cli
+# iec-cli
 
-ASE practice validation CLI — deterministic + agent-assisted checks for agentic software engineering repos.
+Intent Engineering practice validation CLI — deterministic + agent-assisted checks for agentic software engineering repos.

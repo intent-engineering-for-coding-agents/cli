@@ -22,7 +22,7 @@ The `.agents/` hub is the single source of truth for agent instructions. Without
 
 ## Impact
 
-- **New modules**: `src/ase_cli/checkers/agents_hub_structure.py`, `src/ase_cli/checkers/secrets.py`
-- **Updated**: `src/ase_cli/checkers/__init__.py`
+- **New modules**: `src/iec_cli/checkers/agents_hub_structure.py`, `src/iec_cli/checkers/secrets.py`
+- **Updated**: `src/iec_cli/checkers/__init__.py`
 - **Tests**: 12 unit tests (AHUB-001..006, SECR-001..006)
 - **No new dependencies**

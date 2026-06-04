@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Severity, Status, registry
 
 _FILENAME_RE = re.compile(r"^\d{4}-[a-z0-9-]+\.md$")
 _NUMBERED_HEADING_RE = re.compile(r"^# ADR-(\d{4}):")

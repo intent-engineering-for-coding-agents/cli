@@ -38,7 +38,7 @@ but not enough of it.
 ### Module structure
 
 ```
-src/ase_cli/checkers/test_coverage.py
+src/iec_cli/checkers/test_coverage.py
   _collect_marker_counts(path) -> dict[str, int]
   TestCoverage.check(path) -> CheckResult
 ```

@@ -49,7 +49,7 @@ Each entry is a table row:
 
 ## Empty directories
 
-A directory under `docs/` that holds no substantive content — only a `.gitkeep`, or nothing at all — does **not** need `README.md` or `INDEX.md`. `ase check` (>= the empty-dirs-exclusion change) skips such placeholders. Create the two files the moment the directory gets its first real file, and add the new dir's entry to `docs/INDEX.md` at the same time.
+A directory under `docs/` that holds no substantive content — only a `.gitkeep`, or nothing at all — does **not** need `README.md` or `INDEX.md`. `iec check` (>= the empty-dirs-exclusion change) skips such placeholders. Create the two files the moment the directory gets its first real file, and add the new dir's entry to `docs/INDEX.md` at the same time.
 
 ## Why
 

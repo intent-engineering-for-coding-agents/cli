@@ -1,8 +1,8 @@
-# Design: ase eval command
+# Design: iec eval command
 
 ## Approach
 
-`ase eval` is a separate Typer sub-app (`eval_app`) wired into `main.py` alongside `check_app`. It does not touch the Registry or registered checkers — eval tasks are runtime-loaded from YAML per invocation, not statically registered.
+`iec eval` is a separate Typer sub-app (`eval_app`) wired into `main.py` alongside `check_app`. It does not touch the Registry or registered checkers — eval tasks are runtime-loaded from YAML per invocation, not statically registered.
 
 ## Data model
 
@@ -21,7 +21,7 @@ EvalTask
   checks: list[EvalCheck]
 ```
 
-`CheckResult`, `Status`, and `Severity` are reused from `ase_cli.check` unchanged.
+`CheckResult`, `Status`, and `Severity` are reused from `iec_cli.check` unchanged.
 
 ## Check dispatch
 
@@ -40,7 +40,7 @@ EvalTask
 
 ## Path resolution
 
-When `--eval-dir` is a relative path, it is resolved relative to `--path` (the repo root), not the process working directory. This allows `ase eval --path baseline --eval-dir eval` to find `baseline/../eval` naturally when called from the demo directory. Absolute paths bypass this resolution.
+When `--eval-dir` is a relative path, it is resolved relative to `--path` (the repo root), not the process working directory. This allows `iec eval --path baseline --eval-dir eval` to find `baseline/../eval` naturally when called from the demo directory. Absolute paths bypass this resolution.
 
 ## Output
 
@@ -52,4 +52,4 @@ Python's stdlib has no YAML parser. `yaml.safe_load` from PyYAML is safe (no arb
 
 ## Why not reuse the Registry
 
-The Registry holds statically registered checker classes with a fixed lifecycle. Eval checks are runtime-loaded from YAML files per invocation and have no stable ID outside a given eval directory. Mixing them would require either a second Registry with reset semantics or contaminating `ase check`'s registered checker set.
+The Registry holds statically registered checker classes with a fixed lifecycle. Eval checks are runtime-loaded from YAML files per invocation and have no stable ID outside a given eval directory. Mixing them would require either a second Registry with reset semantics or contaminating `iec check`'s registered checker set.

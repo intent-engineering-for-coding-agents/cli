@@ -25,6 +25,6 @@ enforces the minimum pair requirement deterministically.
 
 ## Impact
 
-- New file: `src/ase_cli/checkers/test_coverage.py`
-- Update: `src/ase_cli/checkers/__init__.py`
+- New file: `src/iec_cli/checkers/test_coverage.py`
+- Update: `src/iec_cli/checkers/__init__.py`
 - Extends `tests/test_traceability_checker.py` or new `tests/test_coverage_checker.py`

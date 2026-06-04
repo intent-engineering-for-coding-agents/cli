@@ -1,6 +1,6 @@
 # OpenSpec Workflow
 
-All features in ase-cli are spec-driven. Every change goes through OpenSpec: propose → apply → archive.
+All features in iec-cli are spec-driven. Every change goes through OpenSpec: propose → apply → archive.
 
 ## Setup
 
@@ -60,7 +60,7 @@ If a new task is needed during implementation, add it and **renumber the section
 
 Run `/opsx:archive`. Delta specs merge into `openspec/specs/` (ADDED → appended, MODIFIED → replaced, REMOVED → deleted). The change folder moves to `changes/archive/YYYY-MM-DD-name/` to preserve history.
 
-> **IMPORTANT:** The `openspec instructions specs` template shows bare `#### Scenario: <name>` without AC IDs or `Test-type:` fields. The OpenSpec template is generic and does NOT enforce ase-cli conventions. You MUST add `[PREFIX-NNN]` AC IDs to every scenario heading and a `Test-type:` field to every scenario yourself. See below.
+> **IMPORTANT:** The `openspec instructions specs` template shows bare `#### Scenario: <name>` without AC IDs or `Test-type:` fields. The OpenSpec template is generic and does NOT enforce iec-cli conventions. You MUST add `[PREFIX-NNN]` AC IDs to every scenario heading and a `Test-type:` field to every scenario yourself. See below.
 
 ## Acceptance Criteria (AC IDs)
 
@@ -110,4 +110,4 @@ Tests that do NOT prove acceptance criteria SHALL carry a category marker:
 
 Framework-specific marker formats and the full traceability contract are defined in `docs/testing-convention.md`.
 
-ase-cli's `test-traceability` check cross-references AC IDs in specs against test markers.
+iec-cli's `test-traceability` check cross-references AC IDs in specs against test markers.

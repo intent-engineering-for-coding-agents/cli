@@ -10,7 +10,7 @@
 ## Project Structure
 
 ```
-src/ase_cli/
+src/iec_cli/
 ├── main.py          # Typer app entry point
 ├── checks/          # Check implementations (plugin registry)
 │   └── __init__.py

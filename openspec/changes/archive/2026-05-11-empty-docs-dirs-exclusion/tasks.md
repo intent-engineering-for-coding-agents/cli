@@ -2,11 +2,11 @@
 
 ## 1. Shared helper
 
-- [x] 1.1 Create `src/ase_cli/checkers/_shared.py` with `is_effectively_empty(dirpath: Path) -> bool`. Recursive walk; ignore entries whose name starts with `.`.
+- [x] 1.1 Create `src/iec_cli/checkers/_shared.py` with `is_effectively_empty(dirpath: Path) -> bool`. Recursive walk; ignore entries whose name starts with `.`.
 
 ## 2. docs-readme-exists — extend rule
 
-- [x] 2.1 Update `src/ase_cli/checkers/docs_readme_exists.py` to skip effectively-empty subdirectories before recording a missing `README.md`.
+- [x] 2.1 Update `src/iec_cli/checkers/docs_readme_exists.py` to skip effectively-empty subdirectories before recording a missing `README.md`.
 - [x] 2.2 New scenarios in `tests/test_docs_checkers.py`:
   - [x] `.gitkeep`-only subdir → PASS [DRME-006]
   - [x] Dotfiles-only subdir → PASS [DRME-006]
@@ -16,7 +16,7 @@
 
 ## 3. docs-index-exists — extend rule
 
-- [x] 3.1 Update `src/ase_cli/checkers/docs_index_exists.py` with the symmetric change.
+- [x] 3.1 Update `src/iec_cli/checkers/docs_index_exists.py` with the symmetric change.
 - [x] 3.2 New scenarios in `tests/test_docs_checkers.py`:
   - [x] `.gitkeep`-only subdir → PASS [DINE-006]
   - [x] Dotfiles-only subdir → PASS [DINE-006]
@@ -34,4 +34,4 @@
 - [x] 5.1 `uv run ruff check` — no lint errors
 - [x] 5.2 `uv run ruff format --check` — no formatting issues
 - [x] 5.3 `uv run pytest -v` — all DRME, DINE scenarios green (including the four new ones per checker)
-- [x] 5.4 Reinstall `ase-cli` in the ase-book repo and confirm `ase check` returns all-PASS.
+- [x] 5.4 Reinstall `iec-cli` in the intent-book repo and confirm `iec check` returns all-PASS.

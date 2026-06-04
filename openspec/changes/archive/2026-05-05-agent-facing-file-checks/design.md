@@ -10,9 +10,9 @@ The check framework from Change 002 provides a `Registry`, `Checker` protocol, a
 - `agents-exists`: Verify `AGENTS.md` is present at repo root
 - `agents-size`: Verify `AGENTS.md` is under a configurable line limit (env var `ASE_AGENTS_MAX_LINES`, default 50)
 - `agents-links`: Verify every Markdown link in `AGENTS.md` has descriptive text — no bare URLs
-- Each checker is a class + `@registry.register`, lives in `src/ase_cli/checkers/`
+- Each checker is a class + `@registry.register`, lives in `src/iec_cli/checkers/`
 - `_load_checkers()` in `check.py` imports the checkers package so checkers self-register
-- Plain text output — match existing `ase check` style
+- Plain text output — match existing `iec check` style
 
 **Non-Goals:**
 - Config file support (`.ase.toml`) — env vars only for now
@@ -22,15 +22,15 @@ The check framework from Change 002 provides a `Registry`, `Checker` protocol, a
 
 ## Decisions
 
-### Decision 1: Package `src/ase_cli/checkers/` over flat modules
+### Decision 1: Package `src/iec_cli/checkers/` over flat modules
 
-**Chosen**: `src/ase_cli/checkers/` package with `__init__.py`, `agents_exists.py`, `agents_size.py`, `agents_links.py`.
+**Chosen**: `src/iec_cli/checkers/` package with `__init__.py`, `agents_exists.py`, `agents_size.py`, `agents_links.py`.
 
 **Alternatives considered**:
-- Flat files in `src/ase_cli/`: Clutters the source root as checker count grows (14+ planned).
+- Flat files in `src/iec_cli/`: Clutters the source root as checker count grows (14+ planned).
 - Single file: One 300+ line file with all checkers. Harder to navigate.
 
-**Rationale**: A dedicated package keeps checkers isolated, discoverable, and easy to test. `__init__.py` imports all modules so `_load_checkers()` just does `import ase_cli.checkers`.
+**Rationale**: A dedicated package keeps checkers isolated, discoverable, and easy to test. `__init__.py` imports all modules so `_load_checkers()` just does `import iec_cli.checkers`.
 
 ### Decision 2: Environment variable for agents-size limit
 
@@ -39,7 +39,7 @@ The check framework from Change 002 provides a `Registry`, `Checker` protocol, a
 **Alternatives considered**:
 - Hardcoded constant: No configurability.
 - `.ase.toml` config file: Premature. No config file system exists yet.
-- CLI flag: `ase check --max-lines 50`. Clutters the check command with checker-specific flags.
+- CLI flag: `iec check --max-lines 50`. Clutters the check command with checker-specific flags.
 
 **Rationale**: Env vars are zero-cost, universally understood, and easy to set in CI. When a config file system is introduced (post v0.7.0), env vars can be promoted to file entries without breaking.
 

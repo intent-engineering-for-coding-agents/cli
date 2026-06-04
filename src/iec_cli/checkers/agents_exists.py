@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Severity, Status, registry
 
 
 @registry.register

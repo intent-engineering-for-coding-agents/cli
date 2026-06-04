@@ -2,11 +2,11 @@
 
 from pathlib import Path
 
-from ase_cli.check import Registry, Status
-from ase_cli.checkers import agents_hub_structure, secrets
+from iec_cli.check import Registry, Status
+from iec_cli.checkers import agents_hub_structure, secrets
 
 # Fake credential strings constructed at runtime so the source file itself
-# does not trigger the secrets scanner when ase check runs on this repo.
+# does not trigger the secrets scanner when iec check runs on this repo.
 _FAKE_AWS_KEY = "AKIA" + "IOSFODNN7EXAMPLE"
 _FAKE_PEM_LINE = "-----" + "BEGIN RSA PRIVATE KEY" + "-----"
 _FAKE_CRED_LINE = "api_" + 'key = "sk-abc1234567890xyz"'

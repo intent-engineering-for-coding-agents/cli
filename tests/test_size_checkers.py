@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from ase_cli.check import Registry, Status
-from ase_cli.checkers import file_size, spec_size
+from iec_cli.check import Registry, Status
+from iec_cli.checkers import file_size, spec_size
 
 
 def _write_spec(base: Path, content: str) -> Path:

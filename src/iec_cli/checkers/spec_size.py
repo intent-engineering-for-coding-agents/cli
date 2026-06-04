@@ -3,8 +3,8 @@
 import os
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
-from ase_cli.checkers._shared import find_spec_files
+from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.checkers._shared import find_spec_files
 
 _DEFAULT_LIMIT = 500
 

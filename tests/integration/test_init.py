@@ -1,11 +1,11 @@
-"""Integration tests for ase init command."""
+"""Integration tests for iec init command."""
 
 import json
 from pathlib import Path
 
 from typer.testing import CliRunner
 
-from ase_cli.main import app
+from iec_cli.main import app
 
 runner = CliRunner()
 

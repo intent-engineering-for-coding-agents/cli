@@ -1,4 +1,4 @@
-"""ase check — deterministic check framework."""
+"""iec check — deterministic check framework."""
 
 from dataclasses import dataclass
 from enum import Enum
@@ -101,7 +101,7 @@ def check(
         ".", "--path", "-p", help="Target directory or file to check"
     ),
 ) -> None:
-    """Run deterministic ASE checks against a repo.
+    """Run deterministic Intent Engineering checks against a repo.
 
     Options:
       --path, -p TEXT  Target directory or file to check [default: .]
@@ -138,7 +138,7 @@ def check(
 
 def _load_checkers() -> None:
     """Import checker modules to trigger registration."""
-    import ase_cli.checkers  # noqa: F401
+    import iec_cli.checkers  # noqa: F401
 
 
 _load_checkers()

@@ -23,7 +23,7 @@ The book repo CI already surfaced this: `docs/design/` is reserved for future fe
 
 ### Decision 1: One shared helper, used by both checkers
 
-**Chosen**: `src/ase_cli/checkers/_shared.py::is_effectively_empty(dirpath)`. Both presence checkers call it.
+**Chosen**: `src/iec_cli/checkers/_shared.py::is_effectively_empty(dirpath)`. Both presence checkers call it.
 
 **Rationale**: The rule is identical for the two checkers and likely to be referenced by future ones. Extracting it now avoids drift. The leading underscore signals an internal module — it is not part of the public checker registry.
 

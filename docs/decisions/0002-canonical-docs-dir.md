@@ -1,14 +1,14 @@
 ---
 status: accepted
 date: 2026-05-04
-decision-makers: ASE Book Contributors
+decision-makers: Intent Engineering for Coding Agents Contributors
 ---
 
 # ADR-0002: Use `docs/` as Canonical Documentation Directory
 
 ## Context and Problem Statement
 
-ASE practices recommend a canonical directory for architecture, decisions, and design documentation. The directory name must work across Git hosts (GitHub, GitLab, Bitbucket), static site generators, and programming language ecosystems without collision. It must be the single convention the book recommends.
+Intent Engineering practices recommend a canonical directory for architecture, decisions, and design documentation. The directory name must work across Git hosts (GitHub, GitLab, Bitbucket), static site generators, and programming language ecosystems without collision. It must be the single convention the book recommends.
 
 ## Considered Options
 
@@ -26,7 +26,7 @@ Chosen option: "`docs/`", because GitHub, GitLab, and Bitbucket all render `READ
 * Good, because GitHub/GitLab/Bitbucket automatically render `docs/README.md` in the repository file browser
 * Good, because no tool collision — `docs/` is not claimed by any major framework as default output
 * Good, because `docs/` is the de facto standard across open-source — readers expect it
-* Good, because VitePress, Docusaurus, and mdBook can all point their source directory elsewhere, keeping `docs/` free for ASE documentation
+* Good, because VitePress, Docusaurus, and mdBook can all point their source directory elsewhere, keeping `docs/` free for Intent Engineering documentation
 * Bad, because some CI tools default to deploying from `docs/` (e.g., GitHub Pages legacy mode) — mitigated by using Actions-based deploy, not the built-in `/docs` deploy
 
 ## Pros and Cons of the Options
@@ -57,4 +57,4 @@ Chosen option: "`docs/`", because GitHub, GitLab, and Bitbucket all render `READ
 
 ## Validation
 
-Verified by: GitHub, GitLab, and Bitbucket all render `docs/README.md` in their repository file browsers. No framework in ASE's technology stack (VitePress, Typer, ruff, pytest, uv) claims `docs/` as default output.
+Verified by: GitHub, GitLab, and Bitbucket all render `docs/README.md` in their repository file browsers. No framework in Intent Engineering's technology stack (VitePress, Typer, ruff, pytest, uv) claims `docs/` as default output.

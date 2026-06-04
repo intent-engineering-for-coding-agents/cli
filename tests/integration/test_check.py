@@ -1,11 +1,11 @@
-"""Integration tests for the `ase check` CLI command."""
+"""Integration tests for the `iec check` CLI command."""
 
 from pathlib import Path
 
 import pytest
 from typer.testing import CliRunner
 
-from ase_cli.check import (
+from iec_cli.check import (
     CheckResult,
     Severity,
     Status,
@@ -164,13 +164,13 @@ def test_exit_code_two_failures_and_warnings() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 4.8 — ase --help smoke test
+# 4.8 — iec --help smoke test
 # ---------------------------------------------------------------------------
 
 
 def test_ase_help_lists_check() -> None:
-    """`ase --help` lists the `check` command."""
-    from ase_cli.main import app
+    """`iec --help` lists the `check` command."""
+    from iec_cli.main import app
 
     result = runner.invoke(app, ["--help"])
     assert "check" in result.stdout

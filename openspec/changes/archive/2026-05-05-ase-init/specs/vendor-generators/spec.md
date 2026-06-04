@@ -1,13 +1,13 @@
 ## ADDED Requirements
 
 ### Requirement: --with-claude emits CLAUDE.md with @AGENTS.md import
-The `--with-claude` flag on `ase init` SHALL create a `CLAUDE.md` file containing the `@AGENTS.md` import directive.
+The `--with-claude` flag on `iec init` SHALL create a `CLAUDE.md` file containing the `@AGENTS.md` import directive.
 
 #### Scenario: Claude file created alongside init [VENDOR-001]
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-claude` is run
+- **WHEN** `iec init --with-claude` is run
 - **THEN** `CLAUDE.md` is created in the target directory
 - **AND** the file content is exactly `@AGENTS.md` followed by a newline
 
@@ -15,7 +15,7 @@ The `--with-claude` flag on `ase init` SHALL create a `CLAUDE.md` file containin
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-claude` is run and `CLAUDE.md` already exists
+- **WHEN** `iec init --with-claude` is run and `CLAUDE.md` already exists
 - **THEN** the existing `CLAUDE.md` is preserved
 - **AND** a message indicates "CLAUDE.md already exists (use --force to overwrite)"
 
@@ -23,25 +23,25 @@ The `--with-claude` flag on `ase init` SHALL create a `CLAUDE.md` file containin
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-claude --force` is run and `CLAUDE.md` already exists
+- **WHEN** `iec init --with-claude --force` is run and `CLAUDE.md` already exists
 - **THEN** `CLAUDE.md` is overwritten with fresh `@AGENTS.md` content
 
 #### Scenario: --with-claude without init context [VENDOR-004]
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-claude` is run in an already-initialized directory
+- **WHEN** `iec init --with-claude` is run in an already-initialized directory
 - **THEN** only `CLAUDE.md` is created (directory scaffolding skipped)
 - **AND** the vendor file is created even if init files already exist
 
 ### Requirement: --with-gemini emits .gemini/settings.json
-The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` file configured to read `AGENTS.md` as context.
+The `--with-gemini` flag on `iec init` SHALL create a `.gemini/settings.json` file configured to read `AGENTS.md` as context.
 
 #### Scenario: Gemini settings created alongside init [VENDOR-005]
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-gemini` is run
+- **WHEN** `iec init --with-gemini` is run
 - **THEN** `.gemini/settings.json` is created in the target directory
 - **AND** the file contains `{"context": {"fileName": "AGENTS.md"}}` (formatted as JSON)
 
@@ -49,7 +49,7 @@ The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` fi
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-gemini` is run and `.gemini/settings.json` already exists
+- **WHEN** `iec init --with-gemini` is run and `.gemini/settings.json` already exists
 - **THEN** the existing file is preserved
 - **AND** a message indicates ".gemini/settings.json already exists (use --force to overwrite)"
 
@@ -57,7 +57,7 @@ The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` fi
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-claude --with-gemini` is run
+- **WHEN** `iec init --with-claude --with-gemini` is run
 - **THEN** both `CLAUDE.md` and `.gemini/settings.json` are created
 - **AND** the directory scaffolding is also performed
 
@@ -65,6 +65,6 @@ The `--with-gemini` flag on `ase init` SHALL create a `.gemini/settings.json` fi
 
 **Test:** Integration
 
-- **WHEN** `ase init --with-claude --dry-run` is run
+- **WHEN** `iec init --with-claude --dry-run` is run
 - **THEN** the output lists `CLAUDE.md` as a file that would be created
 - **AND** no files are actually written

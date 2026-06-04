@@ -2,7 +2,7 @@
 
 ## 1. test-coverage — implementation
 
-- [x] 1.1 Create `src/ase_cli/checkers/test_coverage.py` with `TestCoverage` class registered via `@registry.register`
+- [x] 1.1 Create `src/iec_cli/checkers/test_coverage.py` with `TestCoverage` class registered via `@registry.register`
 - [x] 1.2 Implement `_collect_marker_counts(path)` — returns `dict[str, int]` of AC ID → marker count, reusing marker patterns from `test_traceability`
 
 ## 2. test-coverage — proof
@@ -17,7 +17,7 @@
 
 ## 3. Wiring
 
-- [x] 3.1 Import `test_coverage` in `src/ase_cli/checkers/__init__.py`
+- [x] 3.1 Import `test_coverage` in `src/iec_cli/checkers/__init__.py`
 - [x] 3.2 Add `test-coverage` assertion to integration test
 
 ## 4. Verify

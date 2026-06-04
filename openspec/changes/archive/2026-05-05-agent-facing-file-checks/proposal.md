@@ -2,7 +2,7 @@
 
 ## Why
 
-Every ASE repo needs an AGENTS.md. Its presence, size, and link quality determine whether coding agents receive useful context or drift. The check framework from Change 002 can run checkers, but no checkers exist yet. These three are the first — they validate the most critical agent-facing file.
+Every Intent Engineering repo needs an AGENTS.md. Its presence, size, and link quality determine whether coding agents receive useful context or drift. The check framework from Change 002 can run checkers, but no checkers exist yet. These three are the first — they validate the most critical agent-facing file.
 
 ## What Changes
 
@@ -26,8 +26,8 @@ Every ASE repo needs an AGENTS.md. Its presence, size, and link quality determin
 
 ## Impact
 
-- **New module**: `src/ase_cli/checkers/` package with `__init__.py` and three checker modules
-- **`src/ase_cli/check.py`**: `_load_checkers()` imports the new checker modules so they self-register
-- **Tests**: Unit tests per checker (file I/O with tmp_path), integration tests for `ase check` with real checkers
+- **New module**: `src/iec_cli/checkers/` package with `__init__.py` and three checker modules
+- **`src/iec_cli/check.py`**: `_load_checkers()` imports the new checker modules so they self-register
+- **Tests**: Unit tests per checker (file I/O with tmp_path), integration tests for `iec check` with real checkers
 - **No new dependencies**: All checks are file I/O + regex, pure Python
-- **No breaking changes**: `ase check` runs existing checkers plus new ones transparently
+- **No breaking changes**: `iec check` runs existing checkers plus new ones transparently

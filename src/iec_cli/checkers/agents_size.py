@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Severity, Status, registry
 
 DEFAULT_MAX_LINES = 50
 

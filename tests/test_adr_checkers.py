@@ -3,8 +3,8 @@
 import shutil
 from pathlib import Path
 
-from ase_cli.check import Registry, Status
-from ase_cli.checkers import adr_format, adr_index
+from iec_cli.check import Registry, Status
+from iec_cli.checkers import adr_format, adr_index
 
 FIXTURES = Path(__file__).parent / "fixtures" / "adr"
 

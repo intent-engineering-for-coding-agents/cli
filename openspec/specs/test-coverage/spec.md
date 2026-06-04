@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Enforce the positive + negative proof requirement from the ASE testing convention.
+Enforce the positive + negative proof requirement from the Intent Engineering testing convention.
 Every non-Manual acceptance criterion SHALL be covered by at least two test markers
 (the minimum proxy for positive and negative equivalence classes). A single test
 marker is necessary but insufficient.

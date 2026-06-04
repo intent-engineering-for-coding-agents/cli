@@ -1,4 +1,4 @@
-"""ase eval — YAML-driven agent eval suite runner."""
+"""iec eval — YAML-driven agent eval suite runner."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pathlib import Path
 import typer
 import yaml
 
-from ase_cli.check import CheckResult, Severity, Status
+from iec_cli.check import CheckResult, Severity, Status
 
 eval_app = typer.Typer()
 

@@ -1,12 +1,12 @@
-# ase-cli Architecture
+# iec-cli Architecture
 
-ase-cli is a Python CLI tool that validates ASE (Agentic Software Engineering) practices in any repository. It has two layers of checks: deterministic (runs without an agent) and agent-assisted (via MCP, using the user's own coding agent).
+iec-cli is a Python CLI tool that validates Intent Engineering practices in any repository. It has two layers of checks: deterministic (runs without an agent) and agent-assisted (via MCP, using the user's own coding agent).
 
 ## Design
 
 ```
 ┌──────────┐     ┌─────────────────┐     ┌──────────────┐
-│   User   │────▶│  ase-cli (CLI)  │────▶│  Repo files  │
+│   User   │────▶│  iec-cli (CLI)  │────▶│  Repo files  │
 └──────────┘     └────────┬────────┘     └──────────────┘
                           │
                  ┌────────▼────────┐
@@ -37,21 +37,21 @@ The deterministic layer works on any machine — no agent required. The agent la
 ## Commands
 
 ```
-ase --help                # Show usage
-ase --version             # Show version
+iec --help                # Show usage
+iec --version             # Show version
 
-ase init                  # Scaffold canonical ASE directory structure
-ase init --path <dir>     # Target a specific directory
-ase init --dry-run        # Preview what would be created
-ase init --force           # Overwrite existing files
-ase init --with-claude    # Also emit CLAUDE.md with @AGENTS.md import
-ase init --with-gemini    # Also emit .gemini/settings.json context config
+iec init                  # Scaffold canonical Intent Engineering directory structure
+iec init --path <dir>     # Target a specific directory
+iec init --dry-run        # Preview what would be created
+iec init --force           # Overwrite existing files
+iec init --with-claude    # Also emit CLAUDE.md with @AGENTS.md import
+iec init --with-gemini    # Also emit .gemini/settings.json context config
 
-ase check                 # Run deterministic checks only (future)
-ase check --all           # Run deterministic + agent-assisted (future)
-ase check --path src/     # Scope to a directory or file (future)
+iec check                 # Run deterministic checks only (future)
+iec check --all           # Run deterministic + agent-assisted (future)
+iec check --path src/     # Scope to a directory or file (future)
 
-ase generate              # Emit vendor agent instruction files (future)
+iec generate              # Emit vendor agent instruction files (future)
 ```
 
 ## Technology Stack

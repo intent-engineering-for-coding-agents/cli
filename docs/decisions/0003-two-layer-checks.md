@@ -1,14 +1,14 @@
 ---
 status: accepted
 date: 2026-05-04
-decision-makers: ASE Book Contributors
+decision-makers: Intent Engineering for Coding Agents Contributors
 ---
 
 # ADR-0003: Two-Layer Check Architecture (Deterministic + MCP for agent-assisted checks)
 
 ## Context and Problem Statement
 
-ase-cli validates ASE practices. Some checks are mechanical — file existence, size limits, format compliance — and can be validated with deterministic logic. Other checks are semantic — content quality, scope appropriateness — and require judgment. How should the tool structure these two categories of checks?
+iec-cli validates Intent Engineering practices. Some checks are mechanical — file existence, size limits, format compliance — and can be validated with deterministic logic. Other checks are semantic — content quality, scope appropriateness — and require judgment. How should the tool structure these two categories of checks?
 
 ## Considered Options
 
@@ -18,7 +18,7 @@ ase-cli validates ASE practices. Some checks are mechanical — file existence, 
 
 ## Decision Outcome
 
-Chosen option: "Two-layer", because mechanical checks should run instantly offline without agent dependency, while semantic checks benefit from agent judgment. The MCP protocol enables BYOK — the user brings their own coding agent agent, the tool doesn't manage API keys or model selection. This separation also makes the deterministic layer independently useful: anyone can run `ase check` without agent access.
+Chosen option: "Two-layer", because mechanical checks should run instantly offline without agent dependency, while semantic checks benefit from agent judgment. The MCP protocol enables BYOK — the user brings their own coding agent agent, the tool doesn't manage API keys or model selection. This separation also makes the deterministic layer independently useful: anyone can run `iec check` without agent access.
 
 ### Consequences
 
@@ -52,4 +52,4 @@ Chosen option: "Two-layer", because mechanical checks should run instantly offli
 
 ## Validation
 
-Verified by: deterministic check framework defined as plugin registry. MCP server defined as separate module. Both layers pass through a shared result format so `ase check` output is uniform regardless of check source.
+Verified by: deterministic check framework defined as plugin registry. MCP server defined as separate module. Both layers pass through a shared result format so `iec check` output is uniform regardless of check source.

@@ -24,7 +24,7 @@ Specs without AC IDs cannot be cross-referenced by `test-traceability`. Specs wi
 
 ## Impact
 
-- **New modules**: `src/ase_cli/checkers/spec_ac_ids.py`, `src/ase_cli/checkers/spec_test_category.py`
-- **Updated**: `src/ase_cli/checkers/_shared.py`, `src/ase_cli/checkers/__init__.py`
+- **New modules**: `src/iec_cli/checkers/spec_ac_ids.py`, `src/iec_cli/checkers/spec_test_category.py`
+- **Updated**: `src/iec_cli/checkers/_shared.py`, `src/iec_cli/checkers/__init__.py`
 - **Tests**: 10 unit tests (ACID-001..005, STCT-001..005)
 - **No new dependencies**

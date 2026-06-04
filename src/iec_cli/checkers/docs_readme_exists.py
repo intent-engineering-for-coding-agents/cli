@@ -1,15 +1,15 @@
-"""docs-index-exists — verify every docs/ subdirectory has an INDEX.md."""
+"""docs-readme-exists — verify every docs/ subdirectory has a README.md."""
 
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
-from ase_cli.checkers._shared import is_effectively_empty
+from iec_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.checkers._shared import is_effectively_empty
 
 
 @registry.register
-class DocsIndexExists:
-    id = "docs-index-exists"
-    description = "Verify every docs/ subdirectory has an INDEX.md"
+class DocsReadmeExists:
+    id = "docs-readme-exists"
+    description = "Verify every docs/ subdirectory has a README.md"
 
     def check(self, path: Path) -> CheckResult:
         docs_dir = path / "docs"
@@ -24,7 +24,7 @@ class DocsIndexExists:
             if (
                 dirpath.is_dir()
                 and not is_effectively_empty(dirpath)
-                and not (dirpath / "INDEX.md").is_file()
+                and not (dirpath / "README.md").is_file()
             ):
                 missing.append(dirpath.relative_to(path).as_posix())
 
@@ -32,12 +32,12 @@ class DocsIndexExists:
             return CheckResult(
                 self.id,
                 Status.PASS,
-                "All docs/ directories have INDEX.md",
+                "All docs/ directories have README.md",
                 Severity.HIGH,
             )
         return CheckResult(
             self.id,
-            Status.WARN,
-            f"Missing INDEX.md in: {', '.join(missing)}",
-            Severity.MEDIUM,
+            Status.FAIL,
+            f"Missing README.md in: {', '.join(missing)}",
+            Severity.HIGH,
         )

@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from ase_cli.check import CheckResult, Severity, Status, registry
+from iec_cli.check import CheckResult, Severity, Status, registry
 
 _SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".mypy_cache"}
 

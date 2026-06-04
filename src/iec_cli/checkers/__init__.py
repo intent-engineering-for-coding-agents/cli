@@ -1,6 +1,6 @@
-"""ASE deterministic checkers — each module registers itself on import."""
+"""IEC deterministic checkers — each module registers itself on import."""
 
-from ase_cli.checkers import (
+from iec_cli.checkers import (
     adr_format,
     adr_index,
     agents_exists,

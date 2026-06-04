@@ -1,4 +1,4 @@
-$ ase eval --path after-drift --eval-dir eval
+$ iec eval --path after-drift --eval-dir eval
 
 Task                            Pass  Warn  Fail
 ------------------------------------------------

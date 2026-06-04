@@ -1,14 +1,14 @@
 [project]
-name = "ase-cli"
+name = "iec-cli"
 version = "0.3.0"
-description = "ASE practice validation CLI — deterministic + AI-assisted checks for agentic software engineering repos"
+description = "Intent Engineering practice validation CLI — deterministic + AI-assisted checks for agentic software engineering repos"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "Apache-2.0" }
 authors = [
-    { name = "ASE Book Contributors" }
+    { name = "Intent Engineering for Coding Agents Contributors" }
 ]
-keywords = ["ase", "ai", "agent", "spec-driven", "cli"]
+keywords = ["iec", "ai", "agent", "spec-driven", "cli"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Environment :: Console",
@@ -30,7 +30,7 @@ dev = [
 ]
 
 [project.scripts]
-ase = "ase_cli.main:app"
+iec = "iec_cli.main:app"
 
 [build-system]
 requires = ["hatchling"]

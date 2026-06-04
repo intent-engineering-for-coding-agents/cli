@@ -1,6 +1,6 @@
 ## Why
 
-ADRs are a cornerstone ASE document type, but nothing currently prevents malformed filenames, missing required sections, or a stale index. Without format enforcement, agents may fail to find or parse decisions correctly. This change adds two deterministic checks to verify ADR structure and index completeness.
+ADRs are a cornerstone Intent Engineering document type, but nothing currently prevents malformed filenames, missing required sections, or a stale index. Without format enforcement, agents may fail to find or parse decisions correctly. This change adds two deterministic checks to verify ADR structure and index completeness.
 
 ## What Changes
 
@@ -19,7 +19,7 @@ _(none)_
 
 ## Impact
 
-- `src/ase_cli/checkers/` — two new checker modules (`adr_format.py`, `adr_index.py`)
-- `src/ase_cli/checkers/__init__.py` — import new modules to trigger registration
+- `src/iec_cli/checkers/` — two new checker modules (`adr_format.py`, `adr_index.py`)
+- `src/iec_cli/checkers/__init__.py` — import new modules to trigger registration
 - `tests/` — new test files for each checker
 - No changes to existing checkers or CLI interface

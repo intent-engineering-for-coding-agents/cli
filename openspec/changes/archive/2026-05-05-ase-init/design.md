@@ -1,11 +1,11 @@
 ## Context
 
-`ase-cli` is a Python CLI (Typer, Python 3.12+) currently at `v0.2.0` with the canonical directory structure, ADRs, AGENTS.md, and `.agents/` hub already in place. There is no command to scaffold this structure into another repo. The `ase init` command is the first user-facing feature and sets the foundation for all future checks (which depend on the directory structure being present).
+`iec-cli` is a Python CLI (Typer, Python 3.12+) currently at `v0.2.0` with the canonical directory structure, ADRs, AGENTS.md, and `.agents/` hub already in place. There is no command to scaffold this structure into another repo. The `iec init` command is the first user-facing feature and sets the foundation for all future checks (which depend on the directory structure being present).
 
 ## Goals / Non-Goals
 
 **Goals:**
-- `ase init` creates the full canonical ASE directory structure in any target directory
+- `iec init` creates the full canonical Intent Engineering directory structure in any target directory
 - Creates AGENTS.md skeleton, docs/README.md, docs/INDEX.md, docs/testing-convention.md, docs/testing-strategy.md stub, and subdirectory README stubs
 - `--with-claude` emits `CLAUDE.md` with `@AGENTS.md` import
 - `--with-gemini` emits `.gemini/settings.json` with AGENTS.md context path
@@ -17,19 +17,19 @@
 **Non-Goals:**
 - No template customization (v1 emits fixed content)
 - No interactive prompts during init
-- No `ase generate` subcommand yet (Phase I, Change 012)
+- No `iec generate` subcommand yet (Phase I, Change 012)
 - No validation that the target directory is a git repo
-- No removal/cleanup of previous ASE files
+- No removal/cleanup of previous Intent Engineering files
 
 ## Decisions
 
 ### 1: Single `init.py` module, no plugin architecture yet
 
-The scaffolding logic is ~150 lines of directory creation + file writing. A single module at `src/ase_cli/init.py` is sufficient. The check framework (Change 002) will introduce the plugin architecture. No need to over-engineer here.
+The scaffolding logic is ~150 lines of directory creation + file writing. A single module at `src/iec_cli/init.py` is sufficient. The check framework (Change 002) will introduce the plugin architecture. No need to over-engineer here.
 
 ### 2: `--with-<vendor>` flags vs `--vendor claude,gemini`
 
-Vendor flags are independent (you might want Claude only). Individual `--with-claude` / `--with-gemini` flags are more discoverable than `--vendor claude --vendor gemini`. Composable: `ase init --with-claude --with-gemini` works naturally.
+Vendor flags are independent (you might want Claude only). Individual `--with-claude` / `--with-gemini` flags are more discoverable than `--vendor claude --vendor gemini`. Composable: `iec init --with-claude --with-gemini` works naturally.
 
 ### 3: Idempotency by file existence check
 
@@ -60,9 +60,9 @@ The generated AGENTS.md follows the project's own pattern: short header with pro
 ## Risks / Trade-offs
 
 - **[Risk] `--force` overwrites user-modified AGENTS.md** → Mitigation: `--force` is opt-in and documented with a warning
-- **[Risk] Generated files get stale as ASE conventions evolve** → Mitigation: `ase check` will catch stale structure (Phase E); init is snapshot only
-- **[Trade-off] No `ase generate` subcommand yet** → Later Phase I will add `ase generate copilot`/`claude`. For now, `--with-*` flags on `ase init` are sufficient as the bootstrap moment is when vendor files are most naturally created.
+- **[Risk] Generated files get stale as Intent Engineering conventions evolve** → Mitigation: `iec check` will catch stale structure (Phase E); init is snapshot only
+- **[Trade-off] No `iec generate` subcommand yet** → Later Phase I will add `iec generate copilot`/`claude`. For now, `--with-*` flags on `iec init` are sufficient as the bootstrap moment is when vendor files are most naturally created.
 
 ## Open Questions
 
-- Should `ase init` also run `openspec init`? (Decided: no — OpenSpec has its own workflow. ASE and OpenSpec are complementary, not bundled.)
+- Should `iec init` also run `openspec init`? (Decided: no — OpenSpec has its own workflow. Intent Engineering and OpenSpec are complementary, not bundled.)

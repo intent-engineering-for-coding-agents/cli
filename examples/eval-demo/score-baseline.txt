@@ -1,4 +1,4 @@
-$ ase eval --path baseline --eval-dir eval
+$ iec eval --path baseline --eval-dir eval
 
 Task                            Pass  Warn  Fail
 ------------------------------------------------

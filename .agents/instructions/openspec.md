@@ -48,6 +48,14 @@ openspec/
 
 Run `/opsx:propose <what-you-want-to-build>`. This creates the change folder with all planning artifacts. Artifacts build on each other: proposal (why) → specs (what) → design (how) → tasks (steps).
 
+### Decisions and design belong in `docs/`, not the change folder
+
+A change folder's `design.md` describes how to execute *this one delta*, and it is discarded when `/opsx:archive` runs (see Archive below). It is not where durable reasoning belongs.
+
+If the proposal introduces, reverses, or depends on an architectural decision (a new dependency, a protocol change, a directory convention), that decision SHALL be recorded as an ADR in `docs/decisions/` using the MADR format (see `0005-madr-format.md`; `0002-canonical-docs-dir.md` is the ADR that made `docs/` canonical in the first place). Per-feature design rationale that should outlive the change, not just how it was built but why it looks the way it does, belongs in `docs/design/`.
+
+While running `/opsx:propose`, check whether the change implies a new or reversed decision. If it does, write or update the ADR (or design doc) as part of the proposal, before `/opsx:apply` starts. Not as an afterthought once the code has already merged.
+
 ### 2. Apply
 
 Run `/opsx:apply`. Work through tasks.md one task at a time. After each task or subtask is completed, IMMEDIATELY update tasks.md — change `- [ ]` to `- [x]` in the checkbox. The user tracks progress by watching the checkmarks accumulate. Do NOT batch completions at the end.

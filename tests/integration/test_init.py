@@ -1,6 +1,7 @@
 """Integration tests for iec init command."""
 
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -89,7 +90,7 @@ def test_version_shows_number() -> None:
     """SCAFFOLD-016: --version shows version from pyproject.toml."""
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
-    assert "0." in result.stdout
+    assert re.search(r"\d+\.\d+\.\d+", result.stdout)
 
 
 @pytest.mark.integration

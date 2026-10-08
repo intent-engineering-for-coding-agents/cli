@@ -47,17 +47,16 @@ Test-type: integration
 ```python
 # AC-tagged test
 @pytest.mark.ac("SCAFFOLD-001")
-def test_init_creates_all_dirs_and_files(tmp_path):
-    ...
+def test_init_creates_all_dirs_and_files(tmp_path): ...
+
 
 # Non-AC markers
 @pytest.mark.baseline
-def test_coverage_for_unreachable_branch():
-    ...
+def test_coverage_for_unreachable_branch(): ...
+
 
 @pytest.mark.sanity
-def test_package_importable():
-    ...
+def test_package_importable(): ...
 ```
 
 Registered in `pyproject.toml`:

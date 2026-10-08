@@ -102,13 +102,12 @@ Tests reference AC IDs to enable traceability:
 ```python
 # pytest marker
 @pytest.mark.ac("LP-001")
-def test_points_earned_on_delivery():
-    ...
+def test_points_earned_on_delivery(): ...
+
 
 # Fallback comment (any language)
 # AC: LP-001
-def test_points_earned_on_delivery():
-    ...
+def test_points_earned_on_delivery(): ...
 ```
 
 Tests that do NOT prove acceptance criteria SHALL carry a category marker:

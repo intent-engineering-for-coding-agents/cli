@@ -1,16 +1,16 @@
-"""docs-index-exists — verify every docs/ subdirectory has an INDEX.md."""
+"""docs-index-exists — verify every docs/ subdirectory has an index."""
 
 from pathlib import Path
 
 from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
-from iec_cli.checkers._shared import is_effectively_empty
+from iec_cli.checkers._shared import index_source, is_effectively_empty
 
 
 @registry.register
 class DocsIndexExists:
     id = "docs-index-exists"
     maturity = Maturity.ADVISORY
-    description = "Verify every docs/ subdirectory has an INDEX.md"
+    description = "Every docs/ subdirectory has an INDEX.md or README.md index"
 
     def check(self, path: Path) -> CheckResult:
         docs_dir = path / "docs"
@@ -25,7 +25,7 @@ class DocsIndexExists:
             if (
                 dirpath.is_dir()
                 and not is_effectively_empty(dirpath)
-                and not (dirpath / "INDEX.md").is_file()
+                and index_source(dirpath) is None
             ):
                 missing.append(dirpath.relative_to(path).as_posix())
 
@@ -33,12 +33,12 @@ class DocsIndexExists:
             return CheckResult(
                 self.id,
                 Status.PASS,
-                "All docs/ directories have INDEX.md",
+                "All docs/ directories have an index",
                 Severity.HIGH,
             )
         return CheckResult(
             self.id,
             Status.WARN,
-            f"Missing INDEX.md in: {', '.join(missing)}",
+            f"Missing index (INDEX.md or README.md block) in: {', '.join(missing)}",
             Severity.MEDIUM,
         )

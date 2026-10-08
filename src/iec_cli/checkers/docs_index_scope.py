@@ -1,10 +1,10 @@
-"""docs-index-scope — each INDEX.md maps only its own directory."""
+"""docs-index-scope — each index maps only its own directory."""
 
 import re
 from pathlib import Path
 
 from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
-from iec_cli.checkers._shared import LINK_RE
+from iec_cli.checkers._shared import LINK_RE, index_source
 
 _SUBDIR_INDEX_OR_README = re.compile(r"^[^/]+/(INDEX|README)\.md$")
 
@@ -32,7 +32,7 @@ def _is_in_scope(target: str) -> bool:
 class DocsIndexScope:
     id = "docs-index-scope"
     maturity = Maturity.ADVISORY
-    description = "Each INDEX.md maps only its own directory"
+    description = "Each index (INDEX.md or README.md block) maps only its own directory"
 
     def check(self, path: Path) -> CheckResult:
         docs_dir = path / "docs"
@@ -46,27 +46,28 @@ class DocsIndexScope:
         for dirpath in dirs:
             if not dirpath.is_dir():
                 continue
-            index_file = dirpath / "INDEX.md"
-            if not index_file.is_file():
+            source = index_source(dirpath)
+            if source is None:
                 continue
+            index_file, index_lines, _ = source
             rel_dir = dirpath.relative_to(path).as_posix()
-            for line in index_file.read_text(encoding="utf-8").splitlines():
+            for line in index_lines:
                 for match in LINK_RE.finditer(line):
                     target = match.group(2).strip()
                     if _is_in_scope(target):
                         continue
-                    offenders.append(f"{rel_dir}/INDEX.md -> {target}")
+                    offenders.append(f"{rel_dir}/{index_file.name} -> {target}")
 
         if not offenders:
             return CheckResult(
                 self.id,
                 Status.PASS,
-                "All INDEX.md links stay within their own directory",
+                "All index links stay within their own directory",
                 Severity.MEDIUM,
             )
         return CheckResult(
             self.id,
             Status.WARN,
-            f"Out-of-scope INDEX.md links: {', '.join(offenders)}",
+            f"Out-of-scope index links: {', '.join(offenders)}",
             Severity.MEDIUM,
         )

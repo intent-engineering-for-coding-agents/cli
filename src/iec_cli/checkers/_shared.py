@@ -92,6 +92,44 @@ def collect_marker_counts(path: Path) -> Counter[str]:
     return counts
 
 
+INDEX_START = "<!-- index:start -->"
+INDEX_END = "<!-- index:end -->"
+
+
+def embedded_index_lines(readme: Path) -> list[str] | None:
+    """Return the lines between the index markers in ``readme``.
+
+    Returns None when the file is missing, has no start marker, or the start
+    marker is never closed.
+    """
+    if not readme.is_file():
+        return None
+    lines = readme.read_text(encoding="utf-8").splitlines()
+    start = next((i for i, ln in enumerate(lines) if ln.strip() == INDEX_START), None)
+    if start is None:
+        return None
+    for i in range(start + 1, len(lines)):
+        if lines[i].strip() == INDEX_END:
+            return lines[start + 1 : i]
+    return None
+
+
+def index_source(dirpath: Path) -> tuple[Path, list[str], bool] | None:
+    """Locate the index of a docs directory.
+
+    A standalone ``INDEX.md`` wins. Otherwise the marker-delimited block in
+    ``README.md`` is the index. Returns ``(file, lines, embedded)`` or None.
+    """
+    index_file = dirpath / "INDEX.md"
+    if index_file.is_file():
+        return index_file, index_file.read_text(encoding="utf-8").splitlines(), False
+    readme = dirpath / "README.md"
+    block = embedded_index_lines(readme)
+    if block is not None:
+        return readme, block, True
+    return None
+
+
 def front_matter_length(lines: list[str]) -> int:
     """Return the number of lines a leading YAML front matter block occupies.
 

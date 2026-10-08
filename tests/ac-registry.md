@@ -15,9 +15,9 @@ the new max here.
 | `AGSZ` | agents-size | 010 | `openspec/specs/agents-size/` |
 | `AGLN` | agents-links | 006 | `openspec/specs/agents-links/` |
 | `DRME` | docs-readme-exists | 006 | `openspec/specs/docs-readme-exists/` |
-| `DINE` | docs-index-exists | 006 | `openspec/specs/docs-index-exists/` |
-| `DINS` | docs-index-stale | 007 | `openspec/specs/docs-index-stale/` |
-| `DISO` | docs-index-scope | 008 | `openspec/specs/docs-index-scope/` |
+| `DINE` | docs-index-exists | 009 | `openspec/specs/docs-index-exists/` |
+| `DINS` | docs-index-stale | 011 | `openspec/specs/docs-index-stale/` |
+| `DISO` | docs-index-scope | 011 | `openspec/specs/docs-index-scope/` |
 | `ADRF` | adr-format | 015 | `openspec/specs/adr-format/` |
 | `ADRI` | adr-index | 007 | `openspec/specs/adr-index/` |
 | `ACID` | spec-ac-ids | 005 | `openspec/specs/spec-ac-ids/` |

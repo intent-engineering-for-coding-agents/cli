@@ -412,3 +412,136 @@ def test_scope_docs_missing(tmp_path: Path) -> None:
     result = docs_index_scope.DocsIndexScope().check(tmp_path)
     assert result.status == Status.FAIL
     assert "not found" in result.message.lower()
+
+
+# ---------------------------------------------------------------------------
+# embedded README index (docs-index-exists, docs-index-stale, docs-index-scope)
+# ---------------------------------------------------------------------------
+
+
+def _readme_with_block(base: Path, rel_dir: str, *rows: str, prose: str = "") -> None:
+    """Write a README.md holding an index block with the given rows."""
+    target = base / rel_dir / "README.md"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    body = "\n".join(rows)
+    target.write_text(
+        f"# Title\n\n{prose}\n<!-- index:start -->\n{body}\n<!-- index:end -->\n"
+    )
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DINE-007")
+def test_index_exists_embedded_block_counts(tmp_path: Path) -> None:
+    """Covers: DINE-007"""
+    _make_tree(tmp_path, "docs/a.md")
+    _readme_with_block(tmp_path, "docs", "| [A](a.md) | The A file |")
+    result = docs_index_exists.DocsIndexExists().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DINE-008")
+def test_index_exists_readme_without_block_warns(tmp_path: Path) -> None:
+    """Covers: DINE-008"""
+    _make_tree(tmp_path, "docs/a.md")
+    (tmp_path / "docs" / "README.md").write_text("# Docs\n\nNo index here.\n")
+    result = docs_index_exists.DocsIndexExists().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "docs" in result.message
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DINE-009")
+def test_index_exists_unterminated_block_warns(tmp_path: Path) -> None:
+    """Covers: DINE-009"""
+    _make_tree(tmp_path, "docs/a.md")
+    (tmp_path / "docs" / "README.md").write_text(
+        "# Docs\n\n<!-- index:start -->\n| [A](a.md) | A |\n"
+    )
+    result = docs_index_exists.DocsIndexExists().check(tmp_path)
+    assert result.status == Status.WARN
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DINS-008")
+def test_stale_embedded_block_matches(tmp_path: Path) -> None:
+    """Covers: DINS-008 -- README.md hosts the block and is not an orphan."""
+    _make_tree(tmp_path, "docs/a.md")
+    _readme_with_block(
+        tmp_path,
+        "docs",
+        "| [A](a.md) | The A file |",
+        prose="See [elsewhere](missing.md) for background.\n",
+    )
+    result = docs_index_stale.DocsIndexStale().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DINS-009")
+def test_stale_embedded_block_orphan(tmp_path: Path) -> None:
+    """Covers: DINS-009"""
+    _make_tree(tmp_path, "docs/a.md", "docs/b.md")
+    _readme_with_block(tmp_path, "docs", "| [A](a.md) | The A file |")
+    result = docs_index_stale.DocsIndexStale().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "docs/b.md" in result.message
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DINS-010")
+def test_stale_embedded_block_broken_link(tmp_path: Path) -> None:
+    """Covers: DINS-010"""
+    _make_tree(tmp_path, "docs/a.md")
+    _readme_with_block(
+        tmp_path, "docs", "| [A](a.md) | The A file |", "| [Gone](gone.md) | Gone |"
+    )
+    result = docs_index_stale.DocsIndexStale().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "gone.md" in result.message
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DINS-011")
+def test_stale_index_md_wins_over_readme_block(tmp_path: Path) -> None:
+    """Covers: DINS-011"""
+    _make_tree(tmp_path, "docs/a.md")
+    (tmp_path / "docs" / "INDEX.md").write_text("- [A](a.md)\n- [R](README.md)\n")
+    _readme_with_block(tmp_path, "docs", "| [Nope](nope.md) | Not checked |")
+    result = docs_index_stale.DocsIndexStale().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DISO-009")
+def test_scope_embedded_block_deeper_path_warns(tmp_path: Path) -> None:
+    """Covers: DISO-009"""
+    _readme_with_block(tmp_path, "docs", "| [ADR](decisions/0001-x.md) | A decision |")
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.WARN
+    assert "docs/README.md -> decisions/0001-x.md" in result.message
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DISO-010")
+def test_scope_links_outside_block_are_ignored(tmp_path: Path) -> None:
+    """Covers: DISO-010"""
+    _readme_with_block(
+        tmp_path,
+        "docs",
+        "| [A](a.md) | The A file |",
+        prose="Read [the guide](../guide/start.md) first.\n",
+    )
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.PASS
+
+
+@pytest.mark.unit
+@pytest.mark.ac("DISO-011")
+def test_scope_embedded_block_child_readme_pointer_passes(tmp_path: Path) -> None:
+    """Covers: DISO-011"""
+    _readme_with_block(
+        tmp_path, "docs", "| [Decisions](decisions/README.md) | ADR listing |"
+    )
+    result = docs_index_scope.DocsIndexScope().check(tmp_path)
+    assert result.status == Status.PASS

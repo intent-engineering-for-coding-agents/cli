@@ -1,16 +1,16 @@
-"""docs-index-stale — cross-reference INDEX.md entries against actual files."""
+"""docs-index-stale — cross-reference index entries against actual files."""
 
 from pathlib import Path
 
 from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
-from iec_cli.checkers._shared import LINK_RE
+from iec_cli.checkers._shared import LINK_RE, index_source
 
 
 @registry.register
 class DocsIndexStale:
     id = "docs-index-stale"
     maturity = Maturity.ADVISORY
-    description = "Cross-reference INDEX.md entries against actual files"
+    description = "Cross-reference index entries against actual files"
 
     def check(self, path: Path) -> CheckResult:
         docs_dir = path / "docs"
@@ -26,19 +26,22 @@ class DocsIndexStale:
         for dirpath in dirs:
             if not dirpath.is_dir():
                 continue
-            index_file = dirpath / "INDEX.md"
-            if not index_file.is_file():
+            source = index_source(dirpath)
+            if source is None:
                 continue
+            index_file, index_lines, _ = source
 
-            # Gather all files in this directory (exclude .gitkeep and INDEX.md itself)
+            # Gather all files in this directory. Exclude .gitkeep and the file
+            # that holds the index (INDEX.md, or README.md for an embedded block).
+            skip = {".gitkeep", index_file.name}
             actual_files: set[str] = set()
             for f in dirpath.iterdir():
-                if f.is_file() and f.name != ".gitkeep" and f.name != "INDEX.md":
+                if f.is_file() and f.name not in skip:
                     actual_files.add(f.name)
 
             # Parse referenced files from INDEX.md links
             referenced_names: set[str] = set()
-            for line in index_file.read_text(encoding="utf-8").splitlines():
+            for line in index_lines:
                 match = LINK_RE.search(line)
                 if not match:
                     continue
@@ -60,7 +63,7 @@ class DocsIndexStale:
 
         if not broken and not orphans:
             return CheckResult(
-                self.id, Status.PASS, "All INDEX files match filesystem", Severity.HIGH
+                self.id, Status.PASS, "All indexes match filesystem", Severity.HIGH
             )
 
         parts: list[str] = []

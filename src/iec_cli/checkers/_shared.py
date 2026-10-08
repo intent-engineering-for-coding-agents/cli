@@ -92,6 +92,21 @@ def collect_marker_counts(path: Path) -> Counter[str]:
     return counts
 
 
+def front_matter_length(lines: list[str]) -> int:
+    """Return the number of lines a leading YAML front matter block occupies.
+
+    The block starts when the first line is ``---`` and ends at the next line
+    that is exactly ``---``. Returns 0 when there is no block, or when the
+    opening marker is never closed (a stray rule is not a header).
+    """
+    if not lines or lines[0].strip() != "---":
+        return 0
+    for i, line in enumerate(lines[1:], start=1):
+        if line.strip() == "---":
+            return i + 1
+    return 0
+
+
 def is_effectively_empty(dirpath: Path) -> bool:
     """True if dirpath has no substantive content anywhere below it.
 

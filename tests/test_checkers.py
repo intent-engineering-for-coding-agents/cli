@@ -107,6 +107,58 @@ def test_agents_size_registered() -> None:
     assert "agents-size" in [c[0] for c in reg.list_all()]
 
 
+_HEADER = ["---", "type: agent-hub", "title: Hub", "---"]
+
+
+@pytest.mark.unit
+@pytest.mark.ac("AGSZ-007")
+def test_agents_size_front_matter_not_counted(tmp_path: Path) -> None:
+    """Covers: AGSZ-007"""
+    body = [f"line {i}" for i in range(48)]
+    (tmp_path / "AGENTS.md").write_text("\n".join(_HEADER + body))
+    result = agents_size.AgentsSize().check(tmp_path)
+    assert result.status == Status.PASS
+    assert result.message == (
+        "AGENTS.md is 48 lines excluding 4 front matter lines (limit: 50)"
+    )
+
+
+@pytest.mark.unit
+@pytest.mark.ac("AGSZ-008")
+def test_agents_size_over_limit_with_front_matter(tmp_path: Path) -> None:
+    """Covers: AGSZ-008"""
+    body = [f"line {i}" for i in range(51)]
+    (tmp_path / "AGENTS.md").write_text("\n".join(_HEADER + body))
+    result = agents_size.AgentsSize().check(tmp_path)
+    assert result.status == Status.FAIL
+    assert result.message == (
+        "AGENTS.md has 51 lines excluding 4 front matter lines (limit: 50)"
+    )
+
+
+@pytest.mark.unit
+@pytest.mark.ac("AGSZ-009")
+def test_agents_size_unterminated_front_matter_counted(tmp_path: Path) -> None:
+    """Covers: AGSZ-009"""
+    lines = ["---"] + [f"line {i}" for i in range(51)]
+    (tmp_path / "AGENTS.md").write_text("\n".join(lines))
+    result = agents_size.AgentsSize().check(tmp_path)
+    assert result.status == Status.FAIL
+    assert result.message == "AGENTS.md has 52 lines (limit: 50)"
+
+
+@pytest.mark.unit
+@pytest.mark.ac("AGSZ-010")
+def test_agents_size_later_rule_is_not_front_matter(tmp_path: Path) -> None:
+    """Covers: AGSZ-010"""
+    lines = ["# Hub"] + [f"line {i}" for i in range(51)]
+    lines[19] = "---"
+    (tmp_path / "AGENTS.md").write_text("\n".join(lines))
+    result = agents_size.AgentsSize().check(tmp_path)
+    assert result.status == Status.FAIL
+    assert result.message == "AGENTS.md has 52 lines (limit: 50)"
+
+
 # ---------------------------------------------------------------------------
 # agents-links
 # ---------------------------------------------------------------------------

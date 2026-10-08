@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 from iec_cli.check import CheckResult, Maturity, Severity, Status, registry
+from iec_cli.checkers._shared import front_matter_length
 
 DEFAULT_MAX_LINES = 50
 
@@ -29,17 +30,20 @@ class AgentsSize:
             except ValueError:
                 pass
 
-        line_count = len(agents_file.read_text(encoding="utf-8").splitlines())
+        lines = agents_file.read_text(encoding="utf-8").splitlines()
+        header = front_matter_length(lines)
+        line_count = len(lines) - header
+        excluded = f" excluding {header} front matter lines" if header else ""
         if line_count <= max_lines:
             return CheckResult(
                 self.id,
                 Status.PASS,
-                f"AGENTS.md is {line_count} lines (limit: {max_lines})",
+                f"AGENTS.md is {line_count} lines{excluded} (limit: {max_lines})",
                 Severity.HIGH,
             )
         return CheckResult(
             self.id,
             Status.FAIL,
-            f"AGENTS.md has {line_count} lines (limit: {max_lines})",
+            f"AGENTS.md has {line_count} lines{excluded} (limit: {max_lines})",
             Severity.HIGH,
         )

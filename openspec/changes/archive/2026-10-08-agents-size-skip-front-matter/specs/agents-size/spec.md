@@ -1,8 +1,5 @@
-# agents-size Specification
+## MODIFIED Requirements
 
-## Purpose
-TBD - created by archiving change agent-facing-file-checks. Update Purpose after archive.
-## Requirements
 ### Requirement: AGENTS.md line count check
 
 The system SHALL provide an `agents-size` checker that counts lines in `AGENTS.md` and compares against a configurable limit. The limit SHALL default to 50 lines and SHALL be overridable via the `ASE_AGENTS_MAX_LINES` environment variable. A leading YAML front matter block, from a first line of `---` through the next line that is exactly `---`, SHALL NOT count toward the total. A file whose first line is `---` with no closing `---` SHALL be counted in full.
@@ -69,15 +66,3 @@ Test-type: unit
 
 - **WHEN** `AGENTS.md` starts with a heading, contains a `---` line at line 20, and has 52 lines
 - **THEN** the result is `FAIL` with message "AGENTS.md has 52 lines (limit: 50)"
-
-### Requirement: checker registration
-
-The checker SHALL register itself via `@registry.register` with `id` `"agents-size"` and a description summarizing the line limit check.
-
-#### Scenario: Checker is registered [AGSZ-006]
-
-Test-type: unit
-
-- **WHEN** the checkers package is imported
-- **THEN** `"agents-size"` appears in `registry.list_all()`
-

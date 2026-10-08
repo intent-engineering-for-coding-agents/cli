@@ -12,7 +12,7 @@ the new max here.
 | `CHKREG` | checker-registry — Registry class | 011 | `openspec/specs/checker-registry/` |
 | `CHKCLI` | check-cli — `iec check` command | 010 | `openspec/specs/check-cli/` |
 | `AGEX` | agents-exists | 003 | `openspec/specs/agents-exists/` |
-| `AGSZ` | agents-size | 006 | `openspec/specs/agents-size/` |
+| `AGSZ` | agents-size | 010 | `openspec/specs/agents-size/` |
 | `AGLN` | agents-links | 006 | `openspec/specs/agents-links/` |
 | `DRME` | docs-readme-exists | 006 | `openspec/specs/docs-readme-exists/` |
 | `DINE` | docs-index-exists | 006 | `openspec/specs/docs-index-exists/` |
